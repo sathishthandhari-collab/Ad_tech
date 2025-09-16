@@ -1,0 +1,17 @@
+Installing dbt project and profile setup
+Warning Directory 'thd_data_transformation' already exists, using 'thd_data_transformation_1' instead
+Info Created .vscode/extensions.json with dbt extension recommendation
+Success Project created successfully!
+Info Project name: thd_data_transformation_1
+Info Project directory: thd_data_transformation_1
+Info Setting up your profile...
+Info Creating new profile...
+No dbt_cloud.yml found - proceeding without cloud pre-population
+Success Profile written to ./.dbt\profiles.yml
+Validating profile inputs, adapters, and connection
+
+dbt-fusion 2.0.0-preview.11
+   Loading ~/.dbt/profiles.yml
+error: dbt1001: Profile 'thd_data_transformation_1' not found in profiles.yml
+  Finished 'init'  with 1 error in 20s 707ms
+New version available 2.0.0-preview.13 (run `dbt system update`)

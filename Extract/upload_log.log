@@ -1,0 +1,300 @@
+2025-09-13 00:05:28,101 - INFO - === Starting file upload ===
+2025-09-13 00:05:28,127 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:05:28,128 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 00:05:28,190 - ERROR - Connection/Upload failed: 251005: 251005: User is empty, but it must be provided unless authenticator is one of OAUTH, WORKLOAD_IDENTITY, NO_AUTH, PROGRAMMATIC_ACCESS_TOKEN, PAT_WITH_EXTERNAL_SESSION.
+2025-09-13 00:10:45,770 - INFO - === Starting file upload ===
+2025-09-13 00:10:45,774 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:10:45,774 - ERROR - Connection/Upload failed: 'NoneType' object has no attribute 'find'
+2025-09-13 00:12:44,689 - INFO - === Starting file upload ===
+2025-09-13 00:12:44,691 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:12:44,691 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 00:12:44,693 - ERROR - Connection/Upload failed: 251005: 251005: User is empty, but it must be provided unless authenticator is one of NO_AUTH, OAUTH, PAT_WITH_EXTERNAL_SESSION, PROGRAMMATIC_ACCESS_TOKEN, WORKLOAD_IDENTITY.
+2025-09-13 00:13:28,792 - INFO - === Starting file upload ===
+2025-09-13 00:13:28,794 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:13:28,794 - ERROR - Connection/Upload failed: 'NoneType' object has no attribute 'find'
+2025-09-13 00:13:50,974 - INFO - === Starting file upload ===
+2025-09-13 00:13:50,976 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:13:50,976 - ERROR - Connection/Upload failed: 'NoneType' object has no attribute 'find'
+2025-09-13 00:18:21,135 - INFO - === Starting file upload ===
+2025-09-13 00:18:21,136 - ERROR - Connection/Upload failed: [Errno 2] No such file or directory: 'connections.toml'
+2025-09-13 00:19:17,044 - INFO - === Starting file upload ===
+2025-09-13 00:19:17,046 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:19:17,046 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 00:19:17,193 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 00:19:21,773 - INFO - Uploaded CM360_weekly_report_2025-01-01.csv -> [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 29347, 3904, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 00:19:21,773 - INFO - === Upload finished ===
+2025-09-13 00:22:29,688 - INFO - === Starting file upload ===
+2025-09-13 00:22:29,690 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:22:29,690 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 00:22:29,788 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 00:22:33,592 - INFO - Uploaded CM360_weekly_report_2025-01-01.csv -> [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 29347, 3904, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 00:22:33,593 - INFO - === Upload finished ===
+2025-09-13 00:24:27,174 - INFO - === Starting file upload ===
+2025-09-13 00:24:27,176 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:24:27,176 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 00:24:27,273 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 00:24:30,947 - INFO - Uploaded CM360_weekly_report_2025-01-01.csv -> [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 29347, 0, 'NONE', 'GZIP', 'SKIPPED', '')]
+2025-09-13 00:24:30,948 - INFO - === Upload finished ===
+2025-09-13 00:29:20,047 - INFO - === Starting file upload ===
+2025-09-13 00:29:20,049 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 00:29:20,049 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 00:29:20,158 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 00:29:24,289 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv @adtech_analytics.raw.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 00:29:24,289 - INFO - PUT result rows for CM360_weekly_report_2025-01-01.csv: [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 29347, 3904, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 00:29:24,289 - INFO - Parsed statuses for CM360_weekly_report_2025-01-01.csv: ['UPLOADED']
+2025-09-13 00:29:24,289 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv
+2025-09-13 00:29:24,290 - INFO - === Upload finished ===
+2025-09-13 02:14:51,453 - INFO - === Starting file upload ===
+2025-09-13 02:14:51,457 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 02:14:51,457 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 02:14:51,603 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 02:14:55,404 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv @adtech_analytics.raw.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 02:14:55,404 - INFO - PUT result rows for CM360_weekly_report_2025-01-01.csv: [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 53808388, 0, 'NONE', 'GZIP', 'SKIPPED', '')]
+2025-09-13 02:14:55,404 - INFO - Parsed statuses for CM360_weekly_report_2025-01-01.csv: ['SKIPPED']
+2025-09-13 02:14:55,404 - WARNING - Not deleting CM360_weekly_report_2025-01-01.csv since statuses=['SKIPPED']
+2025-09-13 02:14:55,405 - INFO - === Upload finished ===
+2025-09-13 02:56:43,444 - INFO - === Starting file upload ===
+2025-09-13 02:56:43,448 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 02:56:43,449 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 02:56:43,800 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 02:56:53,155 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv @adtech_analytics.raw.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 02:56:53,156 - INFO - PUT result rows for CM360_weekly_report_2025-01-01.csv: [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 54790557, 5281824, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 02:56:53,156 - INFO - Parsed statuses for CM360_weekly_report_2025-01-01.csv: ['UPLOADED']
+2025-09-13 02:56:53,165 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv
+2025-09-13 02:56:53,166 - INFO - === Upload finished ===
+2025-09-13 03:10:21,252 - INFO - === Starting file upload ===
+2025-09-13 03:10:21,257 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 03:10:21,257 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 03:10:21,406 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 03:10:25,439 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv @adtech_analytics.raw.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:10:25,439 - INFO - PUT result rows for CM360_weekly_report_2025-01-01.csv: [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 54790557, 0, 'NONE', 'GZIP', 'SKIPPED', '')]
+2025-09-13 03:10:25,440 - INFO - Parsed statuses for CM360_weekly_report_2025-01-01.csv: ['SKIPPED']
+2025-09-13 03:10:25,440 - WARNING - Not deleting CM360_weekly_report_2025-01-01.csv since statuses=['SKIPPED']
+2025-09-13 03:10:25,440 - INFO - === Upload finished ===
+2025-09-13 03:11:48,734 - INFO - === Starting file upload ===
+2025-09-13 03:11:48,736 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 03:11:48,736 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 03:11:48,900 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 03:12:12,517 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:12:12,517 - INFO - PUT result rows for CM360_weekly_report_2025-01-01.csv: [('CM360_weekly_report_2025-01-01.csv', 'CM360_weekly_report_2025-01-01.csv.gz', 54790557, 5281824, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:12:12,517 - INFO - Parsed statuses for CM360_weekly_report_2025-01-01.csv: ['UPLOADED']
+2025-09-13 03:12:12,528 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-01.csv
+2025-09-13 03:12:12,529 - INFO - === Upload finished ===
+2025-09-13 03:20:02,049 - INFO - === Starting file upload ===
+2025-09-13 03:20:02,051 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 03:20:02,051 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 03:20:02,185 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 03:20:19,063 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-08.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:20:19,063 - INFO - PUT result rows for CM360_weekly_report_2025-01-08.csv: [('CM360_weekly_report_2025-01-08.csv', 'CM360_weekly_report_2025-01-08.csv.gz', 53934764, 5242960, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:20:19,063 - INFO - Parsed statuses for CM360_weekly_report_2025-01-08.csv: ['UPLOADED']
+2025-09-13 03:20:19,070 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-08.csv
+2025-09-13 03:20:24,923 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-15.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:20:24,924 - INFO - PUT result rows for CM360_weekly_report_2025-01-15.csv: [('CM360_weekly_report_2025-01-15.csv', 'CM360_weekly_report_2025-01-15.csv.gz', 55721065, 5407680, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:20:24,924 - INFO - Parsed statuses for CM360_weekly_report_2025-01-15.csv: ['UPLOADED']
+2025-09-13 03:20:24,930 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-15.csv
+2025-09-13 03:20:24,931 - INFO - === Upload finished ===
+2025-09-13 03:24:33,714 - INFO - === Starting file upload ===
+2025-09-13 03:24:33,716 - INFO - Snowflake Connector for Python Version: 3.17.3, Python Version: 3.12.10, Platform: Windows-11-10.0.26100-SP0
+2025-09-13 03:24:33,716 - INFO - Connecting to GLOBAL Snowflake domain
+2025-09-13 03:24:33,894 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2025-09-13 03:24:42,685 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-22.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:24:42,685 - INFO - PUT result rows for CM360_weekly_report_2025-01-22.csv: [('CM360_weekly_report_2025-01-22.csv', 'CM360_weekly_report_2025-01-22.csv.gz', 55327753, 5358720, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:24:42,686 - INFO - Parsed statuses for CM360_weekly_report_2025-01-22.csv: ['UPLOADED']
+2025-09-13 03:24:42,691 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-22.csv
+2025-09-13 03:24:47,086 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-29.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:24:47,086 - INFO - PUT result rows for CM360_weekly_report_2025-01-29.csv: [('CM360_weekly_report_2025-01-29.csv', 'CM360_weekly_report_2025-01-29.csv.gz', 57171597, 5542272, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:24:47,086 - INFO - Parsed statuses for CM360_weekly_report_2025-01-29.csv: ['UPLOADED']
+2025-09-13 03:24:47,094 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-01-29.csv
+2025-09-13 03:24:51,285 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-05.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:24:51,286 - INFO - PUT result rows for CM360_weekly_report_2025-02-05.csv: [('CM360_weekly_report_2025-02-05.csv', 'CM360_weekly_report_2025-02-05.csv.gz', 55116889, 5357376, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:24:51,286 - INFO - Parsed statuses for CM360_weekly_report_2025-02-05.csv: ['UPLOADED']
+2025-09-13 03:24:51,296 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-05.csv
+2025-09-13 03:24:55,542 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-12.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:24:55,543 - INFO - PUT result rows for CM360_weekly_report_2025-02-12.csv: [('CM360_weekly_report_2025-02-12.csv', 'CM360_weekly_report_2025-02-12.csv.gz', 55512571, 5372064, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:24:55,543 - INFO - Parsed statuses for CM360_weekly_report_2025-02-12.csv: ['UPLOADED']
+2025-09-13 03:24:55,549 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-12.csv
+2025-09-13 03:24:59,878 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-19.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:24:59,878 - INFO - PUT result rows for CM360_weekly_report_2025-02-19.csv: [('CM360_weekly_report_2025-02-19.csv', 'CM360_weekly_report_2025-02-19.csv.gz', 54537065, 5308336, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:24:59,879 - INFO - Parsed statuses for CM360_weekly_report_2025-02-19.csv: ['UPLOADED']
+2025-09-13 03:24:59,888 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-19.csv
+2025-09-13 03:25:04,000 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-26.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:04,001 - INFO - PUT result rows for CM360_weekly_report_2025-02-26.csv: [('CM360_weekly_report_2025-02-26.csv', 'CM360_weekly_report_2025-02-26.csv.gz', 55076546, 5349696, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:04,001 - INFO - Parsed statuses for CM360_weekly_report_2025-02-26.csv: ['UPLOADED']
+2025-09-13 03:25:04,012 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-02-26.csv
+2025-09-13 03:25:07,260 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-05.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:07,260 - INFO - PUT result rows for CM360_weekly_report_2025-03-05.csv: [('CM360_weekly_report_2025-03-05.csv', 'CM360_weekly_report_2025-03-05.csv.gz', 53378367, 5265312, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:07,260 - INFO - Parsed statuses for CM360_weekly_report_2025-03-05.csv: ['UPLOADED']
+2025-09-13 03:25:07,264 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-05.csv
+2025-09-13 03:25:10,580 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-12.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:10,580 - INFO - PUT result rows for CM360_weekly_report_2025-03-12.csv: [('CM360_weekly_report_2025-03-12.csv', 'CM360_weekly_report_2025-03-12.csv.gz', 56031073, 5495840, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:10,580 - INFO - Parsed statuses for CM360_weekly_report_2025-03-12.csv: ['UPLOADED']
+2025-09-13 03:25:10,586 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-12.csv
+2025-09-13 03:25:13,914 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-19.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:13,914 - INFO - PUT result rows for CM360_weekly_report_2025-03-19.csv: [('CM360_weekly_report_2025-03-19.csv', 'CM360_weekly_report_2025-03-19.csv.gz', 56550183, 5571712, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:13,914 - INFO - Parsed statuses for CM360_weekly_report_2025-03-19.csv: ['UPLOADED']
+2025-09-13 03:25:13,918 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-19.csv
+2025-09-13 03:25:17,265 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-26.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:17,265 - INFO - PUT result rows for CM360_weekly_report_2025-03-26.csv: [('CM360_weekly_report_2025-03-26.csv', 'CM360_weekly_report_2025-03-26.csv.gz', 54087819, 5351408, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:17,265 - INFO - Parsed statuses for CM360_weekly_report_2025-03-26.csv: ['UPLOADED']
+2025-09-13 03:25:17,272 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-03-26.csv
+2025-09-13 03:25:20,680 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-02.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:20,680 - INFO - PUT result rows for CM360_weekly_report_2025-04-02.csv: [('CM360_weekly_report_2025-04-02.csv', 'CM360_weekly_report_2025-04-02.csv.gz', 54468070, 5384624, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:20,680 - INFO - Parsed statuses for CM360_weekly_report_2025-04-02.csv: ['UPLOADED']
+2025-09-13 03:25:20,685 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-02.csv
+2025-09-13 03:25:24,154 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-09.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:24,154 - INFO - PUT result rows for CM360_weekly_report_2025-04-09.csv: [('CM360_weekly_report_2025-04-09.csv', 'CM360_weekly_report_2025-04-09.csv.gz', 55537898, 5498976, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:24,154 - INFO - Parsed statuses for CM360_weekly_report_2025-04-09.csv: ['UPLOADED']
+2025-09-13 03:25:24,159 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-09.csv
+2025-09-13 03:25:27,413 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-16.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:27,414 - INFO - PUT result rows for CM360_weekly_report_2025-04-16.csv: [('CM360_weekly_report_2025-04-16.csv', 'CM360_weekly_report_2025-04-16.csv.gz', 55633677, 5519104, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:27,414 - INFO - Parsed statuses for CM360_weekly_report_2025-04-16.csv: ['UPLOADED']
+2025-09-13 03:25:27,418 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-16.csv
+2025-09-13 03:25:30,652 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-23.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:30,652 - INFO - PUT result rows for CM360_weekly_report_2025-04-23.csv: [('CM360_weekly_report_2025-04-23.csv', 'CM360_weekly_report_2025-04-23.csv.gz', 53840951, 5324528, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:30,652 - INFO - Parsed statuses for CM360_weekly_report_2025-04-23.csv: ['UPLOADED']
+2025-09-13 03:25:30,656 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-23.csv
+2025-09-13 03:25:33,947 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-30.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:33,947 - INFO - PUT result rows for CM360_weekly_report_2025-04-30.csv: [('CM360_weekly_report_2025-04-30.csv', 'CM360_weekly_report_2025-04-30.csv.gz', 54832069, 5427760, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:33,947 - INFO - Parsed statuses for CM360_weekly_report_2025-04-30.csv: ['UPLOADED']
+2025-09-13 03:25:33,952 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-04-30.csv
+2025-09-13 03:25:37,394 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-07.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:37,394 - INFO - PUT result rows for CM360_weekly_report_2025-05-07.csv: [('CM360_weekly_report_2025-05-07.csv', 'CM360_weekly_report_2025-05-07.csv.gz', 54428515, 5309280, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:37,394 - INFO - Parsed statuses for CM360_weekly_report_2025-05-07.csv: ['UPLOADED']
+2025-09-13 03:25:37,399 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-07.csv
+2025-09-13 03:25:40,590 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-14.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:40,590 - INFO - PUT result rows for CM360_weekly_report_2025-05-14.csv: [('CM360_weekly_report_2025-05-14.csv', 'CM360_weekly_report_2025-05-14.csv.gz', 55091967, 5347488, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:40,590 - INFO - Parsed statuses for CM360_weekly_report_2025-05-14.csv: ['UPLOADED']
+2025-09-13 03:25:40,595 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-14.csv
+2025-09-13 03:25:43,804 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-21.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:43,804 - INFO - PUT result rows for CM360_weekly_report_2025-05-21.csv: [('CM360_weekly_report_2025-05-21.csv', 'CM360_weekly_report_2025-05-21.csv.gz', 53989266, 5221904, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:43,804 - INFO - Parsed statuses for CM360_weekly_report_2025-05-21.csv: ['UPLOADED']
+2025-09-13 03:25:43,810 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-21.csv
+2025-09-13 03:25:47,093 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-28.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:47,093 - INFO - PUT result rows for CM360_weekly_report_2025-05-28.csv: [('CM360_weekly_report_2025-05-28.csv', 'CM360_weekly_report_2025-05-28.csv.gz', 54913149, 5366528, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:47,093 - INFO - Parsed statuses for CM360_weekly_report_2025-05-28.csv: ['UPLOADED']
+2025-09-13 03:25:47,096 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-05-28.csv
+2025-09-13 03:25:50,392 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-04.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:50,392 - INFO - PUT result rows for CM360_weekly_report_2025-06-04.csv: [('CM360_weekly_report_2025-06-04.csv', 'CM360_weekly_report_2025-06-04.csv.gz', 55317243, 5396736, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:50,392 - INFO - Parsed statuses for CM360_weekly_report_2025-06-04.csv: ['UPLOADED']
+2025-09-13 03:25:50,396 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-04.csv
+2025-09-13 03:25:53,681 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-11.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:53,681 - INFO - PUT result rows for CM360_weekly_report_2025-06-11.csv: [('CM360_weekly_report_2025-06-11.csv', 'CM360_weekly_report_2025-06-11.csv.gz', 56029909, 5430160, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:53,681 - INFO - Parsed statuses for CM360_weekly_report_2025-06-11.csv: ['UPLOADED']
+2025-09-13 03:25:53,687 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-11.csv
+2025-09-13 03:25:57,127 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-18.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:25:57,127 - INFO - PUT result rows for CM360_weekly_report_2025-06-18.csv: [('CM360_weekly_report_2025-06-18.csv', 'CM360_weekly_report_2025-06-18.csv.gz', 55035372, 5381904, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:25:57,127 - INFO - Parsed statuses for CM360_weekly_report_2025-06-18.csv: ['UPLOADED']
+2025-09-13 03:25:57,132 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-18.csv
+2025-09-13 03:26:00,611 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-25.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:00,611 - INFO - PUT result rows for CM360_weekly_report_2025-06-25.csv: [('CM360_weekly_report_2025-06-25.csv', 'CM360_weekly_report_2025-06-25.csv.gz', 55803285, 5443072, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:00,611 - INFO - Parsed statuses for CM360_weekly_report_2025-06-25.csv: ['UPLOADED']
+2025-09-13 03:26:00,614 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-06-25.csv
+2025-09-13 03:26:03,783 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-02.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:03,783 - INFO - PUT result rows for CM360_weekly_report_2025-07-02.csv: [('CM360_weekly_report_2025-07-02.csv', 'CM360_weekly_report_2025-07-02.csv.gz', 54400194, 5270800, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:03,783 - INFO - Parsed statuses for CM360_weekly_report_2025-07-02.csv: ['UPLOADED']
+2025-09-13 03:26:03,788 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-02.csv
+2025-09-13 03:26:07,163 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-09.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:07,163 - INFO - PUT result rows for CM360_weekly_report_2025-07-09.csv: [('CM360_weekly_report_2025-07-09.csv', 'CM360_weekly_report_2025-07-09.csv.gz', 55896148, 5432800, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:07,163 - INFO - Parsed statuses for CM360_weekly_report_2025-07-09.csv: ['UPLOADED']
+2025-09-13 03:26:07,170 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-09.csv
+2025-09-13 03:26:10,645 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-16.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:10,645 - INFO - PUT result rows for CM360_weekly_report_2025-07-16.csv: [('CM360_weekly_report_2025-07-16.csv', 'CM360_weekly_report_2025-07-16.csv.gz', 55400958, 5394256, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:10,646 - INFO - Parsed statuses for CM360_weekly_report_2025-07-16.csv: ['UPLOADED']
+2025-09-13 03:26:10,649 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-16.csv
+2025-09-13 03:26:14,023 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-23.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:14,024 - INFO - PUT result rows for CM360_weekly_report_2025-07-23.csv: [('CM360_weekly_report_2025-07-23.csv', 'CM360_weekly_report_2025-07-23.csv.gz', 54798960, 5293040, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:14,024 - INFO - Parsed statuses for CM360_weekly_report_2025-07-23.csv: ['UPLOADED']
+2025-09-13 03:26:14,027 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-23.csv
+2025-09-13 03:26:17,181 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-30.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:17,182 - INFO - PUT result rows for CM360_weekly_report_2025-07-30.csv: [('CM360_weekly_report_2025-07-30.csv', 'CM360_weekly_report_2025-07-30.csv.gz', 56264812, 5318976, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:17,182 - INFO - Parsed statuses for CM360_weekly_report_2025-07-30.csv: ['UPLOADED']
+2025-09-13 03:26:17,187 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-07-30.csv
+2025-09-13 03:26:20,360 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-06.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:20,360 - INFO - PUT result rows for CM360_weekly_report_2025-08-06.csv: [('CM360_weekly_report_2025-08-06.csv', 'CM360_weekly_report_2025-08-06.csv.gz', 57206002, 5419344, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:20,361 - INFO - Parsed statuses for CM360_weekly_report_2025-08-06.csv: ['UPLOADED']
+2025-09-13 03:26:20,364 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-06.csv
+2025-09-13 03:26:23,629 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-13.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:23,629 - INFO - PUT result rows for CM360_weekly_report_2025-08-13.csv: [('CM360_weekly_report_2025-08-13.csv', 'CM360_weekly_report_2025-08-13.csv.gz', 54703668, 5319680, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:23,629 - INFO - Parsed statuses for CM360_weekly_report_2025-08-13.csv: ['UPLOADED']
+2025-09-13 03:26:23,633 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-13.csv
+2025-09-13 03:26:27,436 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-20.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:27,436 - INFO - PUT result rows for CM360_weekly_report_2025-08-20.csv: [('CM360_weekly_report_2025-08-20.csv', 'CM360_weekly_report_2025-08-20.csv.gz', 55372974, 5356256, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:27,436 - INFO - Parsed statuses for CM360_weekly_report_2025-08-20.csv: ['UPLOADED']
+2025-09-13 03:26:27,439 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-20.csv
+2025-09-13 03:26:30,960 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-27.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:30,960 - INFO - PUT result rows for CM360_weekly_report_2025-08-27.csv: [('CM360_weekly_report_2025-08-27.csv', 'CM360_weekly_report_2025-08-27.csv.gz', 54044450, 5249504, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:30,960 - INFO - Parsed statuses for CM360_weekly_report_2025-08-27.csv: ['UPLOADED']
+2025-09-13 03:26:30,964 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-08-27.csv
+2025-09-13 03:26:34,632 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-03.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:34,633 - INFO - PUT result rows for CM360_weekly_report_2025-09-03.csv: [('CM360_weekly_report_2025-09-03.csv', 'CM360_weekly_report_2025-09-03.csv.gz', 55043538, 5405584, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:34,633 - INFO - Parsed statuses for CM360_weekly_report_2025-09-03.csv: ['UPLOADED']
+2025-09-13 03:26:34,637 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-03.csv
+2025-09-13 03:26:40,953 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-10.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:40,954 - INFO - PUT result rows for CM360_weekly_report_2025-09-10.csv: [('CM360_weekly_report_2025-09-10.csv', 'CM360_weekly_report_2025-09-10.csv.gz', 54338008, 5336944, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:40,954 - INFO - Parsed statuses for CM360_weekly_report_2025-09-10.csv: ['UPLOADED']
+2025-09-13 03:26:40,959 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-10.csv
+2025-09-13 03:26:44,230 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-17.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:44,230 - INFO - PUT result rows for CM360_weekly_report_2025-09-17.csv: [('CM360_weekly_report_2025-09-17.csv', 'CM360_weekly_report_2025-09-17.csv.gz', 54363050, 5373840, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:44,230 - INFO - Parsed statuses for CM360_weekly_report_2025-09-17.csv: ['UPLOADED']
+2025-09-13 03:26:44,237 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-17.csv
+2025-09-13 03:26:47,507 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-24.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:47,507 - INFO - PUT result rows for CM360_weekly_report_2025-09-24.csv: [('CM360_weekly_report_2025-09-24.csv', 'CM360_weekly_report_2025-09-24.csv.gz', 54623286, 5398336, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:47,507 - INFO - Parsed statuses for CM360_weekly_report_2025-09-24.csv: ['UPLOADED']
+2025-09-13 03:26:47,511 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-09-24.csv
+2025-09-13 03:26:50,785 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-01.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:50,785 - INFO - PUT result rows for CM360_weekly_report_2025-10-01.csv: [('CM360_weekly_report_2025-10-01.csv', 'CM360_weekly_report_2025-10-01.csv.gz', 55539835, 5446960, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:50,786 - INFO - Parsed statuses for CM360_weekly_report_2025-10-01.csv: ['UPLOADED']
+2025-09-13 03:26:50,789 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-01.csv
+2025-09-13 03:26:54,023 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-08.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:54,023 - INFO - PUT result rows for CM360_weekly_report_2025-10-08.csv: [('CM360_weekly_report_2025-10-08.csv', 'CM360_weekly_report_2025-10-08.csv.gz', 55573150, 5478944, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:54,023 - INFO - Parsed statuses for CM360_weekly_report_2025-10-08.csv: ['UPLOADED']
+2025-09-13 03:26:54,029 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-08.csv
+2025-09-13 03:26:57,322 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-15.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:26:57,322 - INFO - PUT result rows for CM360_weekly_report_2025-10-15.csv: [('CM360_weekly_report_2025-10-15.csv', 'CM360_weekly_report_2025-10-15.csv.gz', 54442386, 5361120, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:26:57,322 - INFO - Parsed statuses for CM360_weekly_report_2025-10-15.csv: ['UPLOADED']
+2025-09-13 03:26:57,327 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-15.csv
+2025-09-13 03:27:00,827 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-22.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:00,827 - INFO - PUT result rows for CM360_weekly_report_2025-10-22.csv: [('CM360_weekly_report_2025-10-22.csv', 'CM360_weekly_report_2025-10-22.csv.gz', 55270312, 5398608, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:00,827 - INFO - Parsed statuses for CM360_weekly_report_2025-10-22.csv: ['UPLOADED']
+2025-09-13 03:27:00,831 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-22.csv
+2025-09-13 03:27:04,511 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-29.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:04,511 - INFO - PUT result rows for CM360_weekly_report_2025-10-29.csv: [('CM360_weekly_report_2025-10-29.csv', 'CM360_weekly_report_2025-10-29.csv.gz', 55232422, 5432560, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:04,511 - INFO - Parsed statuses for CM360_weekly_report_2025-10-29.csv: ['UPLOADED']
+2025-09-13 03:27:04,519 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-10-29.csv
+2025-09-13 03:27:08,107 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-05.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:08,107 - INFO - PUT result rows for CM360_weekly_report_2025-11-05.csv: [('CM360_weekly_report_2025-11-05.csv', 'CM360_weekly_report_2025-11-05.csv.gz', 54546330, 5425088, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:08,107 - INFO - Parsed statuses for CM360_weekly_report_2025-11-05.csv: ['UPLOADED']
+2025-09-13 03:27:08,118 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-05.csv
+2025-09-13 03:27:11,877 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-12.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:11,877 - INFO - PUT result rows for CM360_weekly_report_2025-11-12.csv: [('CM360_weekly_report_2025-11-12.csv', 'CM360_weekly_report_2025-11-12.csv.gz', 53827188, 5320448, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:11,878 - INFO - Parsed statuses for CM360_weekly_report_2025-11-12.csv: ['UPLOADED']
+2025-09-13 03:27:11,883 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-12.csv
+2025-09-13 03:27:15,779 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-19.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:15,779 - INFO - PUT result rows for CM360_weekly_report_2025-11-19.csv: [('CM360_weekly_report_2025-11-19.csv', 'CM360_weekly_report_2025-11-19.csv.gz', 56392756, 5592336, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:15,779 - INFO - Parsed statuses for CM360_weekly_report_2025-11-19.csv: ['UPLOADED']
+2025-09-13 03:27:15,783 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-19.csv
+2025-09-13 03:27:19,353 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-26.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:19,353 - INFO - PUT result rows for CM360_weekly_report_2025-11-26.csv: [('CM360_weekly_report_2025-11-26.csv', 'CM360_weekly_report_2025-11-26.csv.gz', 53328310, 5283248, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:19,353 - INFO - Parsed statuses for CM360_weekly_report_2025-11-26.csv: ['UPLOADED']
+2025-09-13 03:27:19,358 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-11-26.csv
+2025-09-13 03:27:22,749 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-03.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:22,749 - INFO - PUT result rows for CM360_weekly_report_2025-12-03.csv: [('CM360_weekly_report_2025-12-03.csv', 'CM360_weekly_report_2025-12-03.csv.gz', 54516283, 5366112, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:22,749 - INFO - Parsed statuses for CM360_weekly_report_2025-12-03.csv: ['UPLOADED']
+2025-09-13 03:27:22,755 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-03.csv
+2025-09-13 03:27:26,131 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-10.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:26,132 - INFO - PUT result rows for CM360_weekly_report_2025-12-10.csv: [('CM360_weekly_report_2025-12-10.csv', 'CM360_weekly_report_2025-12-10.csv.gz', 53687174, 5298208, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:26,132 - INFO - Parsed statuses for CM360_weekly_report_2025-12-10.csv: ['UPLOADED']
+2025-09-13 03:27:26,136 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-10.csv
+2025-09-13 03:27:29,476 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-17.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:29,476 - INFO - PUT result rows for CM360_weekly_report_2025-12-17.csv: [('CM360_weekly_report_2025-12-17.csv', 'CM360_weekly_report_2025-12-17.csv.gz', 55781362, 5550640, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:29,476 - INFO - Parsed statuses for CM360_weekly_report_2025-12-17.csv: ['UPLOADED']
+2025-09-13 03:27:29,482 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-17.csv
+2025-09-13 03:27:32,862 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-24.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:32,862 - INFO - PUT result rows for CM360_weekly_report_2025-12-24.csv: [('CM360_weekly_report_2025-12-24.csv', 'CM360_weekly_report_2025-12-24.csv.gz', 54246447, 5361936, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:32,862 - INFO - Parsed statuses for CM360_weekly_report_2025-12-24.csv: ['UPLOADED']
+2025-09-13 03:27:32,867 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-24.csv
+2025-09-13 03:27:36,555 - INFO - PUT cmd: PUT file://C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-31.csv @adtech_analytics.staging.CM360_stage AUTO_COMPRESS=TRUE OVERWRITE=FALSE
+2025-09-13 03:27:36,555 - INFO - PUT result rows for CM360_weekly_report_2025-12-31.csv: [('CM360_weekly_report_2025-12-31.csv', 'CM360_weekly_report_2025-12-31.csv.gz', 54618887, 5394400, 'NONE', 'GZIP', 'UPLOADED', '')]
+2025-09-13 03:27:36,555 - INFO - Parsed statuses for CM360_weekly_report_2025-12-31.csv: ['UPLOADED']
+2025-09-13 03:27:36,560 - INFO - Deleted local file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DATA\to_cm360_stage\CM360_weekly_report_2025-12-31.csv
+2025-09-13 03:27:36,560 - INFO - === Upload finished ===
