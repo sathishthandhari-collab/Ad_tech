@@ -1,0 +1,18 @@
+dbt-fusion 2.0.0-preview.13
+   Loading ~/.dbt/profiles.yml
+ Debugging profile: dev
+ Debugging dbt version: 2.0.0-preview.13
+ Debugging platform: windows x86_64 (windows)
+ Debugging adapter type: snowflake (remote)
+ Debugging dependencies:
+  git: OK
+ Debugging connection:
+  "account": "KQEHYVI-VNB87559",
+  "user": "sathishthandari",
+  "database": "adtech_analytics",
+  "warehouse": "projects",
+  "schema": "staging",
+  "role": "accountadmin"
+ Debugging connection test: OK
+  Debugged All checks passed!
+  Finished 'debug' target 'dev' in 3s 634ms
