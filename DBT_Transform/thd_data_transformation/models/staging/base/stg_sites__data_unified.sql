@@ -16,7 +16,7 @@ WITH unified_site_data AS (
             campaign,
             campaignId AS cm360_campaign_id,
             publisher,
-            placement,
+            placement as placement_name,
             ad_format AS creative_type,
             imp AS impressions,
             clk AS clicks,

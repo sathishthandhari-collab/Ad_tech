@@ -25,6 +25,3 @@ models:
       +materialized: table
 
 
-  dbt-cloud:
-    project-id: 70471823504854
-
