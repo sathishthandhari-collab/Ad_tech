@@ -27,6 +27,7 @@ models:
         +materialized: ephemeral
 
     marts:
+      +schema: thd_analytics_prod
       +materialized: table
 
 

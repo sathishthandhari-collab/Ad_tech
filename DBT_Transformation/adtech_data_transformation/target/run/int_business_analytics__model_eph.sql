@@ -2,7 +2,10 @@
   create or replace   view adtech_analytics.staging.int_business_analytics__model_eph
   
    as (
-    select  cm360.date,
+    
+
+select  cm360.date,
+        date_trunc('month', cm360.date) as month,
         cm360.campaign_id,
         cm360.campaign_name,
         cm360.site_name,
@@ -28,7 +31,7 @@
             left join adtech_analytics.staging.stg_sites__data_unified as site
                 on cm360.placement_name = site.placement_name
                     and cm360.date = site.date
-        group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19
+        group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
             order by date
         
     
