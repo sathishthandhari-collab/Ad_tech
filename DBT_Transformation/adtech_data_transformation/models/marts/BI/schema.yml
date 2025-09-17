@@ -1,169 +1,161 @@
-dbt-fusion 2.0.0-preview.17
-   Loading ~/.dbt/profiles.yml
-   Loading packages.yml
-'version: 2
-
 models:
   - name: daily_report_unified
     description: ""
     columns:
       - name: date
         data_type: date
-        description: ""
+
 
       - name: month
         data_type: date
-        description: ""
+
 
       - name: campaign_id
         data_type: number
-        description: ""
+
 
       - name: campaign_name
         data_type: varchar
-        description: ""
+
 
       - name: site_name
         data_type: varchar
-        description: ""
+
 
       - name: placement_name
         data_type: varchar
-        description: ""
+
 
       - name: creative_concept
         data_type: varchar
-        description: ""
+
 
       - name: creative_type
         data_type: varchar
-        description: ""
+
 
       - name: impressions
         data_type: number
-        description: ""
+
 
       - name: clicks
         data_type: number
-        description: ""
+
 
       - name: ias_impressions
         data_type: number
-        description: ""
+
 
       - name: ias_viewable_ads
         data_type: number
-        description: ""
+
 
       - name: ias_brand_safety_ads
         data_type: number
-        description: ""
+
 
       - name: ias_out_of_geo_ads
         data_type: number
-        description: ""
+
 
       - name: ias_page_views
         data_type: number
-        description: ""
+
 
       - name: ias_video_completions
         data_type: number
-        description: ""
+
 
       - name: state
         data_type: varchar
-        description: ""
+
 
       - name: region
         data_type: varchar
-        description: ""
+
 
       - name: sex
         data_type: varchar
-        description: ""
+
 
       - name: device_type
         data_type: varchar
-        description: ""
+
 
   - name: monthly_report_unified
     description: ""
     columns:
       - name: month
         data_type: date
-        description: ""
+
 
       - name: campaign_id
         data_type: number
-        description: ""
+
 
       - name: campaign_name
         data_type: varchar
-        description: ""
+
 
       - name: site_name
         data_type: varchar
-        description: ""
+
 
       - name: placement_name
         data_type: varchar
-        description: ""
+
 
       - name: creative_concept
         data_type: varchar
-        description: ""
+
 
       - name: creative_type
         data_type: varchar
-        description: ""
+
 
       - name: impressions
         data_type: number
-        description: ""
+
 
       - name: clicks
         data_type: number
-        description: ""
+
 
       - name: ias_impressions
         data_type: number
-        description: ""
+
 
       - name: ias_viewable_ads
         data_type: number
-        description: ""
+
 
       - name: ias_brand_safety_ads
         data_type: number
-        description: ""
+
 
       - name: ias_out_of_geo_ads
         data_type: number
-        description: ""
+
 
       - name: ias_page_views
         data_type: number
-        description: ""
+
 
       - name: ias_video_completions
         data_type: number
-        description: ""
+
 
       - name: state
         data_type: varchar
-        description: ""
+
 
       - name: region
         data_type: varchar
-        description: ""
+
 
       - name: sex
         data_type: varchar
-        description: ""
+
 
       - name: device_type
         data_type: varchar
-        description: ""
-'
-  Finished 'run-operation' target 'dev' in 2s 469ms
