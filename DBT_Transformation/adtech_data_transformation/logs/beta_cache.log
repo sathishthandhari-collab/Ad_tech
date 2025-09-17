@@ -1,0 +1,15 @@
+
+=== RelationCache Final State ===
+Total Schemas: 1
+
+[COMPLETE] SCHEMA
+   ╭─ Name: "ADTECH_ANALYTICS"."STAGING"
+   ├─ Relations: 29
+   ├─ Cached: 1758133548074ms
+   ╰─ Status: All relations cached as a batch
+
+=== Summary ===
+Complete Schemas: 1
+Partial Schemas: 0
+Total Relations: 29
+
