@@ -1,0 +1,30 @@
+name: adtech_data_transformation
+
+profile: adtech_data_transformation
+
+seed-paths: ["seeds"]
+model-paths: ["models"]
+macro-paths: ["macros"]
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  # Builds seeds into '<your_schema_name>_raw'
+  adtech_data_transformation:
+    +schema: staging
+
+models:
+  adtech_data_transformation:
+    # Materialize staging models as views, and marts as tables
+    staging:
+      +materialized: view
+
+    intermediate:
+      int_business_analytics__model_eph:
+        +materialized: ephemeral 
+
+    marts:
+      +materialized: table
+
+

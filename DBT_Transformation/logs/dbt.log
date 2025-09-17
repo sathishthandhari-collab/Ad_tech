@@ -1,0 +1,3 @@
+dbt-fusion 2.0.0-preview.16
+error: dbt1001: Cannot open file C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DBT_Transformation\dbt_project.yml: Failed to open file: C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\DBT_Transformation\dbt_project.yml: The system cannot find the file specified. (os error 2): The system cannot find the file specified. (os error 2)
+  Finished 'compile'  with 1 error in 2ms
