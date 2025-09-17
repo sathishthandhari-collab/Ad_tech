@@ -1,0 +1,57 @@
+{
+    "path_count": 206,
+    "parsed_path_count": 2,
+    "static_analysis_path_count": 1,
+    "static_analysis_parsed_path_count": 1,
+    "is_partial_parse_enabled": true,
+    "is_static_analysis_enabled": true,
+    "read_files_elapsed": 0.07547189999604598,
+    "load_macros_elapsed": 0.0003872000379487872,
+    "parse_project_elapsed": 0.20422640000469983,
+    "patch_sources_elapsed": 0.018783100007567555,
+    "process_manifest_elapsed": 0.001643700001295656,
+    "load_all_elapsed": 0.4723580999998376,
+    "projects": [
+        {
+            "project_name": "thd_data_transformation",
+            "elapsed": 0.20415260002482682,
+            "parsers": [
+                {
+                    "parser": "model",
+                    "elapsed": 0.13687190000200644,
+                    "parsed_path_count": 1
+                },
+                {
+                    "parser": "test",
+                    "elapsed": 0.06726920005166903,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 2
+        },
+        {
+            "project_name": "dbt_snowflake",
+            "elapsed": 0,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "dbt",
+            "elapsed": 0,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "codegen",
+            "elapsed": 0,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "dbt_utils",
+            "elapsed": 0,
+            "parsers": [],
+            "parsed_path_count": 0
+        }
+    ]
+}
