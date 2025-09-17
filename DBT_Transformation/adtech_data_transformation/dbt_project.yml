@@ -22,7 +22,9 @@ models:
 
     intermediate:
       int_business_analytics__model_eph:
-        +materialized: ephemeral 
+        +materialized: ephemeral
+      int_pacing_and_billing__model:
+        +materialized: ephemeral
 
     marts:
       +materialized: table
