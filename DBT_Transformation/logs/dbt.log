@@ -1,0 +1,18 @@
+Installing dbt project and profile setup
+Info Created .vscode/extensions.json with dbt extension recommendation
+Success Project created successfully!
+Info Project name: adtech_data_transformation
+Info Project directory: adtech_data_transformation
+Info Setting up your profile...
+Info Creating new profile...
+Found dbt_cloud.yml configuration
+Found active project: Adtech_Analytics (ID: 70471823504854)
+Failed to fetch cloud config: Failed to fetch user credentials: error in response: status code 401 Unauthorized
+No cloud config found for this adapter/project
+Success Profile written to ./.dbt\profiles.yml
+Validating profile inputs, adapters, and connection
+
+dbt-fusion 2.0.0-preview.16
+   Loading ~/.dbt/profiles.yml
+error: dbt1001: Profile 'adtech_data_transformation' not found in profiles.yml
+  Finished 'init'  with 1 error in 1m 14s
