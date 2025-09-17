@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 select 
         DAY AS DATE,
         CAMPAIGN_NAME,
@@ -5,9 +7,7 @@ select
         CAMPAIGN_ID AS CM360_CAMPAIGN_ID,
         SITE_NAME,
         PLACEMENT_NAME,
-        SPLIT_PART(PLACEMENT_NAME, '_', 6) AS PACKAGE_ID,
-        SPLIT_PART(PLACEMENT_NAME, '_', -3) AS CREATIVE_CONCEPT,
         CREATIVE_TYPE,
-        IMPRESSIONS AS TOTAL_IMPRESSIONS_CM360,
-        CLICKS AS CLICKS_CM360
+        IMPRESSIONS * uniform(0.8632, 1.265, random()) as planned_impressions,
+        uniform(7.00, 23.00, random()) as contracted_rate
 from {{source('cm360', 'stg_cm360_raw_data')}}

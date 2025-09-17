@@ -1,12 +1,12 @@
-{{ config(materialized='table') }}
-
 select 
         DAY AS DATE,
         CAMPAIGN_NAME,
         SPLIT_PART(CAMPAIGN_NAME, '_', 4) AS CAMPAIGN_GROUP,
-        CAMPAIGN_ID AS CM360_CAMPAIGN_ID,
+        CAMPAIGN_ID,
         SITE_NAME,
         PLACEMENT_NAME,
+        SPLIT_PART(PLACEMENT_NAME, '_', -3) AS CREATIVE_CONCEPT,
         CREATIVE_TYPE,
-        IMPRESSIONS * uniform(0.8632, 1.265, random()) as planned_impressions
+        IMPRESSIONS AS  TOTAL_IMPRESSIONS_CM360,
+        CLICKS AS CLICKS_CM360
 from {{source('cm360', 'stg_cm360_raw_data')}}
