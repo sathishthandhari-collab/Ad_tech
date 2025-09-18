@@ -34,3 +34,7 @@ FROM @adtech_stage/test.gz
 FILE_FORMAT = (FORMAT_NAME = adtech_csv_gz_format);
 
 
+
+select * from adtech_analytics.staging.stg_IAS__view  limit 10;
+
+

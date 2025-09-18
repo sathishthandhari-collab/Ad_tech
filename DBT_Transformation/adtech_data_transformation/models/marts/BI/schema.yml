@@ -1,11 +1,7 @@
 models:
-  - name: daily_report_unified
+  - name: monthly_campaign__level_report
     description: ""
     columns:
-      - name: date
-        data_type: date
-
-
       - name: month
         data_type: date
 
@@ -18,19 +14,7 @@ models:
         data_type: varchar
 
 
-      - name: site_name
-        data_type: varchar
-
-
-      - name: placement_name
-        data_type: varchar
-
-
       - name: creative_concept
-        data_type: varchar
-
-
-      - name: creative_type
         data_type: varchar
 
 
@@ -82,7 +66,7 @@ models:
         data_type: varchar
 
 
-  - name: monthly_report_unified
+  - name: daily_report_unified
     description: ""
     columns:
       - name: month
