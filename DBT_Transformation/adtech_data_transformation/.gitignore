@@ -1,4 +1,8 @@
-dbt_packages/
-dbt_internal_packages/
-logs/
+# dbt build artifacts
 target/
+logs/
+dbt_modules/
+dbt_packages/
+*.log
+*.parquet
+manifest.json
