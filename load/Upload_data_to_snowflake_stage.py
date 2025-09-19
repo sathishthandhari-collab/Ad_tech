@@ -12,7 +12,7 @@ FAILED_FOLDER = os.path.join(FOLDER_PATH, "failed")
 if not os.path.exists(FAILED_FOLDER):
     os.makedirs(FAILED_FOLDER)
 
-WAREHOUSE = "Projects"
+WAREHOUSE = "projects"
 DATABASE = "adtech_analytics"
 SCHEMA = "staging"
 

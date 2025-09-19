@@ -16,15 +16,41 @@ seeds:
 
 models:
   adtech_data_transformation:
-    # Materialize staging models as views, and marts as tables
+  
+# Materialize staging models as views, and marts as tables
     staging:
       +materialized: view
 
+#intermediate models as ephemeral
     intermediate:
       int_business_analytics__model_eph:
-        +materialized: ephemeral 
+        +schema: int_models_eph
+        +materialized: ephemeral
+      int_pacing_and_billing__model:
+        +schema: int_models_eph
+        +materialized: ephemeral
 
+# marts models as tables and incremental where needed
     marts:
       +materialized: table
+      BI:
+        daily_report_unified:
+          +schema: thd_analytics_prod
+
+        monthly_campaign__level_report:
+          +schema: thd_analytics_prod
+          +materialized: table
+      billing_and_pacing:
+        monthly__spends_and_pacing:
+          +schema: thd_billing_prod
+          +materialized: incremental
+          +incremental_strategy: merge
+          +unique_key: ['date', 'placement_name']
+
+        monthly_site_level_spend__details:
+          +schema: thd_site_spends_prod
+          +materialized: incremental
+          +incremental_strategy: merge
+          +unique_key: ['month', 'campaign_id']
 
 
