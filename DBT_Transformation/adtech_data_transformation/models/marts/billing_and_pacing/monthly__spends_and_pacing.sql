@@ -7,20 +7,18 @@ WITH monthly_spends AS (
     placement_name,
     creative_concept,
     creative_type,
-    SUM(cm360_delivered_impressions) AS cm360_delivered_impressions,
-    SUM(cm360_clicks)                AS cm360_clicks,
-    SUM(ias_out_of_geo_ads)          AS ias_out_of_geo_ads,
-    SUM(ias_viewable_ads)            AS ias_viewable_ads,
-    SUM(fraud_ads)                   AS fraud_ads,
-    SUM(ias_out_of_geo_ads) + SUM(fraud_ads) AS unbillable_ads,
-    SUM(cm360_delivered_impressions) - (SUM(ias_out_of_geo_ads) + SUM(fraud_ads)) AS billable_ads,
-
-    -- Use fraction 0–1 for logic; expose percent for reporting if needed
-    SUM(ias_viewable_ads) / NULLIF(SUM(cm360_delivered_impressions), 0) AS viewable_rate_frac,
+    cm360_delivered_impressions,
+    cm360_clicks,
+    ias_out_of_geo_ads,
+    ias_viewable_ads,
+    fraud_ads,
+    ias_out_of_geo_ads + fraud_ads,
+    cm360_delivered_impressions - (ias_out_of_geo_ads + fraud_ads) AS billable_impressions,
     ROUND(
-      SUM(ias_viewable_ads) * 100.0 / NULLIF(SUM(cm360_delivered_impressions), 0),
-      2
-    ) AS viewable_rate_pct,
+          ias_viewable_ads * 100.0 
+        / 
+          NULLIF(cm360_delivered_impressions, 0),
+      2) AS viewable_rate_pct,
 
     ROUND(
       SUM(cm360_delivered_impressions) / NULLIF(SUM(planned_impressions), 0),
