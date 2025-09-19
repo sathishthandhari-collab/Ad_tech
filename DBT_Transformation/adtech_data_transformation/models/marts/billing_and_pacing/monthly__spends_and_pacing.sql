@@ -1,63 +1,59 @@
-WITH monthly_spends AS (
-  SELECT
-    month,
-    campaign_id,
-    campaign_name,
-    site_name,
-    placement_name,
-    creative_concept,
-    creative_type,
-    cm360_delivered_impressions,
-    cm360_clicks,
-    ias_out_of_geo_ads,
-    ias_viewable_ads,
-    fraud_ads,
-    ias_out_of_geo_ads + fraud_ads,
-    cm360_delivered_impressions - (ias_out_of_geo_ads + fraud_ads) AS billable_impressions,
-    ROUND(
-          ias_viewable_ads * 100.0 
-        / 
-          NULLIF(cm360_delivered_impressions, 0),
-      2) AS viewable_rate_pct,
 
-    ROUND(
-      SUM(cm360_delivered_impressions) / NULLIF(SUM(planned_impressions), 0),
-      2
-    ) AS delivery_rate,
+{{ config(
+    materialized='incremental',
+    unique_key=['month', 'placement_name']
+) }}
 
-    SUM(planned_impressions) AS planned_impressions,
+with billable_and_nonbillable as (
+    select
+        *,
+        (OUT_OF_GEO_ADS_IAS + FRAUD_ADS_IAS)      as total_non_billable,
+        TOTAL_IMPRESSIONS_CM360
+          - (OUT_OF_GEO_ADS_IAS + FRAUD_ADS_IAS) as total_billable_impressions,
 
-    -- Effective CPM from spend & impressions (USD per 1000 imps)
-    SUM(planned_spend) / NULLIF(SUM(planned_impressions), 0) * 1000 AS contracted_cpm,
+        round(
+            viewable_ads_ias * 100.0
+            / nullif(TOTAL_IMPRESSIONS_CM360, 0),
+            2
+        )                                            as viewable_rate_pct,
 
-    SUM(planned_spend)       AS planned_spend,
-    SUM(planned_spend) * 1.1 AS adjusted_spend
-  FROM {{ ref('int_pacing_and_billing__model') }}
-  GROUP BY 1,2,3,4,5,6,7
+        round(
+            TOTAL_IMPRESSIONS_CM360
+            / nullif(planned_impressions,0),
+            2
+        )                                            as delivery_rate,
+
+        (contracted_rate * planned_impressions) as planned_spend,
+        (contracted_rate * planned_impressions) * 1.1                      as adjusted_spend
+    from {{ref('int_pacing_and_billing__model')}}
+   
 )
+       select
+        *,
+        round(
+            case
+                when viewable_rate_pct >= 70
+                    then total_billable_impressions * contracted_rate / 1000
+                else 0.70 * total_billable_impressions * contracted_rate / 1000
+            end,
+            2
+        ) as billable_spend,
+        round(
+            case
+                when delivery_rate >= 1.10
+                    then adjusted_spend
+                else case
+                        when viewable_rate_pct >= 70
+                            then total_billable_impressions * contracted_rate / 1000
+                        else 0.70 * total_billable_impressions * contracted_rate / 1000
+                     end
+            end,
+            2
+        ) as final_billable_payment
 
-SELECT
-  m.*,
-  ROUND(
-    CASE
-      WHEN m.viewable_rate_frac >= 0.70
-        THEN m.billable_ads * m.contracted_cpm / 1000
-      ELSE 0.70 * m.billable_ads * m.contracted_cpm / 1000
-    END,
-    2
-  ) AS billable_spend,
-  ROUND(
-    CASE
-      WHEN m.delivery_rate >= 1.10
-        THEN m.adjusted_spend
-      ELSE
-        CASE
-          WHEN m.viewable_rate_frac >= 0.70
-            THEN m.billable_ads * m.contracted_cpm / 1000
-          ELSE 0.70 * m.billable_ads * m.contracted_cpm / 1000
-        END
-    END,
-    2
-  ) AS final_billable_payment
-FROM monthly_spends m
-ORDER BY m.month, m.campaign_id, m.placement_name;
+    
+    from billable_and_nonbillable
+{% if is_incremental() %}
+    where month >= date_trunc('month', current_date) - interval '1 month'
+{% endif %}
+

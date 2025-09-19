@@ -36,18 +36,12 @@ models:
       BI:
         daily_report_unified:
           +schema: thd_analytics_prod
-          +materialized: incremental
-          +incremental_strategy: merge
-          +unique_key: ['date', 'placement_name']
 
         monthly_campaign__level_report:
           +schema: thd_analytics_prod
-          +materialized: incremental
-          +incremental_strategy: merge
-          +unique_key: ['month', 'campaign_id']
-
+          +materialized: table
       billing_and_pacing:
-        spends_and_pacing:
+        monthly__spends_and_pacing:
           +schema: thd_billing_prod
           +materialized: incremental
           +incremental_strategy: merge

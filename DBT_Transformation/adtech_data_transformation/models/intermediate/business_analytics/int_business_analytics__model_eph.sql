@@ -22,10 +22,10 @@ with cte as (
         site.sex,
         site.device_type
         from {{ ref('stg_CM360__view') }}       as cm360
-            join {{ ref('stg_IAS__view') }} as ias
+            left join {{ ref('stg_IAS__view') }} as ias
                 on cm360.placement_name = ias.placement_name
                     and cm360.date = ias.date
-            join {{ ref('stg_sites__data_unified') }} as site
+            left join {{ ref('stg_sites__data_unified') }} as site
                 on cm360.placement_name = site.placement_name
                     and cm360.date = site.date)
 select * from cte       
