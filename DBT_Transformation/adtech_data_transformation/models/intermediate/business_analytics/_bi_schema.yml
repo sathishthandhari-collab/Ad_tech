@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: int_business_analytics__model_eph
+    columns:
+      - name: date
+        data_type: date
+      - name: campaign_id
+        data_type: number 
+      - name: campaign_name
+        data_type: varchar
+      - name: site_name
+        data_type: varchar
+      - name: placement_name
+        data_type: varchar
+        tests:
+          - not_null  
+      - name: creative_concept
+        data_type: varchar
+      - name: creative_type
+        data_type: varchar
+      - name: impressions
+        data_type: number
+      - name: clicks
+        data_type: number
+      - name: ias_impressions
+        data_type: number
+      - name: ias_viewable_ads
+        data_type: number        
+      - name: ias_brand_safety_ads
+        data_type: number
+      - name: ias_out_of_geo_ads
+        data_type: number
+      - name: ias_page_views
+        data_type: number
+      - name: ias_video_completions
+        data_type: number
+      - name: state
+        data_type: varchar
+      - name: region
+        data_type: varchar
+      - name: sex
+        data_type: varchar
+      - name: device_type
+        data_type: varchar

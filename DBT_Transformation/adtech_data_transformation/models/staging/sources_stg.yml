@@ -13,6 +13,8 @@ sources:
           - name: campaign_id
           - name: site_name
           - name: placement_name
+            tests: 
+              - not_null
           - name: creative_type
           - name: impressions
           - name: clicks
@@ -29,6 +31,12 @@ sources:
           - name: campaign
           - name: campaignId
           - name: placement
+            tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('cm360', 'stg_cm360_raw_data')
+                    field: placement_name
           - name: ad_format
           - name: monitored_ads
           - name: viewable_ads
@@ -41,31 +49,23 @@ sources:
     database: adtech_analytics
     schema: staging
     tables:
-      - name: _int_business_analytics__model_eph
       - name: cm360_stage_data_view
-      - name: file_upload_log
       - name: ias_stage_data_view
-      - name: int_pacing_and_billing__model
       - name: stg_amazon_raw_data
       - name: stg_avzu_raw_data
       - name: stg_bingads_raw_data
-      - name: stg_cm360__view
       - name: stg_cm360_raw_data
       - name: stg_criteo_raw_data
       - name: stg_dv360_raw_data
       - name: stg_hindhu_raw_data
-      - name: stg_ias__view
       - name: stg_ias_raw_data
       - name: stg_inmobi_raw_data
       - name: stg_magnite_raw_data
       - name: stg_miq_raw_data
-      - name: stg_prisma__planned
       - name: stg_pubmatic_raw_data
       - name: stg_remezcla_raw_data
       - name: stg_sharethrough_raw_data
-      - name: stg_sites__data_unified
       - name: stg_toi_raw_data
       - name: stg_ttd_raw_data
       - name: stg_webmd_raw_data
       - name: stg_youtube_raw_data
-      - name: unified_site_data_stage_view

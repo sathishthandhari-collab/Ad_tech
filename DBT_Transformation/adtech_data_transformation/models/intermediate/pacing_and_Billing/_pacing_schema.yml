@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: int_pacing_and_billing__model
+    columns:
+      - name: date
+        data_type: date
+      - name: campaign_id
+        data_type: number
+      - name: campaign_name
+        data_type: varchar
+      - name: site_name
+        data_type: varchar
+      - name: placement_name
+        data_type: varchar
+      - name: creative_concept
+        data_type: varchar
+      - name: creative_type
+        data_type: varchar
+      - name: cm360_delivered_impressions
+        data_type: number
+      - name: cm360_clicks
+        data_type: number
+      - name: planned_impressions
+        data_type: number
+      - name: contracted_cpm
+        data_type: number
+      - name: planned_spend
+        data_type: number

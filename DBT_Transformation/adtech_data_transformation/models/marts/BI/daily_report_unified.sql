@@ -11,6 +11,6 @@ select *
 from {{ ref('int_business_analytics__model_eph') }}
 
 {% if is_incremental() %}
-  -- optional: filter only new months if you have a reliable max(month)
-  where date > (select max(month) from {{ this }})
+    -- optional: filter only new months if you have a reliable max(month)
+    where date > (select max(month) from {{ this }})
 {% endif %}
