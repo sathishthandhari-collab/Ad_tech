@@ -1,6 +1,8 @@
 {{ config(
     materialized='incremental',
-    unique_key=['month', 'placement_name']
+    incremental_strategy='merge',
+    unique_key=['month', 'placement_name'],
+    schema='thd_billing_prod'
 ) }}
 
 with billable_and_nonbillable as (

@@ -10,7 +10,8 @@ WITH unified_site_data AS (
         {% set valid_tables = [] %}
         {% for table in site_tables %}
             {% set tbl_name = table.identifier | lower %}
-            {% if 'cm360' not in tbl_name and 'ias' not in tbl_name %}
+            -- Exclude CM360, IAS, and common backup table patterns
+            {% if 'cm360' not in tbl_name and 'ias' not in tbl_name and 'backup' not in tbl_name and 'old' not in tbl_name %}
                 {% if adapter.get_relation(database=table.database, schema=table.schema, identifier=table.identifier) is not none %}
                     {% do valid_tables.append(table) %}
                 {% endif %}
@@ -40,7 +41,8 @@ WITH unified_site_data AS (
                 video_completions,
                 '{{ table.identifier }}' AS source_table
             FROM {{ table }}
-            {% if not loop.last %} UNION ALL {% endif %}
+            WHERE date IS NOT NULL  -- Basic data quality filter
+            {% if not loop.last %} UNION {% endif %}
         {% endfor %}
     {% else %}
         -- Fallback empty result with correct schema
@@ -61,8 +63,39 @@ WITH unified_site_data AS (
             CAST(NULL AS VARCHAR) AS device_type,
             CAST(NULL AS INTEGER) AS video_completions,
             CAST(NULL AS VARCHAR) AS source_table
-        WHERE FALSE  -- Ensures empty result set
+        WHERE FALSE
     {% endif %}
+),
+
+-- Simple deduplication: Keep only one record per unique combination
+deduplicated AS (
+    SELECT 
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY date, campaign, cm360_campaign_id, publisher, placement_name, creative_type
+            ORDER BY 
+                CASE WHEN source_table LIKE '%LATEST%' THEN 1 ELSE 2 END,  -- Prioritize "LATEST" tables
+                source_table DESC  -- Then by table name descending
+        ) as rn
+    FROM unified_site_data
 )
 
-SELECT * FROM unified_site_data
+SELECT 
+    date,
+    campaign,
+    cm360_campaign_id,
+    publisher,
+    placement_name,
+    creative_type,
+    impressions,
+    clicks,
+    pageviews,
+    state,
+    region,
+    age_group,
+    sex,
+    device_type,
+    video_completions,
+    source_table
+FROM deduplicated
+WHERE rn = 1  -- Keep only the first record for each unique combination

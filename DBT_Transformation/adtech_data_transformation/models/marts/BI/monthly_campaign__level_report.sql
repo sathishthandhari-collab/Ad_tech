@@ -1,6 +1,5 @@
 {{ config(
-    materialized='incremental',
-    unique_key=['month', 'campaign_id', 'site_name', 'creative_concept']
+    materialized='table',
 ) }}
 
 with base as (
