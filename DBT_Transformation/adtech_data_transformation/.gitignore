@@ -6,3 +6,4 @@ dbt_packages/
 *.log
 *.parquet
 manifest.json
+dbt_internal_packages/
