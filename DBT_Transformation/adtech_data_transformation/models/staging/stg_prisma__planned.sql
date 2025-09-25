@@ -14,17 +14,6 @@ with base as
         round(uniform(7.00, 23.00, random()), 2) as contracted_rate
     from {{ source('cm360', 'stg_cm360_raw_data') }}
     group by 1, 2, 3, 4, 5, 6, 7
-    ),
+    )
 
-deduplicated AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (
-            PARTITION BY month, cm360_campaign_id, site_name, placement_name, creative_type
-            ORDER BY month
-        ) as rn
-    FROM base
-)
-
-select * from deduplicated
-where rn =1
+select * from base

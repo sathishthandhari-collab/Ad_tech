@@ -12,17 +12,6 @@ with base as(
         views as page_views,
         video_completions
     from {{ source('ias', 'STG_ias_raw_data' ) }}
-),
-
-deduplicated AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (
-            PARTITION BY date, campaign_name, publisher, placement_name, creative_type
-            ORDER BY date
-        ) as rn
-    FROM base
 )
 
-select * from deduplicated
-where rn =1
+select * from base
