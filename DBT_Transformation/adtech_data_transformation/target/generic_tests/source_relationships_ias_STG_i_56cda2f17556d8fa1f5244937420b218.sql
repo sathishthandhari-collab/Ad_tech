@@ -1,0 +1,1 @@
+{{ test_relationships(column_name="placement", field="placement_name", model=get_where_subquery(source('ias', 'STG_ias_raw_data')), to=source('cm360', 'stg_cm360_raw_data')) }}

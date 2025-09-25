@@ -1,0 +1,33 @@
+
+=== RelationCache Final State ===
+Total Schemas: 4
+
+[COMPLETE] SCHEMA
+   ╭─ Name: "ADTECH_ANALYTICS"."STAGING"
+   ├─ Relations: 26
+   ├─ Cached: 1758787584001ms
+   ╰─ Status: All relations cached as a batch
+
+[COMPLETE] SCHEMA
+   ╭─ Name: "ADTECH_ANALYTICS"."THD_ANALYTICS_PROD"
+   ├─ Relations: 2
+   ├─ Cached: 1758787577509ms
+   ╰─ Status: All relations cached as a batch
+
+[COMPLETE] SCHEMA
+   ╭─ Name: "ADTECH_ANALYTICS"."THD_BILLING_PROD"
+   ├─ Relations: 1
+   ├─ Cached: 1758787577509ms
+   ╰─ Status: All relations cached as a batch
+
+[COMPLETE] SCHEMA
+   ╭─ Name: "ADTECH_ANALYTICS"."THD_SITE_SPENDS_PROD"
+   ├─ Relations: 16
+   ├─ Cached: 1758787577509ms
+   ╰─ Status: All relations cached as a batch
+
+=== Summary ===
+Complete Schemas: 4
+Partial Schemas: 0
+Total Relations: 45
+

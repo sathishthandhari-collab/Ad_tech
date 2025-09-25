@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="placement_name", model=get_where_subquery(ref('int_business_analytics__model_eph'))) }}

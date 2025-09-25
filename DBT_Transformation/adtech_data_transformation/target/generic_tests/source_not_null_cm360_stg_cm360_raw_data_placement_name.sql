@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="placement_name", model=get_where_subquery(source('cm360', 'stg_cm360_raw_data'))) }}

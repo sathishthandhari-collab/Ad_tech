@@ -1,0 +1,27 @@
+dbt-fusion 2.0.0-preview.25
+   Loading ~/.dbt/profiles.yml
+   Loading packages.yml
+ Succeeded [  3.40s] model staging.stg_IAS__view (view)
+ Succeeded [  4.04s] model staging.stg_CM360__view (view)
+ Succeeded [  7.06s] model staging.stg_prisma__planned (table)
+ Succeeded [  1.26s] model staging.stg_sites__data_unified (view)
+ Succeeded [  6.73s] model thd_billing_prod.monthly__spends_and_pacing (incremental)
+ Succeeded [  5.34s] model thd_analytics_prod.monthly_campaign__level_report (table)
+ Succeeded [  6.48s] model thd_analytics_prod.daily_report_unified (incremental)
+ Succeeded [  7.01s] model thd_site_spends_prod.monthly_sharethrough_spends (incremental)
+ Succeeded [  7.22s] model thd_site_spends_prod.monthly_magnite_spends (incremental)
+ Succeeded [  7.58s] model thd_site_spends_prod.monthly_remezcla_spends (incremental)
+ Succeeded [  8.90s] model thd_site_spends_prod.monthly_pubmatic_spends (incremental)
+ Succeeded [ 10.83s] model thd_site_spends_prod.monthly_webmd_spends (incremental)
+ Succeeded [ 11.30s] model thd_site_spends_prod.monthly_amazon_spends (incremental)
+ Succeeded [ 13.60s] model thd_site_spends_prod.monthly_toi_spends (incremental)
+ Succeeded [ 14.72s] model thd_site_spends_prod.monthly_youtube_spends (incremental)
+ Succeeded [ 15.21s] model thd_site_spends_prod.monthly_inmobi_spends (incremental)
+ Succeeded [ 17.89s] model thd_site_spends_prod.monthly_miq_spends (incremental)
+ Succeeded [ 18.71s] model thd_site_spends_prod.monthly_avzu_spends (incremental)
+ Succeeded [ 19.32s] model thd_site_spends_prod.monthly_dv360_spends (incremental)
+ Succeeded [ 19.73s] model thd_site_spends_prod.monthly_criteo_spends (incremental)
+ Succeeded [ 19.93s] model thd_site_spends_prod.monthly_ttd_spends (incremental)
+ Succeeded [ 20.66s] model thd_site_spends_prod.monthly_hindhu_spends (incremental)
+ Succeeded [ 20.91s] model thd_site_spends_prod.monthly_bingads_spends (incremental)
+  Finished 'run' target 'dev' in 40s 872ms

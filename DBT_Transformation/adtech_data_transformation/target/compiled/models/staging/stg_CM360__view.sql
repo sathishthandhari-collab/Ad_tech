@@ -1,0 +1,12 @@
+select 
+        DAY AS DATE,
+        CAMPAIGN_NAME,
+        SPLIT_PART(CAMPAIGN_NAME, '_', 4) AS CAMPAIGN_GROUP,
+        CAMPAIGN_ID,
+        SITE_NAME,
+        PLACEMENT_NAME,
+        SPLIT_PART(PLACEMENT_NAME, '_', -3) AS CREATIVE_CONCEPT,
+        CREATIVE_TYPE,
+        IMPRESSIONS AS  TOTAL_IMPRESSIONS_CM360,
+        CLICKS AS CLICKS_CM360
+from adtech_analytics.staging.stg_cm360_raw_data
