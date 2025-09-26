@@ -20,9 +20,9 @@ SCHEMA = "staging"
 # Run "DESC PIPE adtech_analytics.staging.CM360_PIPE;" to find the correct stage
 STAGE_MAP = {
     "AMAZON": "amazon_stage",      # Replace with actual stage name
-    "AVZU": "avzu_stage", 
+    "AVZU": "avzu_stage",
     "BINGADS": "bingads_stage",
-    "CM360": "cm360_stage",        # Replace with actual stage name  
+    "CM360": "cm360_stage",        # Replace with actual stage name
     "CRITEO": "criteo_stage",
     "DV360": "dv360_stage",
     "HINDHU": "hindhu_stage",
@@ -90,7 +90,7 @@ def upload_files_to_snowpipe():
 
                 except Exception as e:
                     print(f"[ERROR] Failed uploading {file} -> @{stage_name}: {e}")
-                    
+
                     # Log failure (but don't let logging errors crash the main process)
                     log_to_snowflake(cursor, file, stage_name, f"FAILED: {str(e)}")
 

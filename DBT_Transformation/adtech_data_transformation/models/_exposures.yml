@@ -1,0 +1,23 @@
+# models/exposures.yml
+version: 2
+
+exposures:
+  - name: campaign_performance_dashboard
+    type: dashboard
+    url: https://tableau.company.com/campaign-performance
+    description: "Executive dashboard showing campaign performance and spend optimization"
+    depends_on:
+      - ref('daily_report_unified')
+      - ref('monthly_campaign__level_report')
+    owner:
+      name: "Marketing Analytics Team"
+      email: "marketing-analytics@company.com"
+
+  - name: billing_reconciliation_dashboard
+    type: dashboard
+    url: https://tableau.company.com/billing
+    description: "Monthly billing reconciliation with viewability adjustments"
+    depends_on:
+      - ref('monthly__spends_and_pacing')
+    owner:
+      name: "Finance Team"

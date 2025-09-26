@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: monthly_amazon_spends
+  - name: monthly_avzu_spends
+  - name: monthly_bingads_spends
+  - name: monthly_criteo_spends
+  - name: monthly_dv360_spends
+  - name: monthly_hindhu_spends
+  - name: monthly_inmobi_spends
+  - name: monthly_magnite_spends
+  - name: monthly_miq_spends
+  - name: monthly_pubmatic_spends
+  - name: monthly_remezcla_spends
+  - name: monthly_sharethrough_spends
+  - name: monthly_toi_spends
+  - name: monthly_ttd_spends
+  - name: monthly_webmd_spends
+  - name: monthly_youtube_spends
