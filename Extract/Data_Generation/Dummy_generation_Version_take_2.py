@@ -36,7 +36,11 @@ CREATIVE_SIZES = ["300x250", "728x90", "160x600", "300x600", "320x50"]
 CREATIVE_DURATIONS = ["06s", "15s", "30s", "45s"]
 
 # main generation ranges (large to create many rows)
+<<<<<<< HEAD
 PLACEMENTS_PER_CAMPAIGN_MIN = 4
+=======
+PLACEMENTS_PER_CAMPAIGN_MIN = 350
+>>>>>>> 7d71aa9cff51cea4596abd7aa9d60d7cba4d4c76
 PLACEMENTS_PER_CAMPAIGN_MAX = 1256
 
 IMP_MIN = 5000
@@ -82,7 +86,11 @@ for concept in CONCEPTS:
 def generate_weekly_cm360_reports(output_folder="cm360_reports",
                                   start_date=datetime.date(2025, 1, 1),
                                   end_date=datetime.date(2025, 12, 31),
+<<<<<<< HEAD
                                   num_campaigns=80,
+=======
+                                  num_campaigns=510,
+>>>>>>> 7d71aa9cff51cea4596abd7aa9d60d7cba4d4c76
                                   market=MARKET,
                                   sites=DEFAULT_SITES):
     os.makedirs(output_folder, exist_ok=True)
