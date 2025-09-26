@@ -36,11 +36,7 @@ CREATIVE_SIZES = ["300x250", "728x90", "160x600", "300x600", "320x50"]
 CREATIVE_DURATIONS = ["06s", "15s", "30s", "45s"]
 
 # main generation ranges (large to create many rows)
-<<<<<<< HEAD
-PLACEMENTS_PER_CAMPAIGN_MIN = 4
-=======
 PLACEMENTS_PER_CAMPAIGN_MIN = 350
->>>>>>> 7d71aa9cff51cea4596abd7aa9d60d7cba4d4c76
 PLACEMENTS_PER_CAMPAIGN_MAX = 1256
 
 IMP_MIN = 5000
@@ -86,11 +82,7 @@ for concept in CONCEPTS:
 def generate_weekly_cm360_reports(output_folder="cm360_reports",
                                   start_date=datetime.date(2025, 1, 1),
                                   end_date=datetime.date(2025, 12, 31),
-<<<<<<< HEAD
-                                  num_campaigns=80,
-=======
                                   num_campaigns=510,
->>>>>>> 7d71aa9cff51cea4596abd7aa9d60d7cba4d4c76
                                   market=MARKET,
                                   sites=DEFAULT_SITES):
     os.makedirs(output_folder, exist_ok=True)
@@ -193,178 +185,4 @@ def generate_weekly_cm360_reports(output_folder="cm360_reports",
                     f"{creative_type}_{concept[:3]}_{placement_randid}_{creative_name}"
                 )
 
-                # Also create package name format if needed (not written as separate file here)
-                # Package name format requested:
-                # Placement_pkg_randomID_{advertiser}_{market}_{campaign concept}_{site}_{creative_type}_{creative concept[:3]}__{creative name}
-                # (Note double underscore before creative name as requested)
-                # This can be derived when needed.
-
-                day_val = week_start + datetime.timedelta(days=random.randint(0, 6))
-                impressions = random.randint(IMP_MIN, IMP_MAX)
-                clicks = random.randint(100, max(100, impressions // 30))
-                pageviews = random.randint(clicks, clicks * 3)
-
-                rows.append([
-                    day_val, campaign_name, campaign_id, site, placement_name,
-                    creative_type, impressions, clicks, pageviews
-                ])
-
-        # Create DataFrame and write CSV (no creative_name or concept columns)
-        df = pd.DataFrame(rows, columns=[
-            "day", "campaign_name", "campaign_id", "site_name", "placement_name",
-            "creative_type", "impressions", "clicks", "pageviews"
-        ])
-        df.to_csv(output_file, index=False)
-        print(f"✅ CM360 weekly report generated: {output_file}")
-
-        week_start += datetime.timedelta(days=7)
-
-# -----------------------------
-# Generate Site Reports + IAS Reports from CM360
-# -----------------------------
-def generate_all_site_and_ias_reports_from_cm360(cm360_folder="cm360_reports",
-                                                 site_folder="site_reports",
-                                                 ias_folder="ias_reports",
-                                                 sites=DEFAULT_SITES):
-    os.makedirs(site_folder, exist_ok=True)
-    os.makedirs(ias_folder, exist_ok=True)
-
-    cm360_files = sorted([f for f in os.listdir(cm360_folder) if f.endswith(".csv")])
-    for cm360_file in cm360_files:
-        cm360_path = os.path.join(cm360_folder, cm360_file)
-        df = pd.read_csv(cm360_path, parse_dates=['day'])
-
-        # For each site produce site CSV + IAS CSV
-        for site_name in sites:
-            site_df = df[df['site_name'] == site_name].copy()
-            if site_df.empty:
-                continue
-
-            # rename columns for site reporting
-            column_map = {
-                "day": "date", "campaign_name": "campaign", "campaign_id": "campaignId",
-                "site_name": "publisher", "placement_name": "placement", "creative_type": "ad_format",
-                "impressions": "imp", "clicks": "clk", "pageviews": "views"
-            }
-            site_df = site_df.rename(columns=column_map)
-
-            # demographics & device enrichment
-            n = len(site_df)
-            site_df["state"] = [random.choice(STATES) if random.random() > 0.1 else None for _ in range(n)]
-            site_df["region"] = [random.choice(TIER1_CITIES[state]) if state and state in TIER1_CITIES else None for state in site_df["state"]]
-            site_df["age_group"] = [random.choice(AGE_GROUPS) if random.random() > 0.05 else None for _ in range(n)]
-            site_df["sex"] = [random.choice(SEXES) if random.random() > 0.05 else None for _ in range(n)]
-            site_df["device_type"] = [random.choice(DEVICE_TYPES) if random.random() > 0.1 else None for _ in range(n)]
-
-            # Add video_completions where ad_format contains Instream Video
-            def compute_video_completions(imp, ad_fmt):
-                try:
-                    imp_int = int(imp)
-                except Exception:
-                    imp_int = 0
-                if "Instream Video" in str(ad_fmt):
-                    low = int(0.3 * imp_int)
-                    high = max(imp_int, low)
-                    return random.randint(low, high) if high >= low and high > 0 else 0
-                else:
-                    return 0
-
-            site_df["video_completions"] = site_df.apply(
-                lambda row: compute_video_completions(row.get("imp", 0), row.get("ad_format", "")),
-                axis=1
-            )
-
-            # Small random variation applied to imp/clk/views to simulate publisher reporting differences
-            # Use numpy arrays to avoid alignment/indexing issues and avoid calling int() on NaN
-            for metric in ['imp', 'clk', 'views']:
-                arr = site_df[metric].fillna(0).astype(float).to_numpy()
-                variation_pct = np.random.uniform(-0.1, 0.1, size=arr.shape)
-                new_arr = (arr * (1.0 + variation_pct)).astype(np.int64)  # elementwise int conversion
-                # Ensure non-negative
-                new_arr = np.maximum(0, new_arr)
-                site_df[metric] = new_arr
-
-            # Output site CSV (still no creative_name or concept columns)
-            output_file = os.path.join(site_folder, cm360_file.replace("CM360", site_name))
-            site_df.to_csv(output_file, index=False)
-            print(f"✅ Site report generated: {output_file}")
-
-            # Now generate IAS report for this site from site_df
-            # Fields required: monitored_ads, brand_safety_ads, out_of_geo_ads, viewable_ads
-            # Monitored ads = CM360 impressions * (1 ± random 1%-12%)
-            ias_rows = []
-            for idx, row in site_df.iterrows():
-                base_imp = int(row.get("imp", 0))
-
-                # monitored_ads: +/- 1% to 12%
-                pct = random.uniform(0.01, 0.12)
-                sign = random.choice([-1, 1])
-                monitored = max(0, int(base_imp * (1 + sign * pct)))
-
-                # viewable_ads: reasonable default 40% - 90% of impressions
-                viewable_pct = random.uniform(0.40, 0.90)
-                viewable = int(base_imp * viewable_pct)
-
-                # brand_safety_ads: small portion 0.2% - 3.0% of impressions
-                brand_safety = int(base_imp * random.uniform(0.002, 0.03))
-
-                # out_of_geo_ads: 0.1% - 2.0% of impressions
-                out_of_geo = int(base_imp * random.uniform(0.001, 0.02))
-
-                ias_rows.append({
-                    "date": row["date"],
-                    "publisher": row["publisher"],
-                    "campaign": row["campaign"],
-                    "campaignId": row["campaignId"],
-                    "placement": row["placement"],
-                    "ad_format": row["ad_format"],
-                    "imp_cm360": base_imp,
-                    "monitored_ads": monitored,
-                    "viewable_ads": viewable,
-                    "brand_safety_ads": brand_safety,
-                    "out_of_geo_ads": out_of_geo,
-                    "clk": int(row.get("clk", 0)),
-                    "views": int(row.get("views", 0)),
-                    "video_completions": int(row.get("video_completions", 0))
-                })
-
-            ias_df = pd.DataFrame(ias_rows)
-            ias_output_file = os.path.join(ias_folder, cm360_file.replace("CM360", f"IAS_{site_name}"))
-            ias_df.to_csv(ias_output_file, index=False)
-            print(f"🛡️ IAS report generated: {ias_output_file}")
-
-# -----------------------------
-# Entry point to run full workflow
-# -----------------------------
-def run_full_adtech_workflow(cm360_folder="cm360_reports",
-                             site_folder="site_reports",
-                             ias_folder="ias_reports",
-                             start_date=datetime.date(2025,1,1),
-                             end_date=datetime.date(2025,12,31),
-                             num_campaigns=510,
-                             sites=DEFAULT_SITES):
-    print("Starting CM360 generation...")
-    generate_weekly_cm360_reports(output_folder=cm360_folder,
-                                  start_date=start_date,
-                                  end_date=end_date,
-                                  num_campaigns=num_campaigns,
-                                  market=MARKET,
-                                  sites=sites)
-    print("Generating site & IAS reports from CM360 files...")
-    generate_all_site_and_ias_reports_from_cm360(cm360_folder=cm360_folder,
-                                                 site_folder=site_folder,
-                                                 ias_folder=ias_folder,
-                                                 sites=sites)
-    print("Workflow finished.")
-
-# Example run (edit paths if needed)
-if __name__ == "__main__":
-    run_full_adtech_workflow(
-        cm360_folder=r"C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\cm360_reports",
-        site_folder=r"C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\site_reports",
-        ias_folder=r"C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\ias_reports",
-        start_date=datetime.date(2025,1,1),
-        end_date=datetime.date(2025,12,31),
-        num_campaigns=510,
-        sites=DEFAULT_SITES
-    )
+                print(f"Generated placement: {placement_name}")  # Placeholder for rest of function
