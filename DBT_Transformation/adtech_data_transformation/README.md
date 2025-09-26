@@ -28,16 +28,11 @@ This project demonstrates production-grade data transformation capabilities by p
 ## 🏗️ Architecture
 
 📁 adtech_data_transformation/
-├── 📁 models/
-│
-│ ├── 📁 staging/ # Clean, 1:1 source transformations
-
-│ │ ├── base/ # Unified site data from 15+ vendors
-
+ ├── 📁 models/
+ │ ├── 📁 staging/ # Clean, 1:1 source transformations
+ │ │ ├── base/ # Unified site data from 15+ vendors
 │ │ ├── cm360/ # Campaign Manager 360 data
-
 │ │ └── ias/ # Integral Ad Science quality metrics
-
 │ ├── 📁 intermediate/ # Business logic and entity joins
 │ │ ├── business_analytics/ # Performance metrics calculation
 │ │ └── pacing_and_billing/ # Financial reconciliation logic
