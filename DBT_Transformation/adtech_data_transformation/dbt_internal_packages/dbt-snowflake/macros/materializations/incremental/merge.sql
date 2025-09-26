@@ -11,7 +11,7 @@
     {%- set sql_header = config.get('sql_header', none) -%}
 
     {%- set dml -%}
-        {%- if unique_key is none -%}
+    {%- if unique_key is none -%}
 
         {{ sql_header if sql_header is not none }}
 
@@ -23,9 +23,9 @@
 
     {%- else -%}
 
-            {{ default__get_merge_sql(target, source_sql, unique_key, dest_columns, incremental_predicates) }}
+        {{ default__get_merge_sql(target, source_sql, unique_key, dest_columns, incremental_predicates) }}
 
-        {%- endif -%}
+    {%- endif -%}
     {%- endset -%}
 
     {% do return(snowflake_dml_explicit_transaction(dml)) %}
@@ -73,7 +73,7 @@
     );
 
     {%- set dest_cols_csv = get_quoted_csv(dest_columns | map(attribute="name")) -%}
-insert into {{ target }} ({{ dest_cols_csv }})
+    insert into {{ target }} ({{ dest_cols_csv }})
     (
         select {{ dest_cols_csv }}
         from {{ source }}

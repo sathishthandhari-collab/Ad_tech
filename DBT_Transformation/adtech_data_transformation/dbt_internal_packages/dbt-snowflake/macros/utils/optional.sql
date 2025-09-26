@@ -12,9 +12,7 @@
 --      If the value is not None (e.g. provided by the user), return the option setting DDL
 --      If the value is None, return an empty string
 -#}
-    {%- set quote_char_right = ')' if quote_char == '(' else quote_char -%}
-    {% if value is not none %}
-        {{ name }} {{ equals_char }}{{ quote_char }}{{ value }}{{ quote_char_right }}
-    {% endif %}
+{%- set quote_char_right = ')' if quote_char == '(' else quote_char -%}
+{% if value is not none %}{{ name }} {{ equals_char }}{{ quote_char }}{{ value }}{{ quote_char_right }}{% endif %}
 {% endmacro %}
---
+-- 

@@ -1,7 +1,5 @@
 -- funcsign: (model, string, list[string], bool) -> string
 {% macro default__test_accepted_values(model, column_name, values, quote=True) %}
-    
-    
 
 with all_values as (
 
@@ -18,13 +16,13 @@ select *
 from all_values
 where value_field not in (
     {% for value in values -%}
-    {% if quote -%}
+        {% if quote -%}
         '{{ value }}'
         {%- else -%}
         {{ value }}
-    {%- endif -%}
-    {%- if not loop.last -%},{%- endif %}
-{%- endfor %}
+        {%- endif -%}
+        {%- if not loop.last -%},{%- endif %}
+    {%- endfor %}
 )
 
 {% endmacro %}

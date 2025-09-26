@@ -48,8 +48,8 @@
     create or replace dynamic table {{ relation }}
         target_lag = '{{ dynamic_table.target_lag }}'
         warehouse = {{ dynamic_table.snowflake_warehouse }}
-    {{ optional('refresh_mode', dynamic_table.refresh_mode) }}
-    {{ optional('initialize', dynamic_table.initialize) }}
+        {{ optional('refresh_mode', dynamic_table.refresh_mode) }}
+        {{ optional('initialize', dynamic_table.initialize) }}
         as (
             {{ sql }}
         )
@@ -77,11 +77,11 @@
     create or replace dynamic iceberg table {{ relation }}
         target_lag = '{{ dynamic_table.target_lag }}'
         warehouse = {{ dynamic_table.snowflake_warehouse }}
-    {{ optional('external_volume', dynamic_table.catalog.external_volume) }}
-    {{ optional('catalog', dynamic_table.catalog.name) }}
+        {{ optional('external_volume', dynamic_table.catalog.external_volume) }}
+        {{ optional('catalog', dynamic_table.catalog.name) }}
         base_location = '{{ dynamic_table.catalog.base_location }}'
         {{ optional('refresh_mode', dynamic_table.refresh_mode) }}
-    {{ optional('initialize', dynamic_table.initialize) }}
+        {{ optional('initialize', dynamic_table.initialize) }}
         as (
             {{ sql }}
         )

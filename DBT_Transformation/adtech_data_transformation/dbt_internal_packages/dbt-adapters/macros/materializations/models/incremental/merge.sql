@@ -2,7 +2,7 @@
 {% macro get_merge_sql(target, source, unique_key, dest_columns, incremental_predicates=none) -%}
    -- back compat for old kwarg name
   {% set incremental_predicates = kwargs.get('predicates', incremental_predicates) %}
-    {{ adapter.dispatch('get_merge_sql', 'dbt')(target, source, unique_key, dest_columns, incremental_predicates) }}
+  {{ adapter.dispatch('get_merge_sql', 'dbt')(target, source, unique_key, dest_columns, incremental_predicates) }}
 {%- endmacro %}
 
 -- funcsign: (string, string, string|list[string]|none, list[base_column], optional[list[string]]) -> string
@@ -36,9 +36,9 @@
 
     merge into {{ target }} as DBT_INTERNAL_DEST
         using {{ source }} as DBT_INTERNAL_SOURCE
-        on {{ "(" ~ predicates | join(") and (") ~ ")" }}
+        on {{"(" ~ predicates | join(") and (") ~ ")"}}
 
-{% if unique_key %}
+    {% if unique_key %}
     when matched then update set
         {% for column_name in update_columns -%}
             {{ column_name }} = DBT_INTERNAL_SOURCE.{{ column_name }}
@@ -55,7 +55,7 @@
 
 -- funcsign: (string, string, string|list[string]|none, list[base_column], optional[list[string]]) -> string
 {% macro get_delete_insert_merge_sql(target, source, unique_key, dest_columns, incremental_predicates) -%}
-    {{ adapter.dispatch('get_delete_insert_merge_sql', 'dbt')(target, source, unique_key, dest_columns, incremental_predicates) }}
+  {{ adapter.dispatch('get_delete_insert_merge_sql', 'dbt')(target, source, unique_key, dest_columns, incremental_predicates) }}
 {%- endmacro %}
 
 -- funcsign: (string, string, string|list[string]|none, list[base_column], optional[list[string]]) -> string
@@ -65,7 +65,7 @@
 
     {% if unique_key %}
         {% if unique_key is string %}
-            {% set unique_key = [unique_key] %}
+        {% set unique_key = [unique_key] %}
         {% endif %}
 
         {%- set unique_key_str = unique_key|join(', ') -%}
@@ -93,7 +93,7 @@
 
 -- funcsign: (string, string, list[base_column], optional[list[string]], optional[bool]) -> string
 {% macro get_insert_overwrite_merge_sql(target, source, dest_columns, predicates, include_sql_header=false) -%}
-    {{ adapter.dispatch('get_insert_overwrite_merge_sql', 'dbt')(target, source, dest_columns, predicates, include_sql_header) }}
+  {{ adapter.dispatch('get_insert_overwrite_merge_sql', 'dbt')(target, source, dest_columns, predicates, include_sql_header) }}
 {%- endmacro %}
 
 -- funcsign: (string, string, list[base_column], optional[list[string]], optional[bool]) -> string
@@ -106,7 +106,7 @@
     {%- set dest_cols_csv = get_quoted_csv(dest_columns | map(attribute="name")) -%}
     {%- set sql_header = config.get('sql_header', none) -%}
 
-{{ sql_header if sql_header is not none and include_sql_header }}
+    {{ sql_header if sql_header is not none and include_sql_header }}
 
     merge into {{ target }} as DBT_INTERNAL_DEST
         using {{ source }} as DBT_INTERNAL_SOURCE

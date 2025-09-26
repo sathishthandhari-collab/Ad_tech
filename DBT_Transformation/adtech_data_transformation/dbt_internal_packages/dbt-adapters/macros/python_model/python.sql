@@ -3,9 +3,9 @@
     {{ return(adapter.dispatch('resolve_model_name', 'dbt')(input_model_name)) }}
 {% endmacro %}
 
-
+-- funcsign: (string) -> string
 {%- macro default__resolve_model_name(input_model_name) -%}
-    {{ input_model_name | string | replace('"', '\"') }}
+    {{  input_model_name | string | replace('"', '\"') }}
 {%- endmacro -%}
 
 -- funcsign: (model) -> string
@@ -29,7 +29,7 @@
         {%- if _ref.get('version') -%}
             {% do _ref_args.extend(["v" ~ _ref['version']]) %}
         {%- endif -%}
-        {%- do ref_dict.update({_ref_args | join('.'): resolve_model_name(resolved)}) -%}
+       {%- do ref_dict.update({_ref_args | join('.'): resolve_model_name(resolved)}) -%}
     {%- endfor -%}
 
 def ref(*args, **kwargs):
@@ -64,25 +64,23 @@ def source(*args, dbt_load_df_function):
     {%- for key, default in config_dbt_used -%}
         {# weird type testing with enum, would be much easier to write this logic in Python! #}
         {%- if key == "language" -%}
-            {%- set value = "python" -%}
+          {%- set value = "python" -%}
         {%- endif -%}
         {%- set value = model.config.get(key, default) -%}
         {%- do config_dict.update({key: value}) -%}
     {%- endfor -%}
-    config_dict = {{ config_dict }}
+config_dict = {{ config_dict }}
 {% endmacro %}
 
 {% macro py_script_postfix(model) %}
-    
-    
 # This part is user provided model code
 # you will need to copy the next section to run the code
 # COMMAND ----------
 # this part is dbt logic for get ref work, do not modify
 
 {{ build_ref_function(model ) }}
-    {{ build_source_function(model ) }}
-    {{ build_config_dict(model) }}
+{{ build_source_function(model ) }}
+{{ build_config_dict(model) }}
 
 class config:
     def __init__(self, *args, **kwargs):
@@ -99,7 +97,7 @@ class this:
     identifier = "{{ this.identifier }}"
     {% set this_relation_name = resolve_model_name(this) %}
     def __repr__(self):
-        return '{{ this_relation_name }}'
+        return '{{ this_relation_name  }}'
 
 
 class dbtObj:
@@ -111,9 +109,9 @@ class dbtObj:
         self.is_incremental = {{ is_incremental() }}
 
 # COMMAND ----------
-{{ py_script_comment() }}
+{{py_script_comment()}}
 {% endmacro %}
 
 {#-- entry point for add instuctions for running compiled_code --#}
-{% macro py_script_comment() %}
-{% endmacro %}
+{%macro py_script_comment()%}
+{%endmacro%}

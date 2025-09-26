@@ -1,3 +1,4 @@
+
 {#
     Renders a alias name given a custom alias name. If the custom
     alias name is none, then the resulting alias is just the filename of the
@@ -31,7 +32,7 @@
         {%- else -%}
             {{ node.name }}
         {%- endif -%}
-
+    
     {%- endif -%}
 
 {%- endmacro %}

@@ -25,13 +25,13 @@
 
 -- funcsign: (relation, relation) -> string
 {% macro rename_relation(from_relation, to_relation) -%}
-    {{ return(adapter.dispatch('rename_relation', 'dbt')(from_relation, to_relation)) }}
+  {{ return(adapter.dispatch('rename_relation', 'dbt')(from_relation, to_relation)) }}
 {% endmacro %}
 
 -- funcsign: (relation, relation) -> string
 {% macro default__rename_relation(from_relation, to_relation) -%}
-    {% set target_name = adapter.quote_as_configured(to_relation.identifier, 'identifier') %}
-    {% call statement('rename_relation') -%}
-        alter table {{ from_relation.render() }} rename to {{ target_name }}
-    {%- endcall %}
+  {% set target_name = adapter.quote_as_configured(to_relation.identifier, 'identifier') %}
+  {% call statement('rename_relation') -%}
+    alter table {{ from_relation.render() }} rename to {{ target_name }}
+  {%- endcall %}
 {% endmacro %}

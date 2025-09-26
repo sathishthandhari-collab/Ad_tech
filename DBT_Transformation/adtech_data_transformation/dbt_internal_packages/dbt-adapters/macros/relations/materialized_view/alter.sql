@@ -33,8 +33,6 @@
 
 -- funcsign: (relation, config) -> string
 {% macro get_materialized_view_configuration_changes(existing_relation, new_config) %}
-    
-    
     /* {#
     It's recommended that configuration changes be formatted as follows:
     {"<change_category>": [{"action": "<name>", "context": ...}]}

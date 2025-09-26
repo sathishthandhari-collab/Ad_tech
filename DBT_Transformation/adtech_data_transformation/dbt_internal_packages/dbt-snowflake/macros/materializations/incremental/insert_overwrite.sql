@@ -1,5 +1,5 @@
 {#
-    The Snowflake INSERT OVERWRITE instruction is not a partitionâ€\x90targeted update like in Spark or
+    The Snowflake INSERT OVERWRITE instruction is not a partitionâ€targeted update like in Spark or
     the write disposition options in BigQuery. In Snowflake, specifying OVERWRITE causes the entire
     target table to be cleared (essentially a TRUNCATE) before the new data is inserted in one atomic
     operation. That means every time running an INSERT OVERWRITE means discarding all existing data
@@ -22,7 +22,7 @@
 #}
 -- funcsign: (struct{ target_relation: relation, temp_relation: relation, unique_key: optional[string], dest_columns: list[base_column], incremental_predicates: optional[string]}) -> string
 {% macro snowflake__get_incremental_insert_overwrite_sql(arg_dict) -%}
-    {{ adapter.dispatch('insert_overwrite_get_sql', 'dbt')(arg_dict["target_relation"], arg_dict["temp_relation"], arg_dict["unique_key"], arg_dict["dest_columns"]) }}
+  {{ adapter.dispatch('insert_overwrite_get_sql', 'dbt')(arg_dict["target_relation"], arg_dict["temp_relation"], arg_dict["unique_key"], arg_dict["dest_columns"]) }}
 {%- endmacro %}
 
 -- funcsign: (relation, relation, optional[string], list[base_column]) -> string
@@ -30,12 +30,12 @@
 
     {%- set dml -%}
 
-        {%- set overwrite_columns = config.get('overwrite_columns', []) -%}
+    {%- set overwrite_columns = config.get('overwrite_columns', []) -%}
 
-        {{ config.get('sql_header', '') }}
+    {{ config.get('sql_header', '') }}
 
-        {% set target_columns_list = '(' ~ ', '.join(overwrite_columns) ~ ')' if overwrite_columns else '' %}
-        {% set source_query_columns_list = ', '.join(overwrite_columns) if overwrite_columns else '*' %}
+    {% set target_columns_list = '(' ~ ', '.join(overwrite_columns) ~ ')' if overwrite_columns else '' %}
+    {% set source_query_columns_list = ', '.join(overwrite_columns) if overwrite_columns else '*' %}
     insert overwrite into {{ target.render() }} {{ target_columns_list }}
         select {{ source_query_columns_list }}
         from {{ source.render() }}

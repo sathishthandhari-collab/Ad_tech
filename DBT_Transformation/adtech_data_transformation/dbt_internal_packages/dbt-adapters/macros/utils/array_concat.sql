@@ -1,6 +1,6 @@
 -- funcsign: (list[any], list[any]) -> list[any]
 {% macro array_concat(array_1, array_2) -%}
-    {{ return(adapter.dispatch('array_concat', 'dbt')(array_1, array_2)) }}
+  {{ return(adapter.dispatch('array_concat', 'dbt')(array_1, array_2)) }}
 {%- endmacro %}
 
 -- funcsign: (list[any], list[any]) -> list[any]

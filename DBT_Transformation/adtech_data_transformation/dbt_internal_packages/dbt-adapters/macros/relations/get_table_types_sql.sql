@@ -1,6 +1,6 @@
 -- funcsign: () -> string
 {%- macro get_table_types_sql() -%}
-    {{ return(adapter.dispatch('get_table_types_sql')()) }}
+  {{ return(adapter.dispatch('get_table_types_sql')()) }}
 {%- endmacro -%}
 
 -- funcsign: () -> string
