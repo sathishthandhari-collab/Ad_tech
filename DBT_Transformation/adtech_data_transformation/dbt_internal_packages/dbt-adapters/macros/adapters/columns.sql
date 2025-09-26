@@ -1,6 +1,6 @@
 -- funcsign: (relation) -> optional[agate_table]
 {% macro get_columns_in_relation(relation) -%}
-  {{ return(adapter.dispatch('get_columns_in_relation', 'dbt')(relation)) }}
+    {{ return(adapter.dispatch('get_columns_in_relation', 'dbt')(relation)) }}
 {% endmacro %}
 
 -- funcsign: (relation) -> optional[agate_table]
@@ -12,16 +12,16 @@
 {# helper for adapter-specific implementations of get_columns_in_relation #}
 -- funcsign: (agate_table) -> list[api.column]
 {% macro sql_convert_columns_in_relation(table) -%}
-  {% set columns = [] %}
-  {% for row in table %}
-    {% do columns.append(api.Column(*row)) %}
-  {% endfor %}
-  {{ return(columns) }}
+    {% set columns = [] %}
+    {% for row in table %}
+        {% do columns.append(api.Column(*row)) %}
+    {% endfor %}
+    {{ return(columns) }}
 {% endmacro %}
 
 -- funcsign: (string, optional[string]) -> string
 {% macro get_empty_subquery_sql(select_sql, select_sql_header=none) -%}
-  {{ return(adapter.dispatch('get_empty_subquery_sql', 'dbt')(select_sql, select_sql_header)) }}
+    {{ return(adapter.dispatch('get_empty_subquery_sql', 'dbt')(select_sql, select_sql_header)) }}
 {% endmacro %}
 
 {#
@@ -31,7 +31,7 @@
 -- funcsign: (string, optional[string]) -> string
 {% macro default__get_empty_subquery_sql(select_sql, select_sql_header=none) %}
     {%- if select_sql_header is not none -%}
-    {{ select_sql_header }}
+        {{ select_sql_header }}
     {%- endif -%}
     select * from (
         {{ select_sql }}
@@ -42,7 +42,7 @@
 
 -- funcsign: (dict[string, api.column]) -> string
 {% macro get_empty_schema_sql(columns) -%}
-  {{ return(adapter.dispatch('get_empty_schema_sql', 'dbt')(columns)) }}
+    {{ return(adapter.dispatch('get_empty_schema_sql', 'dbt')(columns)) }}
 {% endmacro %}
 
 -- funcsign: (dict[string, api.column]) -> string
@@ -51,21 +51,21 @@
     {%- set col_naked_numeric = [] -%}
     select
     {% for i in columns %}
-      {%- set col = columns[i] -%}
-      {%- if col['data_type'] is not defined -%}
+        {%- set col = columns[i] -%}
+        {%- if col['data_type'] is not defined -%}
         {%- do col_err.append(col['name']) -%}
       {#-- If this column's type is just 'numeric' then it is missing precision/scale, raise a warning --#}
       {#-- TYPE CHECK: col['data_type'] is optional[string] but user have this constraint --#}
       {%- elif col['data_type'].strip().lower() in ('numeric', 'decimal', 'number') -%}
-        {%- do col_naked_numeric.append(col['name']) -%}
-      {%- endif -%}
-      {% set col_name = adapter.quote(col['name']) if col.get('quote') else col['name'] %}
-      {{ cast('null', col['data_type']) }} as {{ col_name }}{{ ", " if not loop.last }}
+            {%- do col_naked_numeric.append(col['name']) -%}
+        {%- endif -%}
+        {% set col_name = adapter.quote(col['name']) if col.get('quote') else col['name'] %}
+        {{ cast('null', col['data_type']) }} as {{ col_name }}{{ ", " if not loop.last }}
     {%- endfor -%}
     {%- if (col_err | length) > 0 -%}
       {{ exceptions.column_type_missing(column_names=col_err) }}
     {%- elif (col_naked_numeric | length) > 0 -%}
-      {{ exceptions.warn("Detected columns with numeric type and unspecified precision/scale, this can lead to unintended rounding: " ~ col_naked_numeric ~ "`") }}
+        {{ exceptions.warn("Detected columns with numeric type and unspecified precision/scale, this can lead to unintended rounding: " ~ col_naked_numeric ~ "`") }}
     {%- endif -%}
 {% endmacro %}
 
@@ -81,7 +81,7 @@
 -- here for back compat
 -- funcsign: (string) -> list[string]
 {% macro get_columns_in_query(select_sql) -%}
-  {{ return(adapter.dispatch('get_columns_in_query', 'dbt')(select_sql)) }}
+    {{ return(adapter.dispatch('get_columns_in_query', 'dbt')(select_sql)) }}
 {% endmacro %}
 
 -- funcsign: (string) -> list[string]
@@ -94,7 +94,7 @@
 
 -- funcsign: (relation, string, string) -> string
 {% macro alter_column_type(relation, column_name, new_column_type) -%}
-  {{ return(adapter.dispatch('alter_column_type', 'dbt')(relation, column_name, new_column_type)) }}
+    {{ return(adapter.dispatch('alter_column_type', 'dbt')(relation, column_name, new_column_type)) }}
 {% endmacro %}
 
 -- funcsign: (relation, string, string) -> string
@@ -105,47 +105,47 @@
     3. Drop the existing column (cascade!)
     4. Rename the new column to existing column
   #}
-  {%- set tmp_column = column_name + "__dbt_alter" -%}
+    {%- set tmp_column = column_name + "__dbt_alter" -%}
 
-  {% call statement('alter_column_type') %}
+    {% call statement('alter_column_type') %}
     alter table {{ relation.render() }} add column {{ adapter.quote(tmp_column) }} {{ new_column_type }};
     update {{ relation.render() }} set {{ adapter.quote(tmp_column) }} = {{ adapter.quote(column_name) }};
     alter table {{ relation.render() }} drop column {{ adapter.quote(column_name) }} cascade;
     alter table {{ relation.render() }} rename column {{ adapter.quote(tmp_column) }} to {{ adapter.quote(column_name) }}
-  {% endcall %}
+    {% endcall %}
 
 {% endmacro %}
 
 
 -- funcsign: (relation, optional[list[base_column]], optional[list[base_column]]) -> string
 {% macro alter_relation_add_remove_columns(relation, add_columns = none, remove_columns = none) -%}
-  {{ return(adapter.dispatch('alter_relation_add_remove_columns', 'dbt')(relation, add_columns, remove_columns)) }}
+    {{ return(adapter.dispatch('alter_relation_add_remove_columns', 'dbt')(relation, add_columns, remove_columns)) }}
 {% endmacro %}
 
 -- funcsign: (relation, optional[list[base_column]], optional[list[base_column]]) -> string
 {% macro default__alter_relation_add_remove_columns(relation, add_columns, remove_columns) %}
 
-  {% if add_columns is none %}
-    {% set add_columns = [] %}
-  {% endif %}
-  {% if remove_columns is none %}
-    {% set remove_columns = [] %}
-  {% endif %}
+    {% if add_columns is none %}
+        {% set add_columns = [] %}
+    {% endif %}
+    {% if remove_columns is none %}
+        {% set remove_columns = [] %}
+    {% endif %}
 
-  {% set sql -%}
+    {% set sql -%}
 
-     alter {{ relation.type }} {{ relation.render() }}
+        alter {{ relation.type }} {{ relation.render() }}
 
-            {% for column in add_columns %}
+        {% for column in add_columns %}
                add column {{ column.name }} {{ column.data_type }}{{ ',' if not loop.last }}
-            {% endfor %}{{ ',' if add_columns and remove_columns }}
+        {% endfor %}{{ ',' if add_columns and remove_columns }}
 
-            {% for column in remove_columns %}
+        {% for column in remove_columns %}
                 drop column {{ column.name }}{{ ',' if not loop.last }}
-            {% endfor %}
+        {% endfor %}
 
-  {%- endset -%}
+    {%- endset -%}
 
-  {% do run_query(sql) %}
+    {% do run_query(sql) %}
 
 {% endmacro %}

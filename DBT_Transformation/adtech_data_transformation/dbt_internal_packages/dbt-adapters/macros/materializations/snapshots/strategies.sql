@@ -3,33 +3,33 @@
 #}
 -- funcsign: (string) -> (model, string, string, model.config, bool) -> strategy
 {% macro strategy_dispatch(name) -%}
-{% set original_name = name %}
-  {% if '.' in name %}
+    {% set original_name = name %}
+    {% if '.' in name %}
     {% set package_name, name = name.split(".", 1) %}
   {% else %}
-    {% set package_name = none %}
-  {% endif %}
+        {% set package_name = none %}
+    {% endif %}
 
-  {% if package_name is none %}
+    {% if package_name is none %}
     {% set package_context = context %}
   {% elif package_name in context %}
     {% set package_context = context[package_name] %}
   {% else %}
     {% set error_msg %}
-        Could not find package '{{package_name}}', called with '{{original_name}}'
+        Could not find package '{{ package_name }}', called with '{{ original_name }}'
     {% endset %}
     {{ exceptions.raise_compiler_error(error_msg | trim) }}
   {% endif %}
 
-  {%- set search_name = 'snapshot_' ~ name ~ '_strategy' -%}
+    {%- set search_name = 'snapshot_' ~ name ~ '_strategy' -%}
 
-  {% if search_name not in package_context %}
+    {% if search_name not in package_context %}
     {% set error_msg %}
-        The specified strategy macro '{{name}}' was not found in package '{{ package_name }}'
+        The specified strategy macro '{{ name }}' was not found in package '{{ package_name }}'
     {% endset %}
     {{ exceptions.raise_compiler_error(error_msg | trim) }}
   {% endif %}
-  {{ return(package_context[search_name]) }}
+    {{ return(package_context[search_name]) }}
 {%- endmacro %}
 
 
@@ -38,7 +38,7 @@
 #}
 -- funcsign: (list[string]) -> string
 {% macro snapshot_hash_arguments(args) -%}
-  {{ adapter.dispatch('snapshot_hash_arguments', 'dbt')(args) }}
+    {{ adapter.dispatch('snapshot_hash_arguments', 'dbt')(args) }}
 {%- endmacro %}
 
 -- funcsign: (list[string]) -> string
@@ -155,22 +155,22 @@
     {% set column_added, check_cols = snapshot_check_all_get_existing_columns(node, target_exists, check_cols_config) %} -- noqa: check_cols_config is a string|list[string]|none
 
     {%- set row_changed_expr -%}
-    (
-    {%- if column_added -%}
+        (
+        {%- if column_added -%}
         {{ get_true_sql() }}
     {%- else -%}
-    {%- for col in check_cols -%}
-        {{ snapshotted_rel }}.{{ col }} != {{ current_rel }}.{{ col }}
+            {%- for col in check_cols -%}
+                {{ snapshotted_rel }}.{{ col }} != {{ current_rel }}.{{ col }}
         or
         (
             (({{ snapshotted_rel }}.{{ col }} is null) and not ({{ current_rel }}.{{ col }} is null))
             or
             ((not {{ snapshotted_rel }}.{{ col }} is null) and ({{ current_rel }}.{{ col }} is null))
         )
-        {%- if not loop.last %} or {% endif -%}
-    {%- endfor -%}
-    {%- endif -%}
-    )
+                {%- if not loop.last %} or {% endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+        )
     {%- endset %}
 
     {% set scd_args = api.Relation.scd_args(primary_key, updated_at) %} -- noqa: primary_key is a string|list[string]|none

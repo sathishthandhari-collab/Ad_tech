@@ -5,10 +5,10 @@
 #}
 -- funcsign: (string, string, optional[integer]) -> string
 {% macro get_show_sql(compiled_code, sql_header, limit) -%}
-  {%- if sql_header is not none -%}
-  {{ sql_header }}
-  {%- endif %}
-  {{ get_limit_subquery_sql(compiled_code, limit) }}
+    {%- if sql_header is not none -%}
+        {{ sql_header }}
+    {%- endif %}
+    {{ get_limit_subquery_sql(compiled_code, limit) }}
 {% endmacro %}
 
 {#
@@ -17,13 +17,13 @@
 #}
 -- funcsign: (string, optional[integer]) -> string
 {%- macro get_limit_subquery_sql(sql, limit) -%}
-  {{ adapter.dispatch('get_limit_sql', 'dbt')(sql, limit) }}
+    {{ adapter.dispatch('get_limit_sql', 'dbt')(sql, limit) }}
 {%- endmacro -%}
 
 -- funcsign: (string, optional[integer]) -> string
 {% macro default__get_limit_sql(sql, limit) %}
-  {{ sql }}
-  {% if limit is not none %}
+    {{ sql }}
+    {% if limit is not none %}
   limit {{ limit }}
-  {%- endif -%}
+    {%- endif -%}
 {% endmacro %}

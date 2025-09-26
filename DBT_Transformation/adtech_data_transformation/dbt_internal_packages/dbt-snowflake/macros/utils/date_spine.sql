@@ -7,6 +7,6 @@
                 start_date
             )
         }}
-    ) as date_{{datepart}}
+    ) as date_{{ datepart }}
     from table(flatten(input => array_generate_range(0, {{ dbt.datediff(start_date, end_date, datepart) }} )))
 {% endmacro %}

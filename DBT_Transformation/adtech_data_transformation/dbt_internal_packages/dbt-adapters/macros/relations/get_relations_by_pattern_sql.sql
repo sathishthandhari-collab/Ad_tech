@@ -6,6 +6,8 @@
 
 -- funcsign: (string, string, string, string) -> string
 {% macro default__get_tables_by_pattern_sql(schema_pattern, table_pattern, exclude='', database=target.database) %}
+    
+    
 
         select distinct
             table_schema as {{ adapter.quote('table_schema') }},
@@ -15,6 +17,8 @@
         where table_schema ilike '{{ schema_pattern }}'
         and table_name ilike '{{ table_pattern }}'
         and table_name not ilike '{{ exclude }}'
+
+
 
 {% endmacro %}
 

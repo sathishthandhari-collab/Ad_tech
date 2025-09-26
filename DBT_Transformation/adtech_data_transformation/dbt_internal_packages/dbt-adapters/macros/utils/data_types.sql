@@ -1,8 +1,8 @@
 {# string  -------------------------------------------------     #}
 
--- funcsign: () -> string
+
 {%- macro type_string() -%}
-  {{ return(adapter.dispatch('type_string', 'dbt')()) }}
+    {{ return(adapter.dispatch('type_string', 'dbt')()) }}
 {%- endmacro -%}
 
 -- funcsign: () -> string
@@ -17,9 +17,9 @@
 
 {# timestamp  -------------------------------------------------     #}
 
--- funcsign: () -> string
+
 {%- macro type_timestamp() -%}
-  {{ return(adapter.dispatch('type_timestamp', 'dbt')()) }}
+    {{ return(adapter.dispatch('type_timestamp', 'dbt')()) }}
 {%- endmacro -%}
 
 -- funcsign: () -> string
@@ -56,7 +56,7 @@ The TIMESTAMP_* variation associated with TIMESTAMP is specified by the TIMESTAM
 {# float  -------------------------------------------------     #}
 
 {%- macro type_float() -%}
-  {{ return(adapter.dispatch('type_float', 'dbt')()) }}
+    {{ return(adapter.dispatch('type_float', 'dbt')()) }}
 {%- endmacro -%}
 
 {% macro default__type_float() %}
@@ -66,7 +66,7 @@ The TIMESTAMP_* variation associated with TIMESTAMP is specified by the TIMESTAM
 {# numeric  -------------------------------------------------     #}
 
 {%- macro type_numeric() -%}
-  {{ return(adapter.dispatch('type_numeric', 'dbt')()) }}
+    {{ return(adapter.dispatch('type_numeric', 'dbt')()) }}
 {%- endmacro -%}
 
 /*
@@ -89,13 +89,15 @@ the precision and scale explicitly.)
 
 {% macro default__type_numeric() %}
     {{ return(api.Column.numeric_type("numeric", 28, 6)) }} -- noqa: this warning is in the comment
+
+
 {% endmacro %}
 
 
 {# bigint  -------------------------------------------------     #}
 
 {%- macro type_bigint() -%}
-  {{ return(adapter.dispatch('type_bigint', 'dbt')()) }}
+    {{ return(adapter.dispatch('type_bigint', 'dbt')()) }}
 {%- endmacro -%}
 
 -- We don't have a conversion type for 'bigint' in TYPE_LABELS,
@@ -110,11 +112,11 @@ the precision and scale explicitly.)
 {# int  -------------------------------------------------     #}
 
 {%- macro type_int() -%}
-  {{ return(adapter.dispatch('type_int', 'dbt')()) }}
+    {{ return(adapter.dispatch('type_int', 'dbt')()) }}
 {%- endmacro -%}
 
 {%- macro default__type_int() -%}
-  {{ return(api.Column.translate_type("integer")) }}
+    {{ return(api.Column.translate_type("integer")) }}
 {%- endmacro -%}
 
 -- returns 'int' everywhere, except BigQuery, where it returns 'int64'
@@ -123,11 +125,11 @@ the precision and scale explicitly.)
 {# bool  -------------------------------------------------     #}
 
 {%- macro type_boolean() -%}
-  {{ return(adapter.dispatch('type_boolean', 'dbt')()) }}
+    {{ return(adapter.dispatch('type_boolean', 'dbt')()) }}
 {%- endmacro -%}
 
 {%- macro default__type_boolean() -%}
-  {{ return(api.Column.translate_type("boolean")) }}
+    {{ return(api.Column.translate_type("boolean")) }}
 {%- endmacro -%}
 
 -- returns 'boolean' everywhere. BigQuery accepts 'boolean' as a valid alias for 'bool'

@@ -1,6 +1,6 @@
 -- funcsign: (list[any], string) -> list[any]
 {% macro array_construct(inputs=[], data_type=api.Column.translate_type('integer')) -%}
-  {{ return(adapter.dispatch('array_construct', 'dbt')(inputs, data_type)) }}
+    {{ return(adapter.dispatch('array_construct', 'dbt')(inputs, data_type)) }}
 {%- endmacro %}
 
 {# all inputs must be the same data type to match postgres functionality #}
@@ -9,6 +9,6 @@
     {% if inputs|length > 0 %}
     array[ {{ inputs|join(' , ') }} ]
     {% else %}
-    array[]::{{data_type}}[]
+    array[]::{{ data_type }}[]
     {% endif %}
 {%- endmacro %}
