@@ -28,9 +28,7 @@ This project demonstrates production-grade data transformation capabilities by p
 ## 🏗️ Architecture
 
 📁 adtech_data_transformation/
-
 ├── 📁 models/
-
 │ ├── 📁 staging/ # Clean, 1:1 source transformations
 
 │ │ ├── base/ # Unified site data from 15+ vendors
