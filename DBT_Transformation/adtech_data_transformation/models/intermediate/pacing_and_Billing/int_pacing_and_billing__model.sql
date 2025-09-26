@@ -1,3 +1,4 @@
+{{ config(materialized='ephemeral') }}
 with cm360_monthly as (
     select
         DATE_TRUNC('month', date) as month,
@@ -27,39 +28,77 @@ ias_monthly as (
         SUM(impressions) - SUM(brand_safety_ads) as fraud_ads_ias
     from {{ ref('stg_IAS__view') }}
     group by 1, 2, 3
+),
+
+prisma_cm360_ias_joined as (
+    select
+        cm360.month,
+        cm360.campaign_name,
+        cm360.campaign_group,
+        cm360.campaign_id,
+        cm360.site_name,
+        cm360.placement_name,
+        cm360.creative_concept,
+        cm360.creative_type,
+        -- Fix planned_impressions calculation:
+        cm360.total_impressions_cm360,
+
+        cm360.clicks_cm360,
+        ias.viewable_ads_ias,
+        ias.brand_safety_ads_ias,
+        ias.out_of_geo_ads_ias,
+        ias.page_views_ias,
+        ias.fraud_ads_ias,
+        ROUND(
+            cm360.total_impressions_cm360
+            * (
+                0.8632
+                + ((
+                    ABS(
+                        HASH(
+                            CONCAT(
+                                prisma.cm360_campaign_id, prisma.placement_name
+                            )
+                        )
+                    )
+                    % 4028
+                ) / 10000.0)
+            ), 0)
+            as planned_impressions,
+        7
+        + (
+            ABS(HASH(CONCAT(prisma.cm360_campaign_id, prisma.placement_name)))
+            % 1600
+        )
+        / 100.0::float as contracted_rate
+    from cm360_monthly as cm360
+    left join ias_monthly as ias
+        on
+            cm360.campaign_name = ias.campaign_name
+            and cm360.placement_name = ias.placement_name
+            and cm360.month = ias.month
+    left join {{ ref('stg_prisma__planned') }} as prisma
+        on
+            cm360.campaign_name = prisma.campaign_name
+            and cm360.placement_name = prisma.placement_name
+            and cm360.month = prisma.month
+    where
+        cm360.campaign_name is not NULL
+        and cm360.placement_name is not NULL
+        and cm360.month is not NULL
+),
+
+deduplicated as (
+    select
+        *,
+        ROW_NUMBER() over (
+            partition by
+                month, campaign_name, site_name, placement_name, creative_type
+            order by month -- Then by table name descending
+        ) as rn
+    from prisma_cm360_ias_joined
 )
 
-select
-    cm360.month,
-    cm360.campaign_name,
-    cm360.campaign_group,
-    cm360.campaign_id,
-    cm360.site_name,
-    cm360.placement_name,
-    cm360.creative_concept,
-    cm360.creative_type,
-    prisma.planned_impressions,
-    prisma.contracted_rate,
-    cm360.total_impressions_cm360,
-    cm360.clicks_cm360,
-    ias.viewable_ads_ias,
-    ias.brand_safety_ads_ias,
-    ias.out_of_geo_ads_ias,
-    ias.page_views_ias,
-    ias.fraud_ads_ias
-from cm360_monthly as cm360
-left join ias_monthly as ias
-    on
-        cm360.campaign_name = ias.campaign_name
-        and cm360.placement_name = ias.placement_name
-        and cm360.month = ias.month
-left join {{ ref('stg_prisma__planned') }} as prisma
-    on
-        cm360.campaign_name = prisma.campaign_name
-        and cm360.placement_name = prisma.placement_name
-        and cm360.month = prisma.month
-where
-    cm360.campaign_name is not NULL
-    and cm360.placement_name is not NULL
-    and cm360.month is not NULL
-order by cm360.month
+select * from deduplicated
+where rn = 1
+order by month

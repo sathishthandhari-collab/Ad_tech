@@ -30,7 +30,7 @@ with billable_and_nonbillable as (
 
 )
 
-       select
+select
     *,
     round(
         case

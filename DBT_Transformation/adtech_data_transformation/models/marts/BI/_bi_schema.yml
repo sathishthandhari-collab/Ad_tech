@@ -1,145 +1,188 @@
+version: 2
+
 models:
   - name: monthly_campaign__level_report
-    description: ""
+    description: "Monthly campaign performance metrics aggregated at campaign level with IAS quality metrics and demographic breakdowns"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [month, campaign_id, site_name, creative_concept]
     columns:
       - name: month
-        data_type: date
-
-
+        description: "Month bucket for campaign performance aggregation"
+        tests:
+          - not_null
       - name: campaign_id
-        data_type: number
-
-
+        description: "CM360 campaign unique identifier"
+        tests:
+          - not_null
       - name: campaign_name
-        data_type: varchar
-
-
+        description: "Campaign display name from CM360"
+        tests:
+          - not_null
+      - name: site_name
+        description: "Publisher site name"
+        tests:
+          - not_null
       - name: creative_concept
-        data_type: varchar
-
-
-      - name: impressions
-        data_type: number
-
-
-      - name: clicks
-        data_type: number
-
-
-      - name: ias_impressions
-        data_type: number
-
-
-      - name: ias_viewable_ads
-        data_type: number
-
-
-      - name: ias_brand_safety_ads
-        data_type: number
-
-
-      - name: ias_out_of_geo_ads
-        data_type: number
-
-
-      - name: ias_page_views
-        data_type: number
-
-
-      - name: ias_video_completions
-        data_type: number
-
-
+        description: "Creative concept extracted from placement naming"
+      - name: creative_type
+        description: "Creative format type (banner, video, native, etc.)"
       - name: state
-        data_type: varchar
-
-
+        description: "Geographic state from site demographics"
       - name: region
-        data_type: varchar
-
-
+        description: "Geographic region grouping"
       - name: sex
-        data_type: varchar
-
-
+        description: "Target demographic gender"
       - name: device_type
-        data_type: varchar
-
+        description: "Device type (mobile, desktop, tablet)"
+      - name: impressions
+        description: "Total delivered impressions from CM360"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: clicks
+        description: "Total clicks from CM360"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ctr
+        description: "Click-through rate (clicks/impressions)"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_impressions
+        description: "IAS monitored impression count"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_viewable_ads
+        description: "IAS verified viewable impressions"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_brand_safety_ads
+        description: "IAS brand-safe impression count"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_out_of_geo_ads
+        description: "IAS out-of-geography impression count"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_page_views
+        description: "IAS tracked page view count"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_video_completions
+        description: "IAS video completion count"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
 
   - name: daily_report_unified
-    description: ""
+    description: "Daily unified reporting table combining CM360 performance with IAS quality metrics and site demographics"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [date, placement_name, campaign_id]
     columns:
+      - name: date
+        description: "Event date at daily granularity"
+        tests:
+          - not_null
       - name: month
-        data_type: date
-
-
+        description: "Month derived from date for easy filtering"
+        tests:
+          - not_null
       - name: campaign_id
-        data_type: number
-
-
+        description: "CM360 campaign unique identifier"
+        tests:
+          - not_null
       - name: campaign_name
-        data_type: varchar
-
-
+        description: "Campaign display name"
+        tests:
+          - not_null
       - name: site_name
-        data_type: varchar
-
-
+        description: "Publisher site name"
+        tests:
+          - not_null
       - name: placement_name
-        data_type: varchar
-
-
+        description: "Placement identifier - primary grain key"
+        tests:
+          - not_null
       - name: creative_concept
-        data_type: varchar
-
-
+        description: "Creative concept extracted from naming conventions"
       - name: creative_type
-        data_type: varchar
-
-
-      - name: impressions
-        data_type: number
-
-
-      - name: clicks
-        data_type: number
-
-
-      - name: ias_impressions
-        data_type: number
-
-
-      - name: ias_viewable_ads
-        data_type: number
-
-
-      - name: ias_brand_safety_ads
-        data_type: number
-
-
-      - name: ias_out_of_geo_ads
-        data_type: number
-
-
-      - name: ias_page_views
-        data_type: number
-
-
-      - name: ias_video_completions
-        data_type: number
-
-
+        description: "Creative format (banner, video, native)"
       - name: state
-        data_type: varchar
-
-
+        description: "Geographic state targeting"
       - name: region
-        data_type: varchar
-
-
+        description: "Geographic region grouping"
       - name: sex
-        data_type: varchar
-
-
+        description: "Demographic gender targeting"
       - name: device_type
-        data_type: varchar
+        description: "Device category (mobile, desktop, tablet)"
+      - name: impressions
+        description: "Daily delivered impressions from CM360"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: clicks
+        description: "Daily clicks from CM360"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_impressions
+        description: "IAS monitored impressions"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_viewable_ads
+        description: "IAS viewable impressions"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_brand_safety_ads
+        description: "IAS brand-safe impressions"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_out_of_geo_ads
+        description: "IAS out-of-geo impressions"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_page_views
+        description: "IAS page view events"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: ias_video_completions
+        description: "IAS video completion events"
+        tests:
+          - dbt_utils.accepted_range:
+             arguments:
+              min_value: 0

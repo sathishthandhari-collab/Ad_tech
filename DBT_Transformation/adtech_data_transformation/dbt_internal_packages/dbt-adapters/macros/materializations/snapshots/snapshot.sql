@@ -24,7 +24,7 @@
 
   {% set strategy_macro = strategy_dispatch(strategy_name) %}
 
-  
+
   {# The model['config'] parameter below is no longer used, but passing anyway for compatibility #}
   {# It was a dictionary of config, instead of the config object from the context #}
   {% set strategy = strategy_macro(model, "snapshotted_data", "source_data", model['config'], target_relation_exists) %}

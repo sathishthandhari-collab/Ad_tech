@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 select
     day as date,
     campaign_name,
@@ -7,7 +9,7 @@ select
     creative_type,
     impressions as total_impressions_cm360,
     clicks as clicks_cm360,
-    SPLIT_PART(campaign_name, '_', 4) as campaign_group,
-    SPLIT_PART(placement_name, '_', -3) as creative_concept
+    {{extract_campaign_attribute('campaign_name', 4) }} as campaign_group,
+    {{ extract_campaign_attribute('placement_name', -3) }} as creative_concept
 from {{ source('cm360', 'stg_cm360_raw_data') }}
-
+where day >= current_date - 90

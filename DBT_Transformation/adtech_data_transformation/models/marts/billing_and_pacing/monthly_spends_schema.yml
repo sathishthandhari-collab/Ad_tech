@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: monthly__spends_and_pacing
+    description: "Monthly billing and pacing model with viewability and delivery adjustments"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [month, placement_name]
+    columns:
+      - name: month
+        description: "Month bucket for billing period"
+        tests:
+          - not_null
+      - name: placement_name
+        description: "Placement identifier for billing"
+        tests:
+          - not_null
+      - name: campaign_id
+        description: "Campaign identifier"
+        tests:
+          - not_null
+      - name: total_billable_impressions
+        description: "Impressions eligible for billing after fraud/geo filtering"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: viewable_rate_pct
+        description: "Percentage of viewable ads"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
+      - name: delivery_rate
+        description: "Actual vs planned impression delivery ratio"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: planned_spend
+        description: "Planned spend based on contracted rate"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: billable_spend
+        description: "Calculated billable spend with viewability adjustments"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: final_billable_payment
+        description: "Final payment amount with all adjustments applied"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0

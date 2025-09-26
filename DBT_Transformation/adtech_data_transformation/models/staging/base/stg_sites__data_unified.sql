@@ -6,7 +6,7 @@ WITH unified_site_data AS (
             schema_pattern='STAGING',
             table_pattern='%_RAW_%'
         ) %}
-        
+
         {% set valid_tables = [] %}
         {% for table in site_tables %}
             {% set tbl_name = table.identifier | lower %}
@@ -65,22 +65,9 @@ WITH unified_site_data AS (
             CAST(NULL AS VARCHAR) AS source_table
         WHERE FALSE
     {% endif %}
-),
-
--- Simple deduplication: Keep only one record per unique combination
-deduplicated AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (
-            PARTITION BY date, campaign, cm360_campaign_id, publisher, placement_name, creative_type
-            ORDER BY 
-                CASE WHEN source_table LIKE '%LATEST%' THEN 1 ELSE 2 END,  -- Prioritize "LATEST" tables
-                source_table DESC  -- Then by table name descending
-        ) as rn
-    FROM unified_site_data
 )
 
-SELECT 
+SELECT
     date,
     campaign,
     cm360_campaign_id,
@@ -97,5 +84,5 @@ SELECT
     device_type,
     video_completions,
     source_table
-FROM deduplicated
-WHERE rn = 1  -- Keep only the first record for each unique combination
+FROM unified_site_data
+where date >= current_date - 90  -- Keep only the first record for each unique combination

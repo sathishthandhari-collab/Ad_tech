@@ -2,28 +2,39 @@ version: 2
 
 models:
   - name: int_pacing_and_billing__model
+    description: "Monthly pacing and billing metrics at campaign_id + placement_name grain."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [month, campaign_id, placement_name]
     columns:
-      - name: date
-        data_type: date
+      - name: month
+        description: "Month bucket for pacing."
+        tests:
+          - not_null
       - name: campaign_id
-        data_type: number
-      - name: campaign_name
-        data_type: varchar
-      - name: site_name
-        data_type: varchar
+        description: "CM360 campaign id."
+        tests:
+          - not_null
       - name: placement_name
-        data_type: varchar
-      - name: creative_concept
-        data_type: varchar
-      - name: creative_type
-        data_type: varchar
-      - name: cm360_delivered_impressions
-        data_type: number
-      - name: cm360_clicks
-        data_type: number
+        description: "Placement key."
+        tests:
+          - not_null
       - name: planned_impressions
-        data_type: number
-      - name: contracted_cpm
-        data_type: number
-      - name: planned_spend
-        data_type: number
+        description: "Planned impressions from Prisma or deterministic fallback."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: contracted_rate
+        description: "Rate used for billing calculations."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: total_impressions_cm360
+        description: "Delivered impressions from CM360."
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0

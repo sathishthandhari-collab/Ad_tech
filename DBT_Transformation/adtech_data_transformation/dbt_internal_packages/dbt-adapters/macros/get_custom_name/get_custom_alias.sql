@@ -32,7 +32,7 @@
         {%- else -%}
             {{ node.name }}
         {%- endif -%}
-    
+
     {%- endif -%}
 
 {%- endmacro %}

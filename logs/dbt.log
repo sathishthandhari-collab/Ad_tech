@@ -15,3 +15,147 @@ dbt-fusion 2.0.0-preview.11
 error: dbt1001: Profile 'thd_data_transformation_1' not found in profiles.yml
   Finished 'init'  with 1 error in 20s 707ms
 New version available 2.0.0-preview.13 (run `dbt system update`)
+[0m23:58:10.269330 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 23:58:10.426700 | a7586440-d6a8-41ca-8d6e-3601c70aa4d5 ==============================
+[0m23:58:10.426700 [info ] [MainThread]: Running with dbt=1.10.11
+[0m23:58:10.427699 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'warn_error': 'None', 'empty': 'False', 'debug': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt', 'log_format': 'default', 'quiet': 'False', 'use_colors': 'True', 'partial_parse': 'True', 'version_check': 'True', 'log_path': 'logs', 'introspect': 'True', 'no_print': 'None', 'fail_fast': 'False', 'invocation_command': 'dbt compile -m apply_grants columns freshness indexes metadata persist_docs relation schema show timestamps validate_sql datetime statement accepted_values not_null relationships unique get_custom_alias get_custom_database get_custom_schema names configs hooks can_clone_table clone create_or_replace_clone column_helpers incremental is_incremental merge on_schema_change strategies materialized_view table view helpers seed helpers snapshot snapshot_merge strategies helpers test unit where_subquery python columns_spec_ddl create create_backup create_intermediate drop drop_backup get_relations_by_pattern get_relations_by_pattern_sql get_table_types_sql alter create drop refresh rename replace rename rename_intermediate replace schema create drop rename replace create drop rename replace get_fixture_sql any_value array_append array_concat array_construct bool_or cast cast_bool_to_text concat data_types date date_spine date_trunc dateadd datediff equals escape_single_quotes except generate_series hash intersect last_day length listagg literal position replace right safe_cast split_part builtin adapters apply_grants catalog clone dynamic_table incremental insert_overwrite merge seed snapshot table test view metadata list_relations_without_caching create create_backup drop alter create describe drop refresh replace rename rename_intermediate replace create drop rename replace create drop rename replace array_construct bool_or cast date_spine escape_single_quotes optional right safe_cast timestamps generate_schema int_pacing_and_billing__model daily_report_unified monthly_campaign__level_report monthly__spends_and_pacing monthly_amazon_spends monthly_avzu_spends monthly_bingads_spends monthly_criteo_spends monthly_dv360_spends monthly_hindhu_spends monthly_inmobi_spends monthly_magnite_spends monthly_miq_spends monthly_pubmatic_spends monthly_remezcla_spends monthly_sharethrough_spends monthly_toi_spends monthly_ttd_spends monthly_webmd_spends monthly_youtube_spends stg_sites__data_unified stg_CM360__view stg_IAS__view stg_prisma__planned query_log query_log sql', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'target_path': 'None', 'write_json': 'True'}
+[0m23:58:10.428869 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+Usage of `--models`, `--model`, and `-m` is deprecated in favor of `--select` or
+`-s`.
+[0m23:58:10.429885 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m23:58:10.430885 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ModelParamUsageDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m23:58:10.432887 [debug] [MainThread]: Command `dbt compile` failed at 23:58:10.431887 after 0.28 seconds
+[0m23:58:10.432887 [debug] [MainThread]: Flushing usage events
+[0m23:58:15.282359 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 23:58:15.390796 | 8117ed2b-ff8e-4fec-9b21-210e1ff5c79d ==============================
+[0m23:58:15.390796 [info ] [MainThread]: Running with dbt=1.10.11
+[0m23:58:15.390796 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'write_json': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'empty': 'None', 'debug': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt', 'quiet': 'False', 'log_format': 'default', 'use_colors': 'True', 'partial_parse': 'True', 'version_check': 'True', 'log_path': 'logs', 'introspect': 'True', 'invocation_command': 'dbt docs generate', 'fail_fast': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'target_path': 'None', 'use_experimental_parser': 'False'}
+[0m23:58:15.391795 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m23:58:15.392795 [debug] [MainThread]: Command `dbt docs generate` failed at 23:58:15.392795 after 0.19 seconds
+[0m23:58:15.393797 [debug] [MainThread]: Flushing usage events
+[0m00:08:46.348521 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 00:08:46.466562 | 432839a6-daf6-4e74-9da6-814a2db4a4a7 ==============================
+[0m00:08:46.466562 [info ] [MainThread]: Running with dbt=1.10.11
+[0m00:08:46.467563 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'cache_selected_only': 'False', 'target_path': 'None', 'version_check': 'True', 'invocation_command': 'dbt compile -m campaign_performance_deep_dive vendor_efficiency_analysis extract_campaign_attribute generate_schema get_vendor_name int_business_analytics__metrics_model_view int_pacing_and_billing__model daily_report_unified monthly_campaign__level_report monthly__spends_and_pacing monthly_amazon_spends monthly_avzu_spends monthly_bingads_spends monthly_criteo_spends monthly_dv360_spends monthly_hindhu_spends monthly_inmobi_spends monthly_magnite_spends monthly_miq_spends monthly_pubmatic_spends monthly_remezcla_spends monthly_sharethrough_spends monthly_toi_spends monthly_ttd_spends monthly_webmd_spends monthly_youtube_spends stg_sites__data_unified stg_CM360__view stg_IAS__view stg_prisma__planned sql', 'log_format': 'default', 'use_colors': 'True', 'introspect': 'True', 'debug': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'use_experimental_parser': 'False', 'quiet': 'False', 'printer_width': '80', 'empty': 'False', 'log_path': 'logs', 'indirect_selection': 'eager', 'write_json': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m00:08:46.467563 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+Usage of `--models`, `--model`, and `-m` is deprecated in favor of `--select` or
+`-s`.
+[0m00:08:46.468563 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m00:08:46.469571 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ModelParamUsageDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m00:08:46.469571 [debug] [MainThread]: Command `dbt compile` failed at 00:08:46.469571 after 0.24 seconds
+[0m00:08:46.470572 [debug] [MainThread]: Flushing usage events
+[0m00:08:49.669360 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 00:08:49.780062 | 91ee3193-fe97-4911-bf1c-4e4119f68169 ==============================
+[0m00:08:49.780062 [info ] [MainThread]: Running with dbt=1.10.11
+[0m00:08:49.781062 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'cache_selected_only': 'False', 'target_path': 'None', 'use_colors': 'True', 'invocation_command': 'dbt docs generate', 'log_format': 'default', 'version_check': 'True', 'introspect': 'True', 'debug': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'printer_width': '80', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt'}
+[0m00:08:49.781062 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m00:08:49.782063 [debug] [MainThread]: Command `dbt docs generate` failed at 00:08:49.782063 after 0.18 seconds
+[0m00:08:49.782063 [debug] [MainThread]: Flushing usage events
+[0m00:13:22.752674 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 00:13:22.839785 | fe04694e-f100-41cb-a4ac-8d18285783d5 ==============================
+[0m00:13:22.839785 [info ] [MainThread]: Running with dbt=1.10.11
+[0m00:13:22.840827 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'warn_error': 'None', 'empty': 'False', 'debug': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt', 'quiet': 'False', 'log_format': 'default', 'use_colors': 'True', 'partial_parse': 'True', 'version_check': 'True', 'log_path': 'logs', 'introspect': 'True', 'invocation_command': 'dbt compile -m campaign_performance_deep_dive vendor_efficiency_analysis apply_grants columns freshness indexes metadata persist_docs relation schema show timestamps validate_sql datetime statement accepted_values not_null relationships unique get_custom_alias get_custom_database get_custom_schema names configs hooks can_clone_table clone create_or_replace_clone column_helpers incremental is_incremental merge on_schema_change strategies materialized_view table view helpers seed helpers snapshot snapshot_merge strategies helpers test unit where_subquery python columns_spec_ddl create create_backup create_intermediate drop drop_backup get_relations_by_pattern get_relations_by_pattern_sql get_table_types_sql alter create drop refresh rename replace rename rename_intermediate replace schema create drop rename replace create drop rename replace get_fixture_sql any_value array_append array_concat array_construct bool_or cast cast_bool_to_text concat data_types date date_spine date_trunc dateadd datediff equals escape_single_quotes except generate_series hash intersect last_day length listagg literal position replace right safe_cast split_part builtin adapters apply_grants catalog clone dynamic_table incremental insert_overwrite merge seed snapshot table test view metadata list_relations_without_caching create create_backup drop alter create describe drop refresh replace rename rename_intermediate replace create drop rename replace create drop rename replace array_construct bool_or cast date_spine escape_single_quotes optional right safe_cast timestamps extract_campaign_attribute generate_schema get_vendor_name int_business_analytics__metrics_model_view int_pacing_and_billing__model daily_report_unified monthly_campaign__level_report monthly__spends_and_pacing monthly_amazon_spends monthly_avzu_spends monthly_bingads_spends monthly_criteo_spends monthly_dv360_spends monthly_hindhu_spends monthly_inmobi_spends monthly_magnite_spends monthly_miq_spends monthly_pubmatic_spends monthly_remezcla_spends monthly_sharethrough_spends monthly_toi_spends monthly_ttd_spends monthly_webmd_spends monthly_youtube_spends stg_sites__data_unified stg_CM360__view stg_IAS__view stg_prisma__planned query_log query_log sql', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'target_path': 'None', 'write_json': 'True'}
+[0m00:13:22.840827 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+Usage of `--models`, `--model`, and `-m` is deprecated in favor of `--select` or
+`-s`.
+[0m00:13:22.841822 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m00:13:22.841822 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ModelParamUsageDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m00:13:22.842819 [debug] [MainThread]: Command `dbt compile` failed at 00:13:22.842819 after 0.14 seconds
+[0m00:13:22.842819 [debug] [MainThread]: Flushing usage events
+[0m00:13:25.574115 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 00:13:25.666269 | 208eeeda-5d15-4d72-b18b-a8ba07a2dce2 ==============================
+[0m00:13:25.666269 [info ] [MainThread]: Running with dbt=1.10.11
+[0m00:13:25.667351 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'warn_error': 'None', 'empty': 'None', 'debug': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt', 'quiet': 'False', 'log_format': 'default', 'use_colors': 'True', 'partial_parse': 'True', 'version_check': 'True', 'log_path': 'logs', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'no_print': 'None', 'invocation_command': 'dbt docs generate', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'target_path': 'None', 'write_json': 'True'}
+[0m00:13:25.667351 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m00:13:25.668304 [debug] [MainThread]: Command `dbt docs generate` failed at 00:13:25.668304 after 0.14 seconds
+[0m00:13:25.668304 [debug] [MainThread]: Flushing usage events
+[0m00:15:22.300063 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 00:15:22.401152 | fc84a834-0f77-4f4a-b899-417875b6d8c1 ==============================
+[0m00:15:22.401152 [info ] [MainThread]: Running with dbt=1.10.11
+[0m00:15:22.402659 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'warn_error': 'None', 'invocation_command': 'dbt compile -m campaign_performance_deep_dive vendor_efficiency_analysis apply_grants columns freshness indexes metadata persist_docs relation schema show validate_sql datetime statement accepted_values get_custom_alias get_custom_schema names configs hooks column_helpers merge on_schema_change strategies helpers helpers snapshot snapshot_merge strategies helpers python drop get_relations_by_pattern get_relations_by_pattern_sql get_table_types_sql alter rename schema create create replace get_fixture_sql array_append array_concat array_construct cast cast_bool_to_text concat data_types date date_spine date_trunc dateadd datediff equals escape_single_quotes except generate_series hash intersect last_day listagg literal safe_cast split_part adapters catalog clone insert_overwrite merge metadata alter create replace rename replace create create cast date_spine escape_single_quotes optional safe_cast timestamps extract_campaign_attribute generate_schema get_vendor_name int_business_analytics__metrics_model_view int_pacing_and_billing__model daily_report_unified monthly_campaign__level_report monthly__spends_and_pacing monthly_amazon_spends monthly_avzu_spends monthly_bingads_spends monthly_criteo_spends monthly_dv360_spends monthly_hindhu_spends monthly_inmobi_spends monthly_magnite_spends monthly_miq_spends monthly_pubmatic_spends monthly_remezcla_spends monthly_sharethrough_spends monthly_toi_spends monthly_ttd_spends monthly_webmd_spends monthly_youtube_spends stg_sites__data_unified stg_CM360__view stg_IAS__view stg_prisma__planned sql', 'log_format': 'default', 'use_colors': 'True', 'introspect': 'True', 'debug': 'False', 'printer_width': '80', 'fail_fast': 'False', 'no_print': 'None', 'empty': 'False', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'quiet': 'False', 'log_path': 'logs', 'indirect_selection': 'eager', 'write_json': 'True', 'static_parser': 'True', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt'}
+[0m00:15:22.402659 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+Usage of `--models`, `--model`, and `-m` is deprecated in favor of `--select` or
+`-s`.
+[0m00:15:22.403690 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m00:15:22.404664 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ModelParamUsageDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m00:15:22.404664 [debug] [MainThread]: Command `dbt compile` failed at 00:15:22.404664 after 0.17 seconds
+[0m00:15:22.405684 [debug] [MainThread]: Flushing usage events
+[0m00:15:25.451351 [debug] [MainThread]: Got an exception trying to initialize tracking
+
+
+============================== 00:15:25.571328 | d6e52282-ffda-4cb0-a105-064c07fa328b ==============================
+[0m00:15:25.571328 [info ] [MainThread]: Running with dbt=1.10.11
+[0m00:15:25.572317 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'version_check': 'True', 'invocation_command': 'dbt docs generate', 'log_format': 'default', 'warn_error': 'None', 'introspect': 'True', 'debug': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'empty': 'None', 'use_experimental_parser': 'False', 'printer_width': '80', 'quiet': 'False', 'indirect_selection': 'eager', 'log_path': 'logs', 'profiles_dir': 'C:\\Users\\Sathish\\.dbt', 'static_parser': 'True', 'write_json': 'True'}
+[0m00:15:25.572317 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+
+[0m00:15:25.573318 [debug] [MainThread]: Command `dbt docs generate` failed at 00:15:25.573318 after 0.19 seconds
+[0m00:15:25.574319 [debug] [MainThread]: Flushing usage events
