@@ -29,9 +29,9 @@ This project demonstrates production-grade data transformation capabilities by p
 
 ```
 📁 adtech_data_transformation/
-├── 📁 models/
-│ ├── 📁 staging/ # Clean, 1:1 source transformations
-│ │ ├── base/ # Unified site data from 15+ vendors
+ ├── 📁 models/
+ │ ├── 📁 staging/ # Clean, 1:1 source transformations
+ │ │ ├── base/ # Unified site data from 15+ vendors
 │ │ ├── cm360/ # Campaign Manager 360 data
 │ │ └── ias/ # Integral Ad Science quality metrics
 │ ├── 📁 intermediate/ # Business logic and entity joins
@@ -231,3 +231,14 @@ This project follows dbt best practices:
 - **Comprehensive testing** at every layer
 - **Clear naming conventions** and documentation standards
 - **Modular design** for maximum reusability
+
+## 📞 Contact
+
+**[Your Name]** - Analytics Engineer  
+📧 [your-email@example.com]  
+💼 [LinkedIn Profile]  
+🌐 [Portfolio/Website]
+
+---
+
+> **This project demonstrates production-ready dbt development skills suitable for senior Analytics Engineering roles, with advanced ad tech domain knowledge and sophisticated data transformation capabilities.**
