@@ -13,7 +13,7 @@
 This project demonstrates production-grade data transformation capabilities by processing campaign performance data from multiple ad tech platforms (CM360, IAS, Prisma) into unified analytics tables with sophisticated billing reconciliation and quality metrics.
 
 ### Business Value
-- **Automated Billing Reconciliation** with 70% viewability threshold adjustments
+- **Automated Billing Calculations** with 70% viewability threshold adjustments
 - **Multi-Vendor Performance Analytics** across 15+ advertising platforms
 - **Real-time Data Quality Monitoring** with anomaly detection
 - **Advanced Campaign Attribution** with deterministic synthetic data generation
@@ -27,6 +27,7 @@ This project demonstrates production-grade data transformation capabilities by p
 
 ## 🏗️ Architecture
 
+```
 📁 adtech_data_transformation/
 ├── 📁 models/
 │ ├── 📁 staging/ # Clean, 1:1 source transformations
@@ -41,9 +42,10 @@ This project demonstrates production-grade data transformation capabilities by p
 │ └── billing_and_pacing/ # Finance team reports
 ├── 📁 analyses/ # Ad-hoc business investigations
 ├── 📁 tests/ # Custom data quality tests
-└── 📁 macros/ # Reusable transformation logic
-
-text
+├── 📁 macros/ # Reusable transformation logic
+├── 📁 Extract # data augmentation script
+└── 📁 Snowflake objects
+```
 
 ## 🚀 Key Models
 
@@ -142,11 +144,6 @@ The project feeds multiple Power BI dashboards:
 - Snowflake data warehouse
 - Access to CM360, IAS, and vendor data sources
 
-### Quick Setup
-Clone and setup
-git clone <repository-url>
-cd adtech_data_transformation
-
 Install dependencies
 dbt deps
 
@@ -204,18 +201,6 @@ sum(viewable_ads) / sum(impressions) as viewability_rate
 FROM {{ ref('monthly_campaign__level_report') }}
 GROUP BY 1
 ORDER BY avg_ctr DESC;
-
-text
-
-### Vendor Efficiency Comparison
--- Vendor performance benchmarking
-SELECT
-vendor,
-avg(viewability_rate) as avg_viewability,
-sum(final_billable_payment) as total_spend,
-total_spend / sum(impressions) * 1000 as effective_cpm
-FROM {{ ref('monthly__spends_and_pacing') }}
-GROUP BY 1;
 
 text
 
