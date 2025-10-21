@@ -1,9 +1,13 @@
-{{ config(materialized='view', static_analysis='unsafe') }}
+{{ config(materialized='incremental',
+         unique_key=['date', 'placement_name'],
+         incremental_strategy='delete+insert',
+         on_schema_change='append_new_columns',
+          schema='staging') }}
 
 WITH unified_site_data AS (
     {% if execute %}
         {% set site_tables = dbt_utils.get_relations_by_pattern(
-            schema_pattern='STAGING',
+            schema_pattern='raw',
             table_pattern='%_RAW_%'
         ) %}
 
@@ -85,4 +89,8 @@ SELECT
     video_completions,
     source_table
 FROM unified_site_data
-where date >= current_date - 90  -- Keep only the first record for each unique combination
+where date >= current_date - 90
+
+{% if target.name == 'dev' %}
+    LIMIT {{ var('dev_sample_size') }}
+{% endif %}  -- Keep only the first record for each unique combination

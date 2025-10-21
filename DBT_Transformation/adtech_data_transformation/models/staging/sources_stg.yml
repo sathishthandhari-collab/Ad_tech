@@ -2,10 +2,10 @@ version: 2
 
 sources:
   - name: cm360
-    database: adtech_analytics
-    schema: staging
+    database: adtech_analytics_dev
+    schema: raw
     tables:
-      - name: stg_cm360_raw_data
+      - name: cm360_raw_data
         description: "Raw CM360 campaign data"
         columns:
           - name: day
@@ -20,10 +20,10 @@ sources:
           - name: clicks
 
   - name: ias
-    database: adtech_analytics
-    schema: staging
+    database: adtech_analytics_dev
+    schema: raw
     tables:
-      - name: STG_ias_raw_data
+      - name: ias_raw_data
         description: "Raw IAS verification data"
         columns:
           - name: date
@@ -35,7 +35,7 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: source('cm360', 'stg_cm360_raw_data')
+                    to: source('cm360', 'cm360_raw_data')
                     field: placement_name
           - name: ad_format
           - name: monitored_ads
@@ -47,25 +47,25 @@ sources:
           - name: video_completions
   - name: sites
     database: adtech_analytics
-    schema: staging
+    schema: raw
     tables:
       - name: cm360_stage_data_view
       - name: ias_stage_data_view
-      - name: stg_amazon_raw_data
-      - name: stg_avzu_raw_data
-      - name: stg_bingads_raw_data
-      - name: stg_cm360_raw_data
-      - name: stg_criteo_raw_data
-      - name: stg_dv360_raw_data
-      - name: stg_hindhu_raw_data
-      - name: stg_ias_raw_data
-      - name: stg_inmobi_raw_data
-      - name: stg_magnite_raw_data
-      - name: stg_miq_raw_data
-      - name: stg_pubmatic_raw_data
-      - name: stg_remezcla_raw_data
-      - name: stg_sharethrough_raw_data
-      - name: stg_toi_raw_data
-      - name: stg_ttd_raw_data
-      - name: stg_webmd_raw_data
-      - name: stg_youtube_raw_data
+      - name: amazon_raw_data
+      - name: avzu_raw_data
+      - name: bingads_raw_data
+      - name: cm360_raw_data
+      - name: criteo_raw_data
+      - name: dv360_raw_data
+      - name: hindhu_raw_data
+      - name: ias_raw_data
+      - name: inmobi_raw_data
+      - name: magnite_raw_data
+      - name: miq_raw_data
+      - name: pubmatic_raw_data
+      - name: remezcla_raw_data
+      - name: sharethrough_raw_data
+      - name: toi_raw_data
+      - name: ttd_raw_data
+      - name: webmd_raw_data
+      - name: youtube_raw_data

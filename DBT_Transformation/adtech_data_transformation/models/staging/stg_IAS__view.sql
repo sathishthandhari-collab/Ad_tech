@@ -1,4 +1,8 @@
-{{ config(materialized='view') }}
+{{ config(materialized='incremental',
+         unique_key=['date', 'placement_name'],
+         incremental_strategy='delete+insert',
+         on_schema_change='append_new_columns',
+          schema='staging') }}
 select
     date::date as date,
     publisher,
@@ -11,5 +15,10 @@ select
     out_of_geo_ads::int as out_of_geo_ads,
     views as page_views,
     video_completions
-from {{ source('ias', 'STG_ias_raw_data' ) }}
+from {{ source('ias', 'ias_raw_data' ) }}
 where date >= current_date - 90
+
+
+{% if target.name == 'dev' %}
+    LIMIT {{ var('dev_sample_size') }}
+{% endif %}
