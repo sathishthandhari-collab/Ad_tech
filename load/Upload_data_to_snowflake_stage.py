@@ -13,8 +13,8 @@ if not os.path.exists(FAILED_FOLDER):
     os.makedirs(FAILED_FOLDER)
 
 WAREHOUSE = "projects"
-DATABASE = "adtech_analytics"
-SCHEMA = "staging"
+DATABASE = "adtech_analytics_dev"
+SCHEMA = "raw"
 
 # TODO: Update these stage names based on your ACTUAL pipe configurations
 # Run "DESC PIPE adtech_analytics.staging.CM360_PIPE;" to find the correct stage

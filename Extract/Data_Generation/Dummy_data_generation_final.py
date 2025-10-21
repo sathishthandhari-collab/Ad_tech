@@ -15,7 +15,7 @@ TIER1_CITIES = {
     "Tamil Nadu": ["Chennai"]
 }
 AGE_GROUPS = ["18-24", "25-34", "35-44", "45-54", "55+"]
-SEXES = ["Male", "Female"]
+SEXES = ["Male", "Female", "Other"]
 DEVICE_TYPES = ["Mobile", "Desktop", "Tablet"]
 
 DEFAULT_SITES = [
