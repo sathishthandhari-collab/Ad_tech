@@ -46,7 +46,7 @@ sources:
           - name: views
           - name: video_completions
   - name: sites
-    database: adtech_analytics
+    database: adtech_analytics_dev
     schema: raw
     tables:
       - name: cm360_stage_data_view

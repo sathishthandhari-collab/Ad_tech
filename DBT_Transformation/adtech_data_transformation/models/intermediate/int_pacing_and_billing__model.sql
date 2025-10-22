@@ -11,7 +11,7 @@ with cm360_monthly as (
         creative_type,
         SUM(total_impressions_cm360) as total_impressions_cm360,
         SUM(clicks_cm360) as clicks_cm360
-    from {{ ref('stg_CM360__view') }}
+    from {{ ref('stg_CM360') }}
     group by 1, 2, 3, 4, 5, 6, 7, 8
 ),
 
@@ -26,7 +26,7 @@ ias_monthly as (
         SUM(page_views) as page_views_ias,
         --- JUST TO HAVE FRAUD ADS
         SUM(impressions) - SUM(brand_safety_ads) as fraud_ads_ias
-    from {{ ref('stg_IAS__view') }}
+    from {{ ref('stg_IAS') }}
     group by 1, 2, 3
 ),
 
@@ -65,12 +65,10 @@ prisma_cm360_ias_joined as (
                 ) / 10000.0)
             ), 0)
             as planned_impressions,
-        7
-        + (
+        7 + (
             ABS(HASH(CONCAT(prisma.cm360_campaign_id, prisma.placement_name)))
             % 1600
-        )
-        / 100.0::float as contracted_rate
+        )/ 100.0::float as contracted_rate
     from cm360_monthly as cm360
     left join ias_monthly as ias
         on
@@ -102,3 +100,6 @@ deduplicated as (
 select * from deduplicated
 where rn = 1
 order by month
+{%if target == 'dev'%}
+  limit {{var('dev_sample_size')}}
+{% endif %}

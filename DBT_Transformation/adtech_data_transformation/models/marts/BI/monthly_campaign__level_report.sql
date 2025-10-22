@@ -1,7 +1,9 @@
 {{ config(
-    materialized='table',
+    materialized='incremental',
+    incremental_strategy='merge',
+    unique_key=['month', 'placement_name'],
+    schema='thd_billing_prod'
 ) }}
-
 with base as (
     select
         month,
@@ -16,15 +18,16 @@ with base as (
         device_type,
         sum(impressions) as impressions,
         sum(clicks) as clicks,
-        sum(clicks) / nullif(sum(impressions), 0) as ctr,
-        sum(ias_impressions) as ias_impressions,
-        sum(ias_viewable_ads) as ias_viewable_ads,
-        sum(ias_brand_safety_ads) as ias_brand_safety_ads,
-        sum(ias_out_of_geo_ads) as ias_out_of_geo_ads,
-        sum(ias_page_views) as ias_page_views,
-        sum(ias_video_completions) as ias_video_completions
+        avg(ctr) as ctr,
+        avf(video_completion_rate) as vcr,
+        avg(cpc) as cpc,
+        avg(cpcv) as cpcv,
+        avg(ctr_3month_avg) as ctr_3month_avg,
+        avg(vcr_3month_avg) as vcr_3month_avg,
+        avg(cpc_3month_avg) as cpc_3month_avg,
+        avg(cpcv_3month_avg) as cpcv_3month_avg
 
-    from {{ ref('int_business_analytics__metrics_model_view') }}
+    from {{ ref('int_business_analytics__metrics_model') }}
     group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 )
 

@@ -1,4 +1,5 @@
-{{ config(materialized='view') }}
+{{ config(materialized='ephemeral')
+       }}
 
 with cm360_daily as (
     select
@@ -11,7 +12,7 @@ with cm360_daily as (
         cm360.creative_type,
         sum(cm360.total_impressions_cm360) as impressions,
         sum(cm360.clicks_cm360) as clicks
-    from {{ ref('stg_CM360__view') }} as cm360
+    from {{ ref('stg_CM360') }} as cm360
     group by 1, 2, 3, 4, 5, 6, 7
 ),
 
@@ -25,7 +26,7 @@ ias_daily as (
         sum(ias.out_of_geo_ads) as ias_out_of_geo_ads,
         sum(ias.page_views) as ias_page_views,
         sum(ias.video_completions) as ias_video_completions
-    from {{ ref('stg_IAS__view') }} as ias
+    from {{ ref('stg_IAS') }} as ias
     group by 1, 2
 ),
 
@@ -39,10 +40,21 @@ site_daily as (
         any_value(site.device_type) as device_type
     from {{ ref('stg_sites__data_unified') }} as site
     group by 1, 2
-)
+),
 
-select
-    c.date,
+prisma as (
+    select 
+        p.placement_name,
+        avg(p.contracted_rate) as contracted_rate
+    from {{ ref('int_pacing_and_billing__model') }} as p
+    group by 1
+
+),
+
+base as (
+    select
+    c.date as day,
+    date_trunc('month', c.date) as month,
     c.campaign_id,
     c.campaign_name,
     c.site_name,
@@ -53,7 +65,7 @@ select
     s.region,
     s.sex,
     s.device_type,
-    date_trunc('month', c.date) as month,
+    p.contracted_rate,
     coalesce(c.impressions, 0) as impressions,
     coalesce(c.clicks, 0) as clicks,
     coalesce(i.ias_impressions, 0) as ias_impressions,
@@ -63,11 +75,16 @@ select
     coalesce(i.ias_page_views, 0) as ias_page_views,
     coalesce(i.ias_video_completions, 0) as ias_video_completions
 from cm360_daily as c
-left join ias_daily as i
-    on
-        c.placement_name = i.placement_name
-        and c.date = i.date
-left join site_daily as s
-    on
-        c.placement_name = s.placement_name
-        and c.date = s.date
+left join ias_daily as i on c.placement_name = i.placement_name
+                            and c.date = i.date
+left join site_daily as s on c.placement_name = s.placement_name
+                            and c.date = s.date
+left join prisma as p on c.placement_name = p.placement_name)
+
+select * from base
+
+{%if target == 'dev'%}
+  limit {{var('dev_sample_size')}}
+{% endif %}
+
+

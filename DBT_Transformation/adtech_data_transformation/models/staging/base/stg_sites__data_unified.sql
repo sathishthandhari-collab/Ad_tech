@@ -1,8 +1,4 @@
-{{ config(materialized='incremental',
-         unique_key=['date', 'placement_name'],
-         incremental_strategy='delete+insert',
-         on_schema_change='append_new_columns',
-          schema='staging') }}
+{{ config(materialized='view',) }}
 
 WITH unified_site_data AS (
     {% if execute %}

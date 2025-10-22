@@ -1,0 +1,124 @@
+version: 2
+
+models:
+  - name: stg_sites__data_unified
+    description: "Unified site data from multiple vendor sources"
+    columns:
+      - name: date
+        description: "Event date"
+        tests:
+          - not_null
+      - name: campaign
+        description: "Campaign name"
+      - name: cm360_campaign_id
+        description: "CM360 campaign identifier"
+      - name: publisher
+        description: "Publisher/site name"
+      - name: placement_name
+        description: "Placement identifier"
+        tests:
+          - not_null
+      - name: creative_type
+        description: "Creative format type"
+      - name: impressions
+        description: "Number of impressions"
+      - name: clicks
+        description: "Number of clicks"
+      - name: pageviews
+        description: "Number of page views"
+      - name: state
+        description: "Geographic state"
+      - name: region
+        description: "Geographic region/city"
+      - name: age_group
+        description: "Audience age group"
+      - name: sex
+        description: "Audience gender"
+      - name: device_type
+        description: "Device type (Mobile/Desktop/Tablet)"
+      - name: video_completions
+        description: "Number of video completions"
+      - name: source_table
+        description: "Source table identifier"
+
+  - name: stg_CM360
+    description: "Cleaned CM360 campaign performance data"
+    columns:
+      - name: date
+        description: "Event date"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "Campaign name"
+      - name: campaign_id
+        description: "Campaign identifier"
+        tests:
+          - not_null
+      - name: site_name
+        description: "Site/publisher name"
+      - name: placement_name
+        description: "Placement identifier"
+        tests:
+          - not_null
+      - name: creative_type
+        description: "Creative format type"
+      - name: total_impressions_cm360
+        description: "Total impressions from CM360"
+      - name: clicks_cm360
+        description: "Total clicks from CM360"
+      - name: campaign_group
+        description: "Campaign grouping attribute"
+      - name: creative_concept
+        description: "Creative concept attribute"
+
+  - name: stg_IAS
+    description: "Cleaned IAS quality verification data"
+    columns:
+      - name: date
+        description: "Event date"
+        tests:
+          - not_null
+      - name: publisher
+        description: "Publisher name"
+      - name: campaign_name
+        description: "Campaign name"
+      - name: placement_name
+        description: "Placement identifier"
+        tests:
+          - not_null
+      - name: creative_type
+        description: "Creative format type"
+      - name: impressions
+        description: "Monitored impressions"
+      - name: viewable_ads
+        description: "Number of viewable ads"
+      - name: brand_safety_ads
+        description: "Number of brand safe ads"
+      - name: out_of_geo_ads
+        description: "Number of out-of-geography ads"
+      - name: page_views
+        description: "Number of page views"
+      - name: video_completions
+        description: "Number of video completions"
+
+  - name: stg_prisma__planned
+    description: "Planned campaign data from Prisma"
+    columns:
+      - name: month
+        description: "Planning month"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "Campaign name"
+      - name: site_name
+        description: "Site/publisher name"
+      - name: placement_name
+        description: "Placement identifier"
+        tests:
+          - not_null
+      - name: planned_impressions
+        description: "Planned number of impressions"
+      - name: contracted_rate
+        description: "Contracted CPM rate"
+      - name: campaign_group
+        description: "Campaign grouping attribute"
