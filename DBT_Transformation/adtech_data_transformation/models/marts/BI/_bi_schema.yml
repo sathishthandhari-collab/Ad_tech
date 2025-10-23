@@ -1,188 +1,372 @@
 version: 2
 
 models:
-  - name: monthly_campaign__level_report
-    description: "Monthly campaign performance metrics aggregated at campaign level with IAS quality metrics and demographic breakdowns"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns: [month, campaign_id, site_name, creative_concept]
+  - name: mart_daily_report_unified
+    description: "Daily unified performance report with rolling 3-month averages for placement-level metrics"
+    config:
+      contract:
+        enforced: true
     columns:
-      - name: month
-        description: "Month bucket for campaign performance aggregation"
-        tests:
-          - not_null
-      - name: campaign_id
-        description: "CM360 campaign unique identifier"
-        tests:
-          - not_null
-      - name: campaign_name
-        description: "Campaign display name from CM360"
-        tests:
-          - not_null
-      - name: site_name
-        description: "Publisher site name"
-        tests:
-          - not_null
-      - name: creative_concept
-        description: "Creative concept extracted from placement naming"
-      - name: creative_type
-        description: "Creative format type (banner, video, native, etc.)"
-      - name: state
-        description: "Geographic state from site demographics"
-      - name: region
-        description: "Geographic region grouping"
-      - name: sex
-        description: "Target demographic gender"
-      - name: device_type
-        description: "Device type (mobile, desktop, tablet)"
-      - name: impressions
-        description: "Total delivered impressions from CM360"
-        tests:
-          - not_null
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: clicks
-        description: "Total clicks from CM360"
-        tests:
-          - not_null
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: ctr
-        description: "Click-through rate (clicks/impressions)"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: ias_impressions
-        description: "IAS monitored impression count"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: ias_viewable_ads
-        description: "IAS verified viewable impressions"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: ias_brand_safety_ads
-        description: "IAS brand-safe impression count"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: ias_out_of_geo_ads
-        description: "IAS out-of-geography impression count"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: ias_page_views
-        description: "IAS tracked page view count"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: ias_video_completions
-        description: "IAS video completion count"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-
-  - name: daily_report_unified
-    description: "Daily unified reporting table combining CM360 performance with IAS quality metrics and site demographics"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns: [date, placement_name, campaign_id]
-    columns:
-      - name: date
-        description: "Event date at daily granularity"
+      - name: day
+        data_type: date
+        description: "Report date"
+        constraints:
+          - type: not_null
         tests:
           - not_null
       - name: month
-        description: "Month derived from date for easy filtering"
-        tests:
-          - not_null
-      - name: campaign_id
-        description: "CM360 campaign unique identifier"
-        tests:
-          - not_null
-      - name: campaign_name
-        description: "Campaign display name"
-        tests:
-          - not_null
-      - name: site_name
-        description: "Publisher site name"
-        tests:
-          - not_null
+        data_type: date
+        description: "Report month"
+        constraints:
+          - type: not_null
+          
       - name: placement_name
-        description: "Placement identifier - primary grain key"
+        data_type: string
+        description: "Placement identifier"
+        constraints:
+          - type: not_null
         tests:
           - not_null
+      - name: campaign_group
+        data_type: string
+        description: "Campaign group associated with the placement"
+          
+      - name: campaign_id
+        data_type: string
+        description: "Campaign identifier"
+        tests:
+          - not_null
+          
+      - name: campaign_name
+        data_type: string
+        description: "Campaign name"
+        
+      - name: site_name
+        data_type: string
+        description: "Site or publisher name"
+        
       - name: creative_concept
-        description: "Creative concept extracted from naming conventions"
+        data_type: string
+        description: "Creative concept identifier"
+        
       - name: creative_type
-        description: "Creative format (banner, video, native)"
+        data_type: string
+        description: "Type of creative (video, display, etc.)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['video', 'display', 'native', 'audio']
+        
       - name: state
-        description: "Geographic state targeting"
+        data_type: string
+        description: "Geographic state"
+        
       - name: region
-        description: "Geographic region grouping"
+        data_type: string
+        description: "Geographic region"
+        
       - name: sex
-        description: "Demographic gender targeting"
+        data_type: string
+        description: "Target gender demographic"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Male', 'Female', 'Unknown', 'All']
+        
       - name: device_type
-        description: "Device category (mobile, desktop, tablet)"
+        data_type: string
+        description: "Device type (mobile, desktop, tablet)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['mobile', 'desktop', 'tablet', 'ctv']
+        
       - name: impressions
-        description: "Daily delivered impressions from CM360"
+        data_type: number
+        description: "Total impressions delivered"
+        constraints:
+          - type: not_null
         tests:
           - not_null
-          - dbt_utils.accepted_range:
+          - dbt_utils.expression_is_true:
               arguments:
-                min_value: 0
+                expression: ">= 0"
+        
       - name: clicks
-        description: "Daily clicks from CM360"
+        data_type: number
+        description: "Total clicks"
         tests:
-          - not_null
-          - dbt_utils.accepted_range:
+          - dbt_utils.expression_is_true:
               arguments:
-                min_value: 0
+                expression: ">= 0"
       - name: ias_impressions
-        description: "IAS monitored impressions"
+        data_type: number
+        description: "IAS verified impressions"
         tests:
           - dbt_utils.accepted_range:
               arguments:
                 min_value: 0
-      - name: ias_viewable_ads
-        description: "IAS viewable impressions"
+        
+      - name: ias_video_completions
+        data_type: number
+        description: "IAS verified video completions"
         tests:
-          - dbt_utils.accepted_range:
+          - dbt_utils.expression_is_true:
               arguments:
-                min_value: 0
+                expression: ">= 0"
       - name: ias_brand_safety_ads
-        description: "IAS brand-safe impressions"
+        data_type: number
+        description: "Brand safety ads detected by IAS"
         tests:
-          - dbt_utils.accepted_range:
+          - dbt_utils.expression_is_true:
               arguments:
-                min_value: 0
+                expression: ">= 0"
       - name: ias_out_of_geo_ads
-        description: "IAS out-of-geo impressions"
+        data_type: number
+        description: "Out-of-geo ads detected by IAS"
         tests:
           - dbt_utils.accepted_range:
               arguments:
                 min_value: 0
       - name: ias_page_views
-        description: "IAS page view events"
+        data_type: number
+        description: "IAS tracked page views"
         tests:
           - dbt_utils.accepted_range:
               arguments:
                 min_value: 0
-      - name: ias_video_completions
-        description: "IAS video completion events"
+      - name: ias_viewable_ads
+        data_type: number
+        description: "IAS viewable ads"
         tests:
           - dbt_utils.accepted_range:
-             arguments:
-              min_value: 0
+              arguments:
+                min_value: 0
+      - name: contracted_rate
+        data_type: float
+        description: "Contracted CPM rate"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "> 0"
+        
+      - name: media_cost
+        data_type: float
+        description: "Calculated media cost (impressions * contracted_rate / 1000)"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: video_completion_rate
+        data_type: float
+        description: "Video completion rate (ias_video_completions / impressions)"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "between 0 and 1"
+        
+      - name: cpcv
+        data_type: float
+        description: "Cost per completed view"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: ctr
+        data_type: float
+        description: "Click-through rate"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "between 0 and 1"
+      - name: cpc
+        data_type: float
+        description: "Cost per click"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: region_impression_share
+        data_type: float
+        description: "Share of impressions by region"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "between 0 and 1"
+        
+      - name: ctr_3month_avg
+        data_type: float
+        description: "90-day rolling average CTR by placement"
+        
+      - name: vcr_3month_avg
+        data_type: float
+        description: "90-day rolling average video completion rate by placement"
+        
+      - name: cpc_3month_avg
+        data_type: float
+        description: "90-day rolling average CPC by placement"
+        
+      - name: cpcv_3month_avg
+        data_type: float
+        description: "90-day rolling average CPCV by placement"
+    
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [day, placement_name]
+
+  - name: mart_monthly_campaign__level_report
+    description: "Monthly aggregated campaign-level performance report"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: month
+        data_type: date
+        description: "Report month"
+        constraints:
+          - type: not_null
+          
+      - name: campaign_id
+        data_type: string
+        description: "Campaign identifier"
+        tests:
+          - not_null
+          
+      - name: campaign_name
+        data_type: string
+        description: "Campaign name"
+        
+      - name: site_name
+        data_type: string
+        description: "Site or publisher name"
+        
+      - name: creative_concept
+        data_type: string
+        description: "Creative concept identifier"
+        
+      - name: creative_type
+        data_type: string
+        description: "Type of creative"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['video', 'display', 'native', 'audio']
+        
+      - name: state
+        data_type: string
+        description: "Geographic state"
+        
+      - name: region
+        data_type: string
+        description: "Geographic region"
+        
+      - name: sex
+        data_type: string
+        description: "Target gender demographic"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Male', 'Female', 'Unknown', 'All']
+        
+      - name: device_type
+        data_type: string
+        description: "Device type"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['mobile', 'desktop', 'tablet', 'ctv']
+        
+      - name: impressions
+        data_type: number
+        description: "Total impressions for the month"
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: clicks
+        data_type: number
+        description: "Total clicks for the month"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: ias_video_completions
+        data_type: number
+        description: "Total video completions for the month"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: media_cost
+        data_type: float
+        description: "Total media cost for the month"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: ctr
+        data_type: float
+        description: "Average CTR for the month"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "between 0 and 1"
+        
+      - name: vcr
+        data_type: float
+        description: "Average video completion rate for the month"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "between 0 and 1"
+        
+      - name: cpc
+        data_type: float
+        description: "Average CPC for the month"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: cpcv
+        data_type: float
+        description: "Average CPCV for the month"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+        
+      - name: ctr_3month_avg
+        data_type: float
+        description: "Average of 90-day rolling CTR"
+        
+      - name: vcr_3month_avg
+        data_type: float
+        description: "Average of 90-day rolling VCR"
+        
+      - name: cpc_3month_avg
+        data_type: float
+        description: "Average of 90-day rolling CPC"
+        
+      - name: cpcv_3month_avg
+        data_type: float
+        description: "Average of 90-day rolling CPCV"
+    
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [month, campaign_id]

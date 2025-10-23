@@ -4,7 +4,7 @@
 select
     day as date,
     campaign_name,
-    campaign_id,
+    campaign_id::varchar as campaign_id,
     site_name,
     placement_name,
     creative_type,

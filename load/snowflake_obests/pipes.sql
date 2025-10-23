@@ -1,5 +1,5 @@
 
--- CREATE OR REPLACE STAGE ADTECH_ANALYTICS.raw.SHARETHROUGH_STAGE;
+-- CREATE OR REPLACE STAGE adtech_analytics_devraw.SHARETHROUGH_STAGE;
 create or replace pipe CM360_PIPE auto_ingest=TRUE as COPY INTO CM360_raw_data FROM @CM360_stage FILE_FORMAT=(TYPE=CSV FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1) ON_ERROR='CONTINUE';
 
 create or replace pipe AMAZON_PIPE auto_ingest=TRUE as COPY INTO Amazon_raw_data FROM @Amazon_stage FILE_FORMAT=(TYPE=CSV FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1) ON_ERROR='CONTINUE';
@@ -8,8 +8,8 @@ create or replace pipe AVZU_PIPE auto_ingest=TRUE as COPY INTO AVZU_raw_data FRO
 
 create or replace pipe BINGADS_PIPE auto_ingest=TRUE as COPY INTO BingAds_raw_data FROM @BingAds_stage FILE_FORMAT=(TYPE=CSV FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1) ON_ERROR='CONTINUE';
 
- CREATE or replace pipe CM360_PIPE auto_ingest=true as COPY INTO adtech_analytics.RAW.cm360_raw_data
-  FROM @adtech_analytics.raw.cm360_stage
+ CREATE or replace pipe CM360_PIPE auto_ingest=true as COPY INTO adtech_analytics_devRAW.cm360_raw_data
+  FROM @adtech_analytics_devraw.cm360_stage
   FILE_FORMAT = (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1) ON_ERROR='CONTINUE';
   
 create or replace pipe CRITEO_PIPE auto_ingest=TRUE as COPY INTO Criteo_raw_data FROM @Criteo_stage FILE_FORMAT=(TYPE=CSV FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1) ON_ERROR='CONTINUE';

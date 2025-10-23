@@ -8,11 +8,14 @@ import numpy as np
 # -----------------------------
 # Config (tweak as needed)
 # -----------------------------
-STATES = ["Telangana", "Maharashtra", "Tamil Nadu"]
+STATES = ["Telangana", "Maharashtra", "Tamil Nadu", "Karnataka","kerala","Andhra Pradesh"]
 TIER1_CITIES = {
-    "Telangana": ["Hyderabad"],
-    "Maharashtra": ["Mumbai", "Pune"],
-    "Tamil Nadu": ["Chennai"]
+    "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Khammam", "Adilabad", "Suryapet", "Mahbubnagar", "Ramagundam"],
+    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane", "Aurangabad", "Solapur"],
+    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Erode", "Tirunelveli"],
+    "Karnataka": ["Bengaluru", "Mysuru", "Mangalore", "Hubli", "Belagavi", "Dharwad"],
+    "kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Alappuzha"],
+    "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Kurnool"]
 }
 AGE_GROUPS = ["18-24", "25-34", "35-44", "45-54", "55+"]
 SEXES = ["Male", "Female", "Other"]
@@ -24,11 +27,11 @@ DEFAULT_SITES = [
 ]
 
 ADVERTISERS = ["THD"]
-MARKET = "IND"
+MARKET = ["TN", 'MH', 'TG', 'KA', 'AP', 'KL']
 
 SEASONAL_CONCEPTS = [
     "DiwaliOffer", "LoanFest", "Dussera", "Ugadi", "Christmas", "Ramadan",
-    "Independence Day", "Republic day", "ShoppingFest", "NewYearSale", "SummerDeal", "Winter"
+    "Independence Day", "Republic day", "ShoppingFest", "NewYearSale", "SummerDeal", "Winter", 'india_fest', 'year_long',
 ]
 QUARTERLY_CONCEPTS = [
     "QuarterlySale", "FiscalCampaign", "SeasonalBlast"
@@ -43,8 +46,8 @@ CREATIVE_TYPES = ["Display", "Instream Video", "Instream Audio", "Tracking"]
 CREATIVE_SIZES = ["300x250", "728x90", "160x600", "300x300", "320x50"]
 CREATIVE_DURATIONS = ["06s", "15s", "30s", "45s"]
 
-PLACEMENTS_PER_CAMPAIGN_MIN = 4
-PLACEMENTS_PER_CAMPAIGN_MAX = 80
+PLACEMENTS_PER_CAMPAIGN_MIN = 40
+PLACEMENTS_PER_CAMPAIGN_MAX = 160
 
 IMP_MIN = 0
 IMP_MAX = 85421
@@ -89,12 +92,12 @@ def sample_creatives_for_concept(concept, creative_type):
         creative_base = f"{concept}_CR{i:02d}"
         if creative_type == "Display":
             size = random.choice(CREATIVE_SIZES)
-            name = f"{concept}_{creative_base}_{size}"
+            name = f"THD_{creative_base}_{size}"
         elif creative_type in ("Instream Video", "Instream Audio"):
             dur = random.choice(CREATIVE_DURATIONS)
-            name = f"{concept}_{creative_base}_{dur}"
+            name = f"THD_{creative_base}_{dur}"
         else:
-            name = f"{concept}_{creative_base}_TAG"
+            name = f"THD_{creative_base}_TAG"
         creatives.append(name)
     return creatives
 
@@ -130,7 +133,7 @@ def valid_concepts_for_week(week_start: datetime.date):
             valid.append(concept)
         elif concept == "NewYearSale" and month == 1 and 1 <= day <= 15:
             valid.append(concept)
-        elif concept in ["ShoppingFest", "LoanFest"]:
+        elif concept in ["ShoppingFest", "LoanFest", "india_fest", "year_long"]:
             valid.append(concept)
 
     valid.extend(QUARTERLY_CONCEPTS)
@@ -160,7 +163,8 @@ def generate_weekly_cm360_reports(output_folder="cm360_reports",
             if not valid_concepts:
                 continue
             concept = random.choice(valid_concepts)
-            campaign_name = f"2025_{market}_{advertiser}_{concept}_digital"
+            mar = random.choice(market)
+            campaign_name = f"2025_{mar}_{advertiser}_{concept}_digital"
             campaign_id = get_campaign_id_for_name(campaign_name)
 
             campaign_sites = random.sample(sites, random.randint(2, len(sites)))
@@ -196,8 +200,9 @@ def generate_weekly_cm360_reports(output_folder="cm360_reports",
                             info["cap"] = random.randint(1, 10)
 
                     placement_randid = rand_id(8)
+                    mar = random.choice(market)
                     name = (
-                        f"Placement_{advertiser}_{market}_{concept}_{site}_{package_random_id}_"
+                        f"Placement_{advertiser}_{mar}_{concept}_{site}_{package_random_id}_"
                         f"{creative_type}_{concept[:3]}_{placement_randid}_{creative_name}"
                     )
                     if len(name) > 180:
@@ -419,9 +424,9 @@ def run_full_adtech_workflow(cm360_folder="cm360_reports",
 
 if __name__ == "__main__":
     run_full_adtech_workflow(
-        cm360_folder=r"C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\cm360_reports",
-        site_folder=r"C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\site_reports",
-        ias_folder=r"C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\ias_reports",
+        cm360_folder=r"S:\Adtech_data2\cm360_reports",
+        site_folder=r"S:\Adtech_data2\site_reports",
+        ias_folder=r"S:\Adtech_data2\ias_reports",
         start_date=datetime.date(2025,1,1),
         end_date=datetime.date(2025,12,31),
         num_campaigns=150,

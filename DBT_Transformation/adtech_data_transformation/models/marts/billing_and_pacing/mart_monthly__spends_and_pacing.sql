@@ -8,7 +8,13 @@
 with billable_and_nonbillable as (
     select
         *,
+        round(
+            total_impressions_cm360
+            / nullif(planned_impressions, 0),
+            2
+        )::float as delivery_rate,
         (out_of_geo_ads_ias + fraud_ads_ias) as total_non_billable,
+
         total_impressions_cm360
         - (out_of_geo_ads_ias + fraud_ads_ias) as total_billable_impressions,
 
@@ -17,12 +23,6 @@ with billable_and_nonbillable as (
             / nullif(total_impressions_cm360, 0),
             2
         ) as viewable_rate_pct,
-
-        round(
-            total_impressions_cm360
-            / nullif(planned_impressions, 0),
-            2
-        ) as delivery_rate,
 
         (contracted_rate * planned_impressions) as planned_spend,
         (contracted_rate * planned_impressions) * 1.1 as adjusted_spend

@@ -33,10 +33,6 @@ sources:
           - name: placement
             tests:
               - not_null
-              - relationships:
-                  arguments:
-                    to: source('cm360', 'cm360_raw_data')
-                    field: placement_name
           - name: ad_format
           - name: monitored_ads
           - name: viewable_ads

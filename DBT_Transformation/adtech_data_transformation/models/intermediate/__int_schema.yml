@@ -41,7 +41,7 @@ models:
   - name: int_business_analytics__metrics_model
     description: "Daily analytics join at placement-date grain; CM360 performance + IAS quality + site demographics."
     columns:
-      - name: date
+      - name: day
         description: "Event date at daily grain."
         tests:
           - not_null
@@ -49,6 +49,10 @@ models:
         description: "CM360 campaign identifier."
         tests:
           - not_null
+      - name: campaign_name
+        description: "CM360 campaign name."
+      - name: campaign_group
+        description: "Campaign group"
       - name: placement_name
         description: "Placement name as key."
         tests:
@@ -68,5 +72,5 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
-            combination_of_columns: [date, campaign_id, placement_name]
+            combination_of_columns: [day, campaign_id, placement_name]
 

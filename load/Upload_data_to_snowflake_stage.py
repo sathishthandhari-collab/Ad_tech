@@ -1,11 +1,11 @@
 import os
 import snowflake.connector
-from datetime import datetime
+from datetime import datetime, timezone
 
 # -----------------------------
 # Config
 # -----------------------------
-FOLDER_PATH = r"C:\Users\Sathish\OneDrive\Desktop\DA\Projects\Ad_tech\load\Snow_pipe"
+FOLDER_PATH = r"S:\Adtech_data2\snowpile"
 FAILED_FOLDER = os.path.join(FOLDER_PATH, "failed")
 
 # Create failed folder if it doesn't exist
@@ -16,13 +16,11 @@ WAREHOUSE = "projects"
 DATABASE = "adtech_analytics_dev"
 SCHEMA = "raw"
 
-# TODO: Update these stage names based on your ACTUAL pipe configurations
-# Run "DESC PIPE adtech_analytics.staging.CM360_PIPE;" to find the correct stage
 STAGE_MAP = {
-    "AMAZON": "amazon_stage",      # Replace with actual stage name
+    "AMAZON": "amazon_stage",
     "AVZU": "avzu_stage",
     "BINGADS": "bingads_stage",
-    "CM360": "cm360_stage",        # Replace with actual stage name
+    "CM360": "cm360_stage",
     "CRITEO": "criteo_stage",
     "DV360": "dv360_stage",
     "HINDHU": "hindhu_stage",
@@ -40,10 +38,8 @@ STAGE_MAP = {
 }
 
 def log_to_snowflake(cursor, file_name, stage_name, status):
-    """Insert log entry into Snowflake control table."""
-    # Use the column name that EXISTS in your table
     log_query = """
-        INSERT INTO staging.file_upload_log (file_name, pipe_name, status, uploaded_at)
+        INSERT INTO raw.file_upload_log (file_name, pipe_name, status, uploaded_at)
         VALUES (%s, %s, %s, CURRENT_TIMESTAMP)
     """
     try:
@@ -51,8 +47,20 @@ def log_to_snowflake(cursor, file_name, stage_name, status):
     except Exception as log_error:
         print(f"[ERROR] Failed to log: {log_error}")
 
+def add_ingested_at_column(file_path):
+    # Detect and process only CSV files (modify for other formats as needed)
+    if file_path.lower().endswith('.csv'):
+        temp_file_path = file_path + ".tmp"
+        with open(file_path, 'r', encoding='utf-8') as infile, open(temp_file_path, 'w', encoding='utf-8') as outfile:
+            now_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+            header = infile.readline().strip()
+            outfile.write(header + ",_Ingested_at\n")
+            for line in infile:
+                outfile.write(line.strip() + f",{now_str}\n")
+        os.replace(temp_file_path, file_path)
+    # For other file types, you can add logic accordingly
+
 def upload_files_to_snowpipe():
-    """Check folder for files, upload to correct stage, log in Snowflake, delete after success."""
     conn = snowflake.connector.connect(
         connection_name='dev',
         warehouse=WAREHOUSE,
@@ -72,29 +80,21 @@ def upload_files_to_snowpipe():
                 stage_name = STAGE_MAP[first_word]
 
                 try:
+                    print(f"[INFO] Processing {file}: Adding _Ingested_at column")
+                    add_ingested_at_column(file_path)
+
                     print(f"[INFO] Uploading {file} -> @{stage_name}")
-
-                    # Convert Windows path to forward slashes for Snowflake
                     normalized_path = file_path.replace('\\', '/')
-
-                    # PUT to named stage (no quotes needed)
                     put_query = f"PUT 'file://{normalized_path}' @{stage_name} AUTO_COMPRESS=TRUE"
                     cursor.execute(put_query)
 
-                    # Remove file only after successful upload
                     os.remove(file_path)
                     print(f"[INFO] Successfully uploaded and deleted {file}")
-
-                    # Log success
                     log_to_snowflake(cursor, file, stage_name, "SUCCESS")
 
                 except Exception as e:
                     print(f"[ERROR] Failed uploading {file} -> @{stage_name}: {e}")
-
-                    # Log failure (but don't let logging errors crash the main process)
                     log_to_snowflake(cursor, file, stage_name, f"FAILED: {str(e)}")
-
-                    # Move failed file to failed folder
                     try:
                         failed_file_path = os.path.join(FAILED_FOLDER, file)
                         os.rename(file_path, failed_file_path)

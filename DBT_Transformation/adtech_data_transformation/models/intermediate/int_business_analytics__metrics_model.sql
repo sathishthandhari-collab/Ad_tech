@@ -6,6 +6,7 @@ with cm360_daily as (
         cm360.date,
         cm360.campaign_id,
         cm360.campaign_name,
+        cm360.campaign_group,
         cm360.site_name,
         cm360.placement_name,
         cm360.creative_concept,
@@ -13,7 +14,7 @@ with cm360_daily as (
         sum(cm360.total_impressions_cm360) as impressions,
         sum(cm360.clicks_cm360) as clicks
     from {{ ref('stg_CM360') }} as cm360
-    group by 1, 2, 3, 4, 5, 6, 7
+    group by 1, 2, 3, 4, 5, 6, 7, 8
 ),
 
 ias_daily as (
@@ -43,7 +44,7 @@ site_daily as (
 ),
 
 prisma as (
-    select 
+    select
         p.placement_name,
         avg(p.contracted_rate) as contracted_rate
     from {{ ref('int_pacing_and_billing__model') }} as p
@@ -53,38 +54,44 @@ prisma as (
 
 base as (
     select
-    c.date as day,
-    date_trunc('month', c.date) as month,
-    c.campaign_id,
-    c.campaign_name,
-    c.site_name,
-    c.placement_name,
-    c.creative_concept,
-    c.creative_type,
-    s.state,
-    s.region,
-    s.sex,
-    s.device_type,
-    p.contracted_rate,
-    coalesce(c.impressions, 0) as impressions,
-    coalesce(c.clicks, 0) as clicks,
-    coalesce(i.ias_impressions, 0) as ias_impressions,
-    coalesce(i.ias_viewable_ads, 0) as ias_viewable_ads,
-    coalesce(i.ias_brand_safety_ads, 0) as ias_brand_safety_ads,
-    coalesce(i.ias_out_of_geo_ads, 0) as ias_out_of_geo_ads,
-    coalesce(i.ias_page_views, 0) as ias_page_views,
-    coalesce(i.ias_video_completions, 0) as ias_video_completions
-from cm360_daily as c
-left join ias_daily as i on c.placement_name = i.placement_name
-                            and c.date = i.date
-left join site_daily as s on c.placement_name = s.placement_name
-                            and c.date = s.date
-left join prisma as p on c.placement_name = p.placement_name)
+        c.date as day,
+        c.campaign_id,
+        c.campaign_name,
+        c.campaign_group,
+        c.site_name,
+        c.placement_name,
+        c.creative_concept,
+        c.creative_type,
+        s.state,
+        s.region,
+        s.sex,
+        s.device_type,
+        p.contracted_rate,
+        date_trunc('month', c.date) as month,
+        coalesce(c.impressions, 0) as impressions,
+        coalesce(c.clicks, 0) as clicks,
+        coalesce(i.ias_impressions, 0) as ias_impressions,
+        coalesce(i.ias_viewable_ads, 0) as ias_viewable_ads,
+        coalesce(i.ias_brand_safety_ads, 0) as ias_brand_safety_ads,
+        coalesce(i.ias_out_of_geo_ads, 0) as ias_out_of_geo_ads,
+        coalesce(i.ias_page_views, 0) as ias_page_views,
+        coalesce(i.ias_video_completions, 0) as ias_video_completions
+    from cm360_daily as c
+    left join ias_daily as i
+        on
+            c.placement_name = i.placement_name
+            and c.date = i.date
+    left join site_daily as s
+        on
+            c.placement_name = s.placement_name
+            and c.date = s.date
+    left join prisma as p on c.placement_name = p.placement_name
+)
 
 select * from base
 
-{%if target == 'dev'%}
-  limit {{var('dev_sample_size')}}
+{% if target == 'dev' %}
+  limit {{ var('dev_sample_size') }}
 {% endif %}
 
 

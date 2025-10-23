@@ -68,7 +68,7 @@ prisma_cm360_ias_joined as (
         7 + (
             ABS(HASH(CONCAT(prisma.cm360_campaign_id, prisma.placement_name)))
             % 1600
-        )/ 100.0::float as contracted_rate
+        ) / 100.0::float as contracted_rate
     from cm360_monthly as cm360
     left join ias_monthly as ias
         on
@@ -97,9 +97,9 @@ deduplicated as (
     from prisma_cm360_ias_joined
 )
 
-select * from deduplicated
+select * exclude rn from deduplicated
 where rn = 1
 order by month
-{%if target == 'dev'%}
-  limit {{var('dev_sample_size')}}
+{% if target == 'dev' %}
+  limit {{ var('dev_sample_size') }}
 {% endif %}

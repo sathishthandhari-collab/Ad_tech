@@ -8,6 +8,7 @@ select
     site_name,
     placement_name,
     creative_type,
+    current_timestamp::timestamp_ntz as dbt_loaded_at,
 from {{ source('cm360', 'cm360_raw_data') }}
 group by 1, 2, 3, 4, 5, 6, 7
 

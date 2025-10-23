@@ -8,7 +8,7 @@
     schema='thd_site_spends_prod'
 ) }}
 
-select * from {{ ref('monthly__spends_and_pacing') }}
+select * from {{ ref('mart_monthly__spends_and_pacing') }}
 where site_name = '{{ vendor_name }}'
 
 {% if is_incremental() %}
