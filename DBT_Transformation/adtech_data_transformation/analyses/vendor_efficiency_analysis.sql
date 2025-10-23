@@ -8,7 +8,7 @@ with vendor_metrics as (
         sum(final_billable_payment) as total_spend,
         avg(delivery_rate) as avg_delivery_rate,
         avg(viewable_rate_pct) as avg_viewability_rate
-    from {{ ref('monthly__spends_and_pacing') }}
+    from {{ ref('mart_monthly__spends_and_pacing') }}
     where
         month >= current_date - interval '6 months'
         and final_billable_payment > 0

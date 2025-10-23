@@ -1,59 +1,208 @@
 version: 2
 
 models:
-  - name: monthly__spends_and_pacing
-    description: "Monthly billing and pacing model with viewability and delivery adjustments"
+  - name: mart_monthly__spends_and_pacing
+    description: "Monthly spends, pacing, and billing calculations for each placement"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: month
+        data_type: date
+        description: "Billing month"
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: placement_name
+        data_type: string
+        description: "Placement identifier"
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: contracted_rate
+        data_type: float
+        description: "Contracted CPM rate"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "> 0"
+
+      - name: planned_impressions
+        data_type: number
+        description: "Planned impression count"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: total_impressions_cm360
+        data_type: number
+        description: "Total impressions tracked by CM360"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+      - name: campaign_group
+        data_type: string
+        description: "Campaign group associated with the placement"
+      - name: campaign_id
+        data_type: varchar
+        description: "CM360 campaign identifier"
+      - name: campaign_name
+        data_type: string
+        description: "CM360 campaign name"
+        tests:
+          - not_null
+      - name: creative_concept
+        data_type: string
+        description: "Creative concept associated with the placement"
+      - name: creative_type
+        data_type: string
+        description: "Type of creative used in the placement"
+      - name: site_name
+        data_type: string
+        description: "Site name where the placement was served"
+      - name: clicks_cm360
+        data_type: number
+        description: "Total clicks tracked by CM360"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: page_views_ias
+        data_type: number
+        description: "Page views tracked by IAS"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+      - name: brand_safety_ads_ias
+        data_type: number
+        description: "Brand safety ads detected by ias"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: out_of_geo_ads_ias
+        data_type: number
+        description: "Out-of-geo ads detected by IAS"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: fraud_ads_ias
+        data_type: number
+        description: "Fraud ads detected by CM360"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: brand_safety_ads_ias
+        data_type: number
+        description: "Brand safety ads detected by IAS"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: out_of_geo_ads_ias
+        data_type: number
+        description: "Out-of-geo ads detected by IAS"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: fraud_ads_ias
+        data_type: number
+        description: "Fraud ads detected by IAS"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: viewable_ads_ias
+        data_type: number
+        description: "Viewable ads tracked by IAS"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: total_non_billable
+        data_type: number
+        description: "Total non-billable impressions (out_of_geo + fraud)"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: total_billable_impressions
+        data_type: number
+        description: "Total billable impressions (CM360 minus non-billable)"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: viewable_rate_pct
+        data_type: number
+        description: "Percentage of impressions that are viewable"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "between 0 and 100"
+
+      - name: delivery_rate
+        data_type: float
+        description: "Ratio of delivered to planned impressions"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: planned_spend
+        data_type: float
+        description: "Planned spend based on contracted rate and planned impressions"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: adjusted_spend
+        data_type: float
+        description: "Adjusted spend (planned spend * 1.1)"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: billable_spend
+        data_type: float
+        description: "Final billable spend based on viewability and billable impressions"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: final_billable_payment
+        data_type: float
+        description: "Final billable payment amount for placement"
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
     tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [month, placement_name]
-    columns:
-      - name: month
-        description: "Month bucket for billing period"
-        tests:
-          - not_null
-      - name: placement_name
-        description: "Placement identifier for billing"
-        tests:
-          - not_null
-      - name: campaign_id
-        description: "Campaign identifier"
-        tests:
-          - not_null
-      - name: total_billable_impressions
-        description: "Impressions eligible for billing after fraud/geo filtering"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: viewable_rate_pct
-        description: "Percentage of viewable ads"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-                max_value: 100
-      - name: delivery_rate
-        description: "Actual vs planned impression delivery ratio"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: planned_spend
-        description: "Planned spend based on contracted rate"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: billable_spend
-        description: "Calculated billable spend with viewability adjustments"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-      - name: final_billable_payment
-        description: "Final payment amount with all adjustments applied"
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
