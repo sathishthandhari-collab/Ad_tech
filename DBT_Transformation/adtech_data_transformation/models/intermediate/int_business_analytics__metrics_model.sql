@@ -62,7 +62,7 @@ base as (
         c.placement_name,
         c.creative_concept,
         c.creative_type,
-        s.state,
+        {{extract_campaign_attribute('campaign_name', 3) }}  as state,
         s.region,
         s.sex,
         s.device_type,

@@ -101,30 +101,6 @@ models:
 
       - name: fraud_ads_ias
         data_type: number
-        description: "Fraud ads detected by CM360"
-        tests:
-          - dbt_utils.expression_is_true:
-              arguments:
-                expression: ">= 0"
-
-      - name: brand_safety_ads_ias
-        data_type: number
-        description: "Brand safety ads detected by IAS"
-        tests:
-          - dbt_utils.expression_is_true:
-              arguments:
-                expression: ">= 0"
-
-      - name: out_of_geo_ads_ias
-        data_type: number
-        description: "Out-of-geo ads detected by IAS"
-        tests:
-          - dbt_utils.expression_is_true:
-              arguments:
-                expression: ">= 0"
-
-      - name: fraud_ads_ias
-        data_type: number
         description: "Fraud ads detected by IAS"
         tests:
           - dbt_utils.expression_is_true:

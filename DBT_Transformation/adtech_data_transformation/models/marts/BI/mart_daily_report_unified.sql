@@ -1,6 +1,7 @@
 {{
   config(
     materialized='incremental',
+    on_schema_change='append_new_columns',
     incremental_strategy='delete+insert',
     unique_key=['day', 'placement_name'],
     schema='thd_analytics_prod'
@@ -23,7 +24,7 @@ performance_metrics as (
         *,
         ias_video_completions
         / nullif(impressions, 0)::float as video_completion_rate,
-        media_cost / ias_video_completions as cpcv,
+        media_cost / nullif(ias_video_completions, 0) as cpcv,
         clicks / nullif(impressions, 0)::float as ctr,
         media_cost / nullif(clicks, 0) as cpc,
         sum(impressions) over (partition by region)

@@ -1,14 +1,16 @@
 {{ config(
     materialized='incremental',
-    incremental_strategy='merge',
+    incremental_strategy='delete+insert',
+    on_schema_change='append_new_columns',
     unique_key=['month', 'campaign_id'],
-    schema='thd_billing_prod'
+    schema='thd_analytics_prod'
 ) }}
 with base as (
     select
         month,
         campaign_id,
         campaign_name,
+        campaign_group,
         site_name,
         creative_concept,
         creative_type,
@@ -17,6 +19,7 @@ with base as (
         sex,
         device_type,
         sum(impressions) as impressions,
+        sum(ias_viewable_ads) as viewable_impressions,
         sum(clicks) as clicks,
         sum(ias_video_completions) as ias_video_completions,
         sum(media_cost) as media_cost,
@@ -30,7 +33,7 @@ with base as (
         avg(cpcv_3month_avg) as cpcv_3month_avg
 
     from {{ ref('mart_daily_report_unified') }}
-    group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 )
 
 select * from base
