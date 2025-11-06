@@ -45,23 +45,43 @@ sources:
     database: adtech_analytics_dev
     schema: raw
     tables:
-      - name: cm360_stage_data_view
-      - name: ias_stage_data_view
-      - name: amazon_raw_data
-      - name: avzu_raw_data
-      - name: bingads_raw_data
-      - name: cm360_raw_data
-      - name: criteo_raw_data
-      - name: dv360_raw_data
-      - name: hindhu_raw_data
-      - name: ias_raw_data
-      - name: inmobi_raw_data
-      - name: magnite_raw_data
-      - name: miq_raw_data
-      - name: pubmatic_raw_data
-      - name: remezcla_raw_data
-      - name: sharethrough_raw_data
-      - name: toi_raw_data
-      - name: ttd_raw_data
-      - name: webmd_raw_data
-      - name: youtube_raw_data
+      - name: CM360_STAGE_DATA_VIEW
+
+      - name: IAS_STAGE_DATA_VIEW
+
+      - name: AMAZON_RAW_DATA
+
+      - name: AVZU_RAW_DATA
+
+      - name: BINGADS_RAW_DATA
+
+      - name: CM360_RAW_DATA
+
+      - name: CRITEO_RAW_DATA
+
+      - name: DV360_RAW_DATA
+
+      - name: HINDHU_RAW_DATA
+
+      - name: IAS_RAW_DATA
+
+      - name: INMOBI_RAW_DATA
+
+      - name: MAGNITE_RAW_DATA
+
+      - name: MIQ_RAW_DATA
+
+      - name: PUBMATIC_RAW_DATA
+
+      - name: REMEZCLA_RAW_DATA
+
+      - name: SHARETHROUGH_RAW_DATA
+
+      - name: TOI_RAW_DATA
+
+      - name: TTD_RAW_DATA
+
+      - name: WEBMD_RAW_DATA
+
+      - name: YOUTUBE_RAW_DATA
+

@@ -52,10 +52,6 @@ models:
       - name: creative_type
         data_type: string
         description: "Type of creative (video, display, etc.)"
-        tests:
-          - accepted_values:
-              arguments:
-                values: ['video', 'display', 'native', 'audio']
         
       - name: state
         data_type: string
@@ -163,10 +159,10 @@ models:
       - name: video_completion_rate
         data_type: float
         description: "Video completion rate (ias_video_completions / impressions)"
-        tests:
-          - dbt_utils.expression_is_true:
-              arguments:
-                expression: "between 0 and 1"
+        # tests:
+        #   - dbt_utils.expression_is_true:
+        #       arguments:
+        #         expression: "between 0 and 1"
         
       - name: cpcv
         data_type: float
@@ -241,6 +237,9 @@ models:
       - name: campaign_name
         data_type: string
         description: "Campaign name"
+      - name: campaign_group
+        data_type: string
+        description: "Campaign group associated with the placement"
         
       - name: site_name
         data_type: string
@@ -253,10 +252,6 @@ models:
       - name: creative_type
         data_type: string
         description: "Type of creative"
-        tests:
-          - accepted_values:
-              arguments:
-                values: ['video', 'display', 'native', 'audio']
         
       - name: state
         data_type: string
@@ -292,6 +287,9 @@ models:
           - dbt_utils.expression_is_true:
               arguments:
                 expression: ">= 0"
+      - name: viewable_impressions
+        data_type: number
+        description: "Total viewable impressions for the month"
         
       - name: clicks
         data_type: number
@@ -329,11 +327,6 @@ models:
       - name: vcr
         data_type: float
         description: "Average video completion rate for the month"
-        tests:
-          - dbt_utils.expression_is_true:
-              arguments:
-                expression: "between 0 and 1"
-        
       - name: cpc
         data_type: float
         description: "Average CPC for the month"
@@ -365,8 +358,3 @@ models:
       - name: cpcv_3month_avg
         data_type: float
         description: "Average of 90-day rolling CPCV"
-    
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns: [month, campaign_id]

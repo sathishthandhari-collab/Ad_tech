@@ -5,11 +5,10 @@ with campaign_performance as (
         site_name,
         sum(impressions) as total_impressions,
         sum(clicks) as total_clicks,
-        sum(ias_viewable_ads) as total_viewable,
+        sum(viewable_impressions) as total_viewable,
         round(avg(ctr), 4) as avg_ctr,
         sum(impressions * 0.001 * 15) as estimated_spend -- Assuming $15 CPM
     from {{ ref('mart_monthly_campaign__level_report') }}
-    where month >= current_date - interval '3 months'
     group by 1, 2, 3
 ),
 

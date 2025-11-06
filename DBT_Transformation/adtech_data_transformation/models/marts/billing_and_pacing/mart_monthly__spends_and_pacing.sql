@@ -1,6 +1,7 @@
 {{ config(
     materialized='incremental',
     incremental_strategy='merge',
+    on_schema_change='append_new_columns',
     unique_key=['month', 'placement_name'],
     schema='thd_billing_prod'
 ) }}
